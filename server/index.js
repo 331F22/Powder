@@ -6,9 +6,9 @@ const mysql = require('mysql')
 
 const db = mysql.createPool({ // createConnection
     host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'bridger',
+    user: 'user00',
+    password: process.env.password,
+    database: 'db00',
     port: 8889
 })
 
