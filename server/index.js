@@ -8,7 +8,7 @@ const dotenv = require('dotenv').config()
 const db = mysql.createPool({ // createConnection
     host: 'localhost',
     user: 'user00',
-    password: process.env.password,
+    password: '00pass',
     database: 'db00',
     port: 8889
 })
