@@ -7,10 +7,10 @@ const dotenv = require('dotenv').config()
 
 const db = mysql.createPool({ // createConnection
     host: 'localhost',
-    user: 'user00',     // 'root'
-    password: '00pass', // 'root'
-    database: 'db00',   // 'db00'
-    port: 3306          // 8889
+    user: 'user00',     // set to custom
+    password: process.env.PASS, // custom (hide in .env)
+    database: 'db00',   // set to custom
+    port: 3306          // default mySQL port
 })
 
 app.use(cors())
