@@ -10,7 +10,7 @@ const CurrentEntries = () => {
 
   // READ (GET)
   useEffect(() => {
-    axios.get('http://localhost:3000/api/read').then((response) => {
+    axios.get('http://csci331.cs.montana.edu:3000/api/read').then((response) => {
       setEntryList(response.data)
     })
   }, [])
@@ -31,7 +31,7 @@ const CurrentEntries = () => {
 
   // DELETE
   const deleteEntry = (email) => { // deletes ALL such email instances in the database
-    axios.delete(`http://localhost:3000/api/delete/${email}`).then((response) => {
+    axios.delete(`http://csci331.cs.montana.edu:3000/api/delete/${email}`).then((response) => {
       let objToDelete = getObjectByValue(email)
       const index = entryList.indexOf(objToDelete) // deletes ONE instance in the state var
       if (index > -1) {
@@ -44,7 +44,7 @@ const CurrentEntries = () => {
 
   // UPDATE (PUT)
   const updateEmail = (email) => { // replaces ALL such email instances in the database
-    axios.put(`http://localhost:3000/api/update`, { old: email, new: newEmail }).then((response) => {
+    axios.put(`http://csci331.cs.montana.edu:3000/api/update`, { old: email, new: newEmail }).then((response) => {
       let objToChange = getObjectByValue(email)
       const index = entryList.indexOf(objToChange)  // deletes ONE instance in the state var
       objToChange.email_address = newEmail

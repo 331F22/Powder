@@ -14,7 +14,7 @@ const AddEntry = () => {
 
   // CREATE (POST)
   function submitEntry() {
-    axios.post('http://localhost:3000/api/create', { first: firstName, last: lastName, email: emailAddress }).then((response) => {
+    axios.post('http://csci331.cs.montana.edu:3000/api/create', { first: firstName, last: lastName, email: emailAddress }).then((response) => {
       setEntryList([...entryList, { first_name: firstName, last_name: lastName, email_address: emailAddress }]
       )
     })
