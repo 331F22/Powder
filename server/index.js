@@ -7,9 +7,9 @@ const dotenv = require('dotenv').config()
 
 const db = mysql.createPool({ // createConnection
     host: 'localhost',
-    user: 'user00',     // set to custom
+    user: process.env.USER,     // set to custom
     password: process.env.PASS, // custom (hide in .env)
-    database: 'db00',   // set to custom
+    database: process.env.DATABASE,   // set to custom
     port: 3306          // default mySQL port
 })
 
@@ -68,7 +68,7 @@ app.put("/api/update", (req, res) => {
     })
 })
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 const msg = `Running on PORT ${PORT}`
 app.get("/", (req, res) => {
     res.send(`<h1>Express Server</h1><p>${msg}<p>`)
