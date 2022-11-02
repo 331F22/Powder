@@ -3,14 +3,14 @@ import axios from 'axios'
 
 const CurrentEntries = () => {
 
-  const SECRET = '777' 
+  const SECRET = process.env.REACT_APP_PASSCODE
 
   const [entryList, setEntryList] = useState([])
 
 
   // READ (GET)
   useEffect(() => {
-    axios.get('http://csci331.cs.montana.edu:3000/api/read').then((response) => {
+    axios.get(`${process.env.REACT_APP_HOST}/api/read`).then((response) => {
       setEntryList(response.data)
     })
   }, [])
@@ -31,7 +31,7 @@ const CurrentEntries = () => {
 
   // DELETE
   const deleteEntry = (email) => { // deletes ALL such email instances in the database
-    axios.delete(`http://csci331.cs.montana.edu:3000/api/delete/${email}`).then((response) => {
+    axios.delete(`${process.env.REACT_APP_HOST}/api/delete/${email}`).then((response) => {
       let objToDelete = getObjectByValue(email)
       const index = entryList.indexOf(objToDelete) // deletes ONE instance in the state var
       if (index > -1) {
@@ -44,7 +44,7 @@ const CurrentEntries = () => {
 
   // UPDATE (PUT)
   const updateEmail = (email) => { // replaces ALL such email instances in the database
-    axios.put(`http://csci331.cs.montana.edu:3000/api/update`, { old: email, new: newEmail }).then((response) => {
+    axios.put(`${process.env.REACT_APP_HOST}/api/update`, { old: email, new: newEmail }).then((response) => {
       let objToChange = getObjectByValue(email)
       const index = entryList.indexOf(objToChange)  // deletes ONE instance in the state var
       objToChange.email_address = newEmail

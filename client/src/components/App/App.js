@@ -1,9 +1,7 @@
 import React from 'react';
 import './App.css';
-
-import AddEntry from './components/AddEntry.jsx';
-
-import CurrentEntries from './components/CurrentEntries.jsx';
+import AddEntry from '../AddEntry.jsx';
+import CurrentEntries from '../CurrentEntries.jsx';
 
 function App() {
 
@@ -14,7 +12,6 @@ function App() {
       <AddEntry />
       <hr />
       <CurrentEntries />
-
     </div>
   )
 }
