@@ -61,8 +61,7 @@ const CurrentEntries = () => {
       updateInputs[i].value = ''
     }
   }
-
-  const ref4 = useRef(null);
+  
   const refPass = useRef(null);
 
   function handleEditList(e) {
@@ -149,7 +148,7 @@ const CurrentEntries = () => {
                   updateEmail(val.email_address);
                 }
               }}>update</button>
-              <input ref={ref4} type="email" className="updateInput" placeholder={val.email_address}
+              <input type="email" className="updateInput" placeholder={val.email_address}
                 onChange={(e) => setNewEmail(e.target.value)} />
             </div>
           </div>)
