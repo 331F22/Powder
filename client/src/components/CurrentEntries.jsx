@@ -13,7 +13,7 @@ const CurrentEntries = () => {
     axios.get(`${process.env.REACT_APP_HOST}/api/read`).then((response) => {
       setEntryList(response.data)
     })
-  }, [])
+  }, [entryList])
 
   const [newEmail, setNewEmail] = useState('')
   const [passcode, setPasscode] = useState('')
@@ -61,7 +61,7 @@ const CurrentEntries = () => {
       updateInputs[i].value = ''
     }
   }
-  
+
   const refPass = useRef(null);
 
   function handleEditList(e) {
