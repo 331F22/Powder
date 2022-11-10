@@ -6,7 +6,9 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+# OS specific files
 .DS_Store
+Thumbs.db
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
@@ -104,3 +106,8 @@ dist
 
 # TernJS port file
 .tern-port
+
+# tmp files
+*.swp
+*.save
+
