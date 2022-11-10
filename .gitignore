@@ -1,3 +1,6 @@
+# Unique footer file for each person
+client/src/components/Footer.jsx
+
 # Logs
 logs
 *.log
