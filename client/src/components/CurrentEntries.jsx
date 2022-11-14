@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios'
+import SendVouchers from './SendVouchers';
 
 const CurrentEntries = () => {
 
@@ -10,6 +11,7 @@ const CurrentEntries = () => {
 
   // READ (GET)
   useEffect(() => {
+    console.log(`Reading entries from ${process.env.REACT_APP_HOST}/api/read`)
     axios.get(`${process.env.REACT_APP_HOST}/api/read`).then((response) => {
       setEntryList(response.data)
     })
@@ -161,8 +163,7 @@ const CurrentEntries = () => {
             placeholder='Enter passcode' onChange={checkPasscode}
             onBlur={(e) => abortPasscodeAttempt(e.target.value)} />
         </div>
-        <button id="submitEmailsButton" className='submitBtn' onClick={() => alert('TODO: Send It!')}>Email Vouchers</button>
-
+        <SendVouchers />
       </div>
     </div>
   )

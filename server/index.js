@@ -4,6 +4,8 @@ const cors = require('cors')
 const app = express()
 const mysql = require('mysql')
 const dotenv = require('dotenv').config()
+const emailer = require('./emailer/emailer')
+
 
 const db = mysql.createPool({ // createConnection
     host: 'localhost',
@@ -23,6 +25,28 @@ app.get("/api/read", (req, res) => {
     db.query(sqlSelect, (err, result) => {
         if(err){
             throw err;
+        }
+        res.send(result);
+    })
+})
+
+//email participants
+app.get("/api/sendvouchers", (req, res) => {
+
+    const sqlSelect = "SELECT * FROM volunteers;"
+    db.query(sqlSelect, (err, result) => { 
+        if(err){
+            throw err;
+        }
+        console.log(result)
+        for(var i = 0; i < result.length; i++){
+
+            first = result[i].first_name
+            last = result[i].last_name
+            email = result[i].email_address
+            voucher = 'FAKE1234'
+            message = emailer.generateVoucherMessage(first, last, email, voucher)
+            emailer.sendMail(message)
         }
         res.send(result);
     })
