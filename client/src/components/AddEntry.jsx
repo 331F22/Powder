@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import React, { Component }  from 'react';
 import axios from 'axios'
 
 const AddEntry = () => {
@@ -14,6 +15,8 @@ const AddEntry = () => {
 
   // CREATE (POST)
   function submitEntry() {
+    console.log("submitting entry to server")
+    console.log("sending to ip " + process.env.REACT_APP_HOST)
     axios.post(`${process.env.REACT_APP_HOST}/api/create`, { first: firstName, last: lastName, email: emailAddress }).then((response) => {
       setEntryList([...entryList, { first_name: firstName, last_name: lastName, email_address: emailAddress }]
       )
