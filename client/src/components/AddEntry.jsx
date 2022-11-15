@@ -26,7 +26,11 @@ const AddEntry = () => {
     ref3.current.value = ""
     setEmailAddress('')
   }
-
+  
+  function refreshPage() {
+    window.location.reload(false);
+  }
+  
   return (
     <div className="addEntry">
       <h2>Add an Entry</h2>
@@ -46,7 +50,7 @@ const AddEntry = () => {
         <button className="submitBtn"
           onClick={() => {
             if (firstName.length > 0 && lastName.length > 0 && emailAddress.length > 0) {
-              submitEntry()
+              submitEntry(); refreshPage();
             }
           }}
         >Add Entry</button>
