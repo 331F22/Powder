@@ -13,9 +13,10 @@ const CurrentEntries = () => {
     axios.get(`${process.env.REACT_APP_HOST}/api/read`).then((response) => {
       setEntryList(response.data)
     })
-  }, [])
+  }, [entryList])
 
   const [newEmail, setNewEmail] = useState('')
+  const [ newPhone, setNewPhone ] = useState("");
   const [passcode, setPasscode] = useState('')
 
   function getObjectByValue(objVal) {
@@ -56,6 +57,25 @@ const CurrentEntries = () => {
     }) //close .then()
 
     setNewEmail('') // clear all update email input fields
+    let updateInputs = document.getElementsByClassName('updateInput');
+    for (let i = 0; i < updateInputs.length; i++) {
+      updateInputs[i].value = ''
+    }
+  }
+
+  const updatePhone = (phone) => {
+    axios.put(`${process.env.REACT_APP_HOST}/api/update/phone`, { old: phone, new: newPhone}).then((response) => {
+      let objToChange = getObjectByValue(phone)
+      const index = entryList.indexOf(objToChange)  // deletes ONE instance in the state var
+      objToChange.phone_number = newPhone
+      if (index > -1) {
+        let entryListCopy = [...entryList]
+        entryListCopy[index] = objToChange
+        setEntryList(entryListCopy)
+      }
+    }) //close .then()
+
+    setNewPhone('') // clear all update email input fields
     let updateInputs = document.getElementsByClassName('updateInput');
     for (let i = 0; i < updateInputs.length; i++) {
       updateInputs[i].value = ''
@@ -132,24 +152,41 @@ const CurrentEntries = () => {
 
     <div className="currentEntries posRel">
       <h2>Current Entries</h2>
-
+      <br />
       <div className='userData'>
         {entryList.map((val, k) => {
           return (<div key={k}>
-            <div>{val.last_name}, {val.first_name} <span className="emailListed">{val.email_address}</span> </div>
-
+            <div className="unit"> 
+              <h3>{val.last_name}, {val.first_name} <span className="emailListed">{val.email_address}</span></h3>
+              
+              <br />
+               
+            </div>
             <div className="editControls editGui">
+
+              <span className="phoneListed">{val.phone_number}</span>
+              <input type="text" className="updateInput" placeholder={val.phone_number} onChange={(e) => setNewPhone(e.target.value)} />
+              <span className="emailListed">{val.email_address}</span>
+              <br />
+              <input type="email" className="updateInput" placeholder={val.email_address}
+                onChange={(e) => setNewEmail(e.target.value)} />
+              <br />
+              <br />
               <button className='delete' onClick={() => {
 
                 deleteEntry(val.email_address)
               }}>delete</button>
               <button className='update' onClick={() => {
+
                 if (newEmail.length > 0) {
                   updateEmail(val.email_address);
                 }
+
+                if (newPhone.length > 0) {
+                  updatePhone(val.phone_number);
+                }
               }}>update</button>
-              <input type="email" className="updateInput" placeholder={val.email_address}
-                onChange={(e) => setNewEmail(e.target.value)} />
+
             </div>
           </div>)
 

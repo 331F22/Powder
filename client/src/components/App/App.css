@@ -35,7 +35,9 @@ body {
   flex-direction: column;
   align-items: left;
   justify-content: center;
+
 }
+
 .submitBtn {
   margin: 20px;
   padding: 10px;
@@ -57,9 +59,20 @@ body {
 .emailListed{
   float:right;
   margin-right: 2rem;
+  padding: 0px 20px 0px 20px;
 }
+
+.phoneListed {
+  float: right;
+  padding: 0px 48px 0px 20px;
+}
+
 .editControls{
   display: none;
+  padding: 20px 0px 20px 0px;
+}
+.unit {
+  padding-top: 20px;
 }
 .editGui {
   margin-bottom: 20px;
@@ -80,4 +93,27 @@ body {
 }
 #submitEmailsButton{
   display: none;
+}
+
+#TwoStep button {
+  padding: ;
+}
+
+#LoginDiv {
+  padding: 50px 0px 50px 0px;
+
+}
+
+#EntryNstuff {
+
+  padding: 50px 10px 50px 10px;
+}
+
+#TwoFAoptions {
+  padding: 50px 10px 50px 10px;
+}
+
+
+.addEntry {
+  padding: 30px 10px 30px 10px;
 }
