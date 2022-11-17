@@ -157,7 +157,7 @@ const CurrentEntries = () => {
         {entryList.map((val, k) => {
           return (<div key={k}>
             <div className="unit"> 
-              <h3>{val.last_name}, {val.first_name} <span className="emailListed">{val.email_address}</span></h3>
+              <h5>{val.last_name}, {val.first_name} <span className="emailListed">{val.email_address}</span></h5>
               
               <br />
                

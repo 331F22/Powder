@@ -38,6 +38,14 @@ body {
 
 }
 
+#AdminBtn {
+  float: right;
+
+
+}
+
+
+
 .submitBtn {
   margin: 20px;
   padding: 10px;

@@ -22,7 +22,9 @@ const Login = () => {
 
 			if (response.data.Auth === true) {
 				setCheck2FA(true);
-			};
+			} else {
+				alert("Error Not Valid Admin!\nLogin Attempt has been Logged.");
+			}
 		});
 
 

@@ -36,6 +36,21 @@ app.post("/api/create", (req, res) => {
     const ln = req.body.last
     const ea = req.body.email
     const pn = req.body.phone
+
+
+    const sqlInsert = "INSERT INTO volunteers (first_name, last_name, email_address, phone_number) VALUES (?,?,?,?);"
+    db.query(sqlInsert, [fn, ln, ea, pn], (err, result) => {
+        if(err) throw err
+        console.log("Server posted: ", fn, ln, ea, pn)
+        res.send(result)
+    });
+});
+
+app.post("/api/create", (req, res) => {
+    const fn = req.body.first
+    const ln = req.body.last
+    const ea = req.body.email
+    const pn = req.body.phone
     const u2f = "Not Registered";
 
     const sqlInsert = "INSERT INTO volunteers (first_name, last_name, email_address, phone_number, u2f_challenge) VALUES (?,?,?,?,?);"
@@ -45,6 +60,8 @@ app.post("/api/create", (req, res) => {
         res.send(result)
     });
 });
+
+
 
 app.post("/api/Login", (req, res) => {
     const Username = req.body.Uname;

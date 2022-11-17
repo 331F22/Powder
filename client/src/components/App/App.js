@@ -25,8 +25,8 @@ function App() {
     <div className="App">
       <h1>BSF WebApp</h1>
       <div id="Menu">
-        <button onClick={ShowEntries}>Load starting</button>
-        <button onClick={ViewLogin}>View Login</button>
+        <button onClick={ShowEntries}>Add Entry</button>
+        <button id="AdminBtn" onClick={ViewLogin}>Admin Login</button>
       </div>
       { Entry ? <EntryNstuff/> : null}
       {ShowLogin ? <Login/> : null}
