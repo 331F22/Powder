@@ -22,19 +22,20 @@ const EmailComp = (props) => {
 
 	}
 
-	const EmailSend = () => {
-		console.log("Sending Email....");
-		setSendEmail(true);
 
-	}
 
 	return (
 
 		<div id="Email">
-			<h2>Email option selected</h2>
 			<br />
 			<br />
-			{SendEmail ? <div> <h4>Enter Code sent to Email</h4> <br/> <input type="text" name="VerNum" value={SecNum} onChange={(e) => setSecNum(e.target.value)} /><br /> <br /> <button onClick={OnSubmit}>Submit</button></div> : <button onClick={EmailSend}>Send</button>}
+			<div>
+				<h4>Enter Code sent to Email</h4>
+				<br/> 
+				<input type="text" name="VerNum" value={SecNum} onChange={(e) => setSecNum(e.target.value)} /><br />
+				<br />
+				<button onClick={OnSubmit}>Submit</button>
+			</div>
 
 
 		</div>

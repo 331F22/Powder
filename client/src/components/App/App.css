@@ -44,6 +44,25 @@ body {
 
 }
 
+#PhCon {
+  justify-content: center;
+  text-align: center;
+}
+
+#PhantomDiv {
+  justify-content: center;
+  text-align: center;
+  padding: 20px 20px 20px 20px;
+}
+
+#PhantomDiv button:hover {
+
+  border: 2px solid #8E35F8;
+  color: purple;
+
+}
+
+
 
 
 .submitBtn {

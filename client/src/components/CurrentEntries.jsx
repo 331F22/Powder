@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios'
-import U2Fprimary from "./U2Fprimary.jsx";
+
 
 const CurrentEntries = () => {
 
@@ -83,14 +83,6 @@ const CurrentEntries = () => {
     }
   }
 
-  const [ RegU2F, setRegU2F ] = useState(false);
-
-
-  const RegisterU2FKey = () => {
-    setRegU2F(true);
-    
-
-  }
 
   const refPass = useRef(null);
 
@@ -210,9 +202,8 @@ const CurrentEntries = () => {
         </div>
         <button id="submitEmailsButton" className='submitBtn' onClick={() => alert('TODO: Send It!')}>Email Vouchers</button>
         <br />
-        <be />
-        <button onClick={RegisterU2FKey} > Register u2f-Key </button>
-        {RegU2F ? <U2Fprimary/> : null }
+        <br />
+        
       </div>
     </div>
   )

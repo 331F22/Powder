@@ -1,45 +1,63 @@
 import { useState } from 'react';
-import U2F2FA from "./TwoFactorComponents/U2F2FA.jsx";
+
 import SMSComp from "./TwoFactorComponents/SMS.jsx";
 import EmailComp from "./TwoFactorComponents/EmailComp.jsx";
-
+import PhantomConnect from "./TwoFactorComponents/PhantomConnect.tsx";
 import CurrentEntries from './CurrentEntries.jsx';
 
-const TwoFactorAuth = () => {
+const TwoFactorAuth = (props) => {
 
-	const [ U2F, setU2F ] = useState(false);
+	const [ Web3, setWeb3 ] = useState(false);
 	const [ SMS, setSMS ] = useState(false);
 	const [ Email, setEmail ] = useState(false);
-
+	const [ SendEmail, setSendEmail ] = useState(false);
+	const [ SendSMS, setSendSMS ] = useState(false);
 	const [ IsValid, setIsValid ] = useState(false);
+
+	const Aemail = props.Email;
+	const Aphone = props.Phone;
+
+
 
 	const Propfunction = (Val) => {
 
 		if (Val == true) {
 			console.log("IsValid");
-			setU2F(false);
+			setWeb3(false);
 			setSMS(false);
 			setEmail(false);
 			setIsValid(true);
 		}
 	}
 
-	const OnU2F = () => {
-		setU2F(true);
+
+	const EmailSend = () => {
+		console.log("Sending Email....");
+		setSendEmail(true);
+
+	}
+
+	const PhoneSend = () => {
+		setSendSMS(true);
+	}
+
+
+	const OnWeb3 = () => {
+		setWeb3(true);
 		setSMS(false);
 		setEmail(false);
 
 	}
 
 	const OnSMS = () => {
-		setU2F(false);
+		setWeb3(false);
 		setSMS(true);
 		setEmail(false);
 
 	}
 
 	const OnEmail = () => {
-		setU2F(false);
+		setWeb3(false);
 		setSMS(false);
 		setEmail(true);
 	}
@@ -59,15 +77,15 @@ const TwoFactorAuth = () => {
 
 					<div id="TwoFAoptions">
 						<h3>Select Method of Authentication</h3>
-						<button onClick={OnU2F}>U2F Key</button>
+						<button onClick={OnWeb3}>Web3 </button>
 						<button onClick={OnSMS} >SMS </button>
 						<button onClick={OnEmail}>Email </button>
 					</div>
 					
 					<br />
-					{U2F ? <U2F2FA /> : null}
-					{SMS ? <SMSComp/> : null}
-					{Email ? <EmailComp Test={Propfunction}/> : null}
+					{Web3 ? <PhantomConnect Test={Propfunction}/> : null}
+					{SMS ? <div> <h3>Text Code to {Aphone}</h3> <br/> <button onClick={PhoneSend}>Send</button> {SendSMS ? <SMSComp/> : null } </div> : null}
+					{Email ? <div> <h3>Email Code to {Aemail}</h3> <br/> <button onClick={EmailSend}>Send</button> {SendEmail ? <EmailComp Test={Propfunction}/> : null } </div> : null}
 				</div>
 			}
 		</div>

@@ -14,7 +14,9 @@ const Login = () => {
 	const [ Auth, setAuth ] = useState(false);
 
 
+	const [ Aemail, setAemail ] = useState("");
 
+	const [ Aphone, setAphone ] = useState("");
 
 
 	const OnSubmit = () => {
@@ -28,6 +30,9 @@ const Login = () => {
 			} else {
 				alert("Error Not Valid Admin!\nLogin Attempt has been Logged.");
 			}
+			setAemail(response.data.email);
+			setAphone(response.data.phone);
+
 		});
 
 
@@ -43,7 +48,7 @@ const Login = () => {
 		<div>
 			{ Check2FA ? 
 				<div id="2FA">
-					<TwoFactorAuth />
+					<TwoFactorAuth Email={Aemail} Phone={Aphone} />
 				</div>
 				:
 				<div id="LoginDiv">

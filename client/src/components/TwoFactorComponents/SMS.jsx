@@ -12,7 +12,6 @@ const SMS = () => {
 
 	return (
 		<div id="SMSoption">
-			<h2>SMS option selected</h2>
 			<br/>
 			<br />
 			<h4>Enter Code sent to Phone Number</h4>

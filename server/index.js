@@ -3,6 +3,7 @@ const bodyParser = require ('body-parser')
 const cors = require('cors')
 const app = express()
 const mysql = require('mysql2')
+const bcrypt = require("bcrypt")
 const dotenv = require('dotenv').config()
 
 const db = mysql.createPool({ // createConnection
@@ -46,37 +47,45 @@ app.post("/api/create", (req, res) => {
     });
 });
 
-// app.post("/api/create", (req, res) => {
-//     const fn = req.body.first
-//     const ln = req.body.last
-//     const ea = req.body.email
-//     const pn = req.body.phone
-//     const u2f = "Not Registered";
-
-//     const sqlInsert = "INSERT INTO volunteers (first_name, last_name, email_address, phone_number, u2f_challenge) VALUES (?,?,?,?,?);"
-//     db.query(sqlInsert, [fn, ln, ea, pn, u2f], (err, result) => {
-//         if(err) throw err
-//         console.log("Server posted: ", fn, ln, ea, pn)
-//         res.send(result)
-//     });
-// });
-
 
 
 app.post("/api/Login", (req, res) => {
     const Username = req.body.Uname;
     const Password = req.body.Pword;
     console.log(Username, Password);
+    // Needs a rework
 
-    if (Username == "Admin"){
-        res.send({Auth: true});
-    } else {
-        console.log("Error, Invalid Admin Login Attempt!\nLogging User Request for Inspection!");
-        res.send({Auth: false});
-    }
+    const sqlSelect = "SELECT * FROM developers WHERE username=?;"
+    db.query(sqlSelect, [Username], (err, result) => {
+        if(err){
+            throw err;
+        }
+        console.log(result);
+        const PassW = result[0];
+        if (result.length > 0) {
+            bcrypt.compare(Password, PassW.password, function(err, result) {
+                if (result) {
+                   console.log("Match Found, bcrypt worked!");
+                   res.send({Auth: true, email: PassW.email, phone: PassW.phone});
+                } else {
+                    console.log("Error, Invalid Admin Login Attempt!\nLogging User Request for Inspection!");
+                    res.send({Auth: false});
+               }
+            });
+
+        } else {
+            console.log("Error, Invalid Admin Login Attempt!\nLogging User Request for Inspection!");
+            console.log("User Not Found");
+            res.send({Auth: false});
+        }
+
+
+    });
 
 });
 
+
+// send code to Email
 app.post("/api/TwoStepEmail", (req, res) => {
 
     const Email = req.body.email;
@@ -86,6 +95,9 @@ app.post("/api/TwoStepEmail", (req, res) => {
 
 });
 
+
+
+// validates code sent to email
 app.post("/api/VerifyTwoStep", (req, res) => {
 
     const SecNum = req.body.secnum;
