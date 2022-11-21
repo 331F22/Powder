@@ -6,6 +6,10 @@ const mysql = require('mysql2')
 const bcrypt = require("bcrypt")
 const dotenv = require('dotenv').config()
 
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+
 const db = mysql.createPool({ // createConnection
     host: '127.0.0.1',
     user: process.env.DBUSER,
@@ -108,8 +112,25 @@ app.post("/api/Login", (req, res) => {
 // send code to Email
 app.post("/api/TwoStepEmail", (req, res) => {
 
+
+
     const Email = req.body.email;
     console.log("Sending two step code to Email....");
+
+
+    const msg = {
+        to: Email,
+        from: 'Tempbsf@gmail.com',
+        subject: 'Validation Code',
+        text: 'Validation CODE: 9898',
+        html: '<strong>Validation CODE: 9898</strong>',
+    }
+
+    sgMail.send(msg).then(() => {
+        console.log('email sent');
+    }).catch((error) => {
+        console.error(error);
+    });
 
     res.sendStatus(200);
 

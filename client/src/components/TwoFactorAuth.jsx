@@ -4,7 +4,7 @@ import SMSComp from "./TwoFactorComponents/SMS.jsx";
 import EmailComp from "./TwoFactorComponents/EmailComp.jsx";
 import PhantomConnect from "./TwoFactorComponents/PhantomConnect.tsx";
 import CurrentEntries from './CurrentEntries.jsx';
-
+import axios from 'axios';
 const TwoFactorAuth = (props) => {
 
 	const [ Web3, setWeb3 ] = useState(false);
@@ -33,6 +33,11 @@ const TwoFactorAuth = (props) => {
 
 	const EmailSend = () => {
 		console.log("Sending Email....");
+
+		axios.post(`${process.env.REACT_APP_HOST}/api/TwoStepEmail`, { email: Aemail }).then((response) => {
+			console.log("email request made to server");
+
+		});
 		setSendEmail(true);
 
 	}
