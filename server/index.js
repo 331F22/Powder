@@ -5,6 +5,7 @@ const app = express()
 const mysql = require('mysql2')
 const bcrypt = require("bcrypt")
 const dotenv = require('dotenv').config()
+var sessionstorage = require('sessionstorage');
 
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -115,15 +116,22 @@ app.post("/api/TwoStepEmail", (req, res) => {
 
 
     const Email = req.body.email;
+
+    // generate random code and set to SecNum
+    const SecNum = 9898;
+    
+
+
     console.log("Sending two step code to Email....");
 
+    sessionstorage.setItem(Email, SecNum);
 
     const msg = {
         to: Email,
         from: 'Tempbsf@gmail.com',
         subject: 'Validation Code',
-        text: 'Validation CODE: 9898',
-        html: '<strong>Validation CODE: 9898</strong>',
+        text: 'Validation CODE: ' + SecNum,
+        html: '<strong>Validation CODE: ' + SecNum + '</strong>',
     }
 
     sgMail.send(msg).then(() => {
@@ -132,6 +140,7 @@ app.post("/api/TwoStepEmail", (req, res) => {
         console.error(error);
     });
 
+    console.log("Checking SessionStorage: ", sessionstorage.getItem(Email));
     res.sendStatus(200);
 
 });
@@ -142,11 +151,16 @@ app.post("/api/TwoStepEmail", (req, res) => {
 app.post("/api/VerifyTwoStep", (req, res) => {
 
     const SecNum = req.body.secnum;
+    const Email = req.body.email;
+
     console.log("Two Setp Auth Code Sent by User", SecNum);
 
-    let validNumber = "9898"; 
+
+    const validNumber = sessionstorage.getItem(Email);
+    console.log("Sess storage: ",validNumber);
 
     if (SecNum == validNumber) {
+        sessionstorage.removeItem(Email);
         res.send({Auth: true});
     } else {
         res.send({Auth: false});

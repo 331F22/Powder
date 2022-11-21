@@ -88,9 +88,9 @@ const TwoFactorAuth = (props) => {
 					</div>
 					
 					<br />
-					{Web3 ? <PhantomConnect Test={Propfunction}/> : null}
+					{Web3 ? <PhantomConnect Test={Propfunction} /> : null}
 					{SMS ? <div> <h3>Text Code to {Aphone}</h3> <br/> <button onClick={PhoneSend}>Send</button> {SendSMS ? <SMSComp/> : null } </div> : null}
-					{Email ? <div> <h3>Email Code to {Aemail}</h3> <br/> <button onClick={EmailSend}>Send</button> {SendEmail ? <EmailComp Test={Propfunction}/> : null } </div> : null}
+					{Email ? <div> <h3>Email Code to {Aemail}</h3> <br/> <button onClick={EmailSend}>Send</button> {SendEmail ? <EmailComp Test={Propfunction} Temail={Aemail}/> : null } </div> : null}
 				</div>
 			}
 		</div>

@@ -7,9 +7,11 @@ const EmailComp = (props) => {
 	const [ SecNum, setSecNum ] = useState("");
 	const [ SendEmail, setSendEmail ] = useState(false);
 
+	const Aemail = props.Temail;
+
 	const OnSubmit = () => {
 
-		axios.post(`${process.env.REACT_APP_HOST}/api/VerifyTwoStep`, { secnum: SecNum }).then((response) => {
+		axios.post(`${process.env.REACT_APP_HOST}/api/VerifyTwoStep`, { email: Aemail, secnum: SecNum }).then((response) => {
 
 			if (response.data.Auth === true) {
 				props.Test(response.data.Auth);
