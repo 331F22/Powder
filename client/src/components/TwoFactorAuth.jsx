@@ -21,7 +21,7 @@ const TwoFactorAuth = (props) => {
 
 	const Propfunction = (Val) => {
 
-		if (Val == true) {
+		if (Val === true) {
 			console.log("IsValid");
 			setWeb3(false);
 			setSMS(false);

@@ -52,15 +52,35 @@ app.post("/api/create", (req, res) => {
 app.post("/api/Login", (req, res) => {
     const Username = req.body.Uname;
     const Password = req.body.Pword;
-    console.log(Username, Password);
-    // Needs a rework
+
+
+    // console.log(Username, Password);
+    
+    // TODO: sanitize data: Username and Password
+    const UsernameS = SanitizeData(Username);
+    const PasswordS = SanitizeData(Password);
+
+    if (UsernameS === false) {
+        res.send({Auth: false});
+        console.log("Invalid characters detected\nInjection Attempt Detected, Logging results!");
+        return;
+    }
+
+    //  I dont need the password since its being hashed and compaird to hash from data base
+    // 
+    // if (PasswordS === false) {
+    //     res.send({Auth: false});
+    //     return;
+    // }
+
+
 
     const sqlSelect = "SELECT * FROM developers WHERE username=?;"
     db.query(sqlSelect, [Username], (err, result) => {
         if(err){
             throw err;
         }
-        console.log(result);
+        // console.log(result);
         const PassW = result[0];
         if (result.length > 0) {
             bcrypt.compare(Password, PassW.password, function(err, result) {
@@ -177,3 +197,20 @@ app.listen(PORT, () => {
 })
 
 
+
+
+function SanitizeData(data) {
+    if (data.includes("`") === true ) {
+        return false;
+    } else if (data.includes("=") === true) {
+        return false;
+    } else if (data.includes("<") === true) {
+        return false;
+    } else if (data.includes(";") === true) {
+        return false;
+    } else if (data.includes("'") === true) {
+        return false;
+    } else {
+        return true;
+    }
+}

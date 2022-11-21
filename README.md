@@ -19,12 +19,3 @@ password TEXT NOT NULL,
 email TEXT NOT NULL,
 phone TEXT NOT NULL,
 PRIMARY KEY (id));
-##### u2f-Keys
-CREATE TABLE devkeys (
-id INT AUTO_INCREMENT,
-username TEXT NOT NULL,
-challenge TEXT NOT NULL,
-appID TEXT NOT NULL,
-version TEXT NOT NULL,
-keyHandle TEXT NOT NULL,
-PRIMARY KEY (id));
