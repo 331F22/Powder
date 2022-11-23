@@ -5,7 +5,7 @@ import axios from 'axios';
 const EmailComp = (props) => {
 
 	const [ SecNum, setSecNum ] = useState("");
-	const [ SendEmail, setSendEmail ] = useState(false);
+
 
 	const Aemail = props.Temail;
 

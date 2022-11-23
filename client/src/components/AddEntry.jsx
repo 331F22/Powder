@@ -14,8 +14,12 @@ const AddEntry = () => {
   const ref3 = useRef(null);
   const ref4 = useRef(null);
 
+
+
   // CREATE (POST)
   function submitEntry() {
+
+
     axios.post(`${process.env.REACT_APP_HOST}/api/create`, { first: firstName, last: lastName, email: emailAddress, phone: phoneNumber }).then((response) => {
       setEntryList([...entryList, { first_name: firstName, last_name: lastName, email_address: emailAddress, phone_number: phoneNumber }]
       )

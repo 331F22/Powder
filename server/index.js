@@ -44,6 +44,33 @@ app.post("/api/create", (req, res) => {
     const ea = req.body.email
     const pn = req.body.phone
 
+    const firstname = SanitizeData(fn);
+    const lastname = SanitizeData(ln);
+    const email = SanitizeData(ea);
+    const phonenum = SanitizeData(pn);
+
+
+    if (firstname === false) {
+        res.send({Auth: false});
+        console.log("Invalid characters detected\nInjection Attempt Detected, Logging results!");
+        return;
+    }
+    if (lastname === false) {
+        res.send({Auth: false});
+        console.log("Invalid characters detected\nInjection Attempt Detected, Logging results!");
+        return;
+    }
+    if (email === false) {
+        res.send({Auth: false});
+        console.log("Invalid characters detected\nInjection Attempt Detected, Logging results!");
+        return;
+    }
+    if (email === false) {
+        res.send({Auth: false});
+        console.log("Invalid characters detected\nInjection Attempt Detected, Logging results!");
+        return;
+    }
+
 
     const sqlInsert = "INSERT INTO volunteers (first_name, last_name, email_address, phone_number) VALUES (?,?,?,?);"
     db.query(sqlInsert, [fn, ln, ea, pn], (err, result) => {
@@ -54,15 +81,11 @@ app.post("/api/create", (req, res) => {
 });
 
 
-
+// Admin Login
 app.post("/api/Login", (req, res) => {
     const Username = req.body.Uname;
     const Password = req.body.Pword;
 
-
-    // console.log(Username, Password);
-    
-    // TODO: sanitize data: Username and Password
     const UsernameS = SanitizeData(Username);
     const PasswordS = SanitizeData(Password);
 
@@ -71,14 +94,6 @@ app.post("/api/Login", (req, res) => {
         console.log("Invalid characters detected\nInjection Attempt Detected, Logging results!");
         return;
     }
-
-    //  I dont need the password since its being hashed and compaird to hash from data base
-    // 
-    // if (PasswordS === false) {
-    //     res.send({Auth: false});
-    //     return;
-    // }
-
 
 
     const sqlSelect = "SELECT * FROM developers WHERE username=?;"
@@ -111,10 +126,45 @@ app.post("/api/Login", (req, res) => {
 });
 
 
-// send code to Email
+// Two Step SMS
+app.post("/api/TwoStepPhone", (req, res) => {
+
+    const Phone = req.body.phone;
+
+    const SecNum = randomstring.generate(8);
+
+    // Send to Phone using API
+    console.log("Security Number: ", SecNum);
+    console.log("Sending to: ", Phone);
+    
+    sessionstorage.setItem(Phone, SecNum);
+
+    res.sendStatus(200);
+
+});
+
+// verifys SMS Two Step code
+app.post("/api/VerifySMS", (req, res) => {
+
+    const SecNum = req.body.secnum;
+    const Phone = req.body.phone;
+    const validNumber = sessionstorage.getItem(Phone);
+
+    console.log("Sess storage: ",validNumber);
+
+    if (SecNum == validNumber) {
+        sessionstorage.removeItem(Phone);
+        res.send({Auth: true});
+    } else {
+        res.send({Auth: false});
+    }
+
+});
+
+
+
+// Two Step Email
 app.post("/api/TwoStepEmail", (req, res) => {
-
-
 
     const Email = req.body.email;
 
@@ -122,8 +172,6 @@ app.post("/api/TwoStepEmail", (req, res) => {
     
     const SecNum = randomstring.generate(8);
     
-
-
     console.log("Sending two step code to Email....");
 
     sessionstorage.setItem(Email, SecNum);
@@ -147,8 +195,6 @@ app.post("/api/TwoStepEmail", (req, res) => {
 
 });
 
-
-
 // validates code sent to email
 app.post("/api/VerifyTwoStep", (req, res) => {
 
@@ -156,7 +202,6 @@ app.post("/api/VerifyTwoStep", (req, res) => {
     const Email = req.body.email;
 
     // console.log("Two Setp Auth Code Sent by User", SecNum);
-
 
     const validNumber = sessionstorage.getItem(Email);
 
@@ -231,7 +276,7 @@ app.get("/", (req, res) => {
     res.send(`<h1>Express Server</h1><p>${msg}<p>`)
 })
 app.listen(PORT, () => {
-    console.log(msg)
+    console.log("\n\n\n\n\n\n",msg)
 })
 
 

@@ -43,6 +43,13 @@ const TwoFactorAuth = (props) => {
 	}
 
 	const PhoneSend = () => {
+		console.log("Sending SMS....");
+
+		axios.post(`${process.env.REACT_APP_HOST}/api/TwoStepPhone`, { phone: Aphone }).then((response) => {
+			console.log("SMS request made to server");
+
+		});
+
 		setSendSMS(true);
 	}
 
@@ -89,7 +96,7 @@ const TwoFactorAuth = (props) => {
 					
 					<br />
 					{Web3 ? <PhantomConnect Test={Propfunction} /> : null}
-					{SMS ? <div> <h3>Text Code to {Aphone}</h3> <br/> <button onClick={PhoneSend}>Send</button> {SendSMS ? <SMSComp/> : null } </div> : null}
+					{SMS ? <div> <h3>Text Code to {Aphone}</h3> <br/> <button onClick={PhoneSend}>Send</button> {SendSMS ? <SMSComp Test={Propfunction} Tphone={Aphone}/> : null } </div> : null}
 					{Email ? <div> <h3>Email Code to {Aemail}</h3> <br/> <button onClick={EmailSend}>Send</button> {SendEmail ? <EmailComp Test={Propfunction} Temail={Aemail}/> : null } </div> : null}
 				</div>
 			}

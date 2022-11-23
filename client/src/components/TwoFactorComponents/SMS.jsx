@@ -1,12 +1,23 @@
 import { useState } from 'react';
+import axios from 'axios';
 
-
-const SMS = () => {
+const SMS = (props) => {
 
 	const [ SecNum, setSecNum ] = useState("");
 
+	const Aphone = props.Tphone;
+
 	const OnSubmit = () => {
-		console.log(SecNum);
+
+
+		axios.post(`${process.env.REACT_APP_HOST}/api/VerifySMS`, { phone: Aphone, secnum: SecNum }).then((response) => {
+
+			if (response.data.Auth === true) {
+				props.Test(response.data.Auth);
+				
+			};
+		});
+		
 		setSecNum("");
 	}
 
