@@ -8,16 +8,15 @@ import Footer from '../Footer.jsx'
 function App() {
 
   return (
-    <div className="App">
-      <h1>Upload Voucher</h1>
-      
-      <UploadVouchers />
+    <div className="App">    
 
       <h1>Entries</h1>
-
       <AddEntry />
       <hr />
       <CurrentEntries />
+      <hr />
+      <h1>Upload Voucher</h1>
+      <UploadVouchers />
       <hr />
       <Footer />
     </div>
