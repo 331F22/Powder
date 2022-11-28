@@ -15,7 +15,6 @@ function App() {
       <hr />
       <CurrentEntries />
       <hr />
-      <h1>Upload Voucher</h1>
       <UploadVouchers />
       <hr />
       <Footer />

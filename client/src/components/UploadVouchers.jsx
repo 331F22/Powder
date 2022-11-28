@@ -28,6 +28,8 @@ function UploadVouchers() {
   };
   return (
       <div>
+        <h2>Upload Voucher</h2>
+
         {/* File Uploader */}
         <input
           type="file"
