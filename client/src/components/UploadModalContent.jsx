@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import IconMenuClose from "./Icons";
 import Papa from "papaparse";
 
@@ -22,12 +22,19 @@ const UploadContent = (prop) => {
         results.data.map((d) => {
           rowsArray.push(Object.keys(d));
           valuesArray.push(Object.values(d));
+          return d;
         });
+
         setTableRows(rowsArray[0]);
         setValues(valuesArray);
       },
     });
   };
+
+  const discard = () => {
+    setValues([])
+    setTableRows([])
+  }
 
   const close = () => {
     setOpenModal(false);
@@ -44,16 +51,19 @@ const UploadContent = (prop) => {
       </div>
 
       <div className="modal-Content">
+        {!values[0] ? <>
+        <img 
+          className="logo"
+          src="http://skitrax.com/wp-content/uploads/2019/06/Bridger-Ski-Foundation-logo.jpeg"
+        ></img>
         <input
           type="file"
           name="file"
           onChange={changeHandler}
           accept=".csv"
           style={{ display: "block", margin: "10px auto" }}
-        />
-        <br />
-        <br />
-        {/* Table */}
+        /></> : ''}
+        {values[0] ? <h3>PREVIEW CODES BEFORE UPLOAD</h3> : ''}
         <table>
           <thead>
             <tr>
@@ -74,6 +84,7 @@ const UploadContent = (prop) => {
             })}
           </tbody>
         </table>
+        {values[0] ? <><button className="btn btn-danger" onClick={() => discard()}>Discard</button><button className="btn btn-primary">Upload {values.length} Codes to Database</button></> : ''}
       </div>
     </div>
   );

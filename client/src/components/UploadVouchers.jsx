@@ -13,7 +13,7 @@ const VoucherManagement = () => {
       <h2>Voucher Management</h2>
       <p>Remaining number of codes will go here</p>
       <Modal setOpenModal={setOpenModal} openModal={openModal}/>
-      <button onClick={() => open()}>Add Codes</button>
+      <button className="btn btn-primary" onClick={() => open()}>Add Codes</button>
     </div>
   );
 }
