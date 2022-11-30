@@ -1,0 +1,55 @@
+.modal-Background{
+    width: 100%;
+    height: 100%;
+    background-color: #000000bf;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    top: 0;
+    left: 0;
+}
+.modal-Container{
+    position: fixed;
+    width: 60%;
+    height: 60%;
+    top: 20%;
+    left: 20%;
+    z-index: 1000;
+    background-color: #757e85;
+}
+
+.modal-Header{
+    height: 40px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    background: #b01b1f;
+}
+
+.modal-Header-CloseBtn{
+    width: 100px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-Header-Text{
+    font-family: 'Carrois Gothic', sans-serif;
+    height: 40px;
+    font-size: 30px;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.modal-Header-Logo{
+    font-family: 'Carrois Gothic', sans-serif;
+    height: 40px;
+    font-size: 30px;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 5px;
+    width: 100px;
+    padding-left: 10px;
+}

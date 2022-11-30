@@ -1,68 +1,21 @@
-import { useState } from 'react';
-import Papa from "papaparse"
+import React, { useState } from "react";
+import Modal from "./Modal";
 
-function UploadVouchers() {
+const VoucherManagement = () => {
 
-  const [tableRows, setTableRows] = useState([]);
-
-  const [values, setValues] = useState([]);
-
-  const changeHandler = (event) => {
-
-      // Passing file data (event.target.files[0]) to parse using Papa.parse
-      Papa.parse(event.target.files[0], {
-      header: true,
-      skipEmptyLines: true,
-      complete: function (results) {
-          const rowsArray = [];
-          const valuesArray = [];
-
-          results.data.map((d) => {
-              rowsArray.push(Object.keys(d));
-              valuesArray.push(Object.values(d));
-          });
-          setTableRows(rowsArray[0]);
-          setValues(valuesArray);
-      },
-      });
-  };
-  return (
-      <div>
-        <h2>Upload Voucher</h2>
-
-        {/* File Uploader */}
-        <input
-          type="file"
-          name="file"
-          onChange={changeHandler}
-          accept=".csv"
-          style={{ display: "block", margin: "10px auto" }}
-        />
-        <br />
-        <br />
-        {/* Table */}
-        <table>
-          <thead>
-            <tr>
-              {tableRows.map((rows, index) => {
-                return <th key={index}>{rows}</th>;
-              })}
-            </tr>
-          </thead>
-          <tbody>
-            {values.map((value, index) => {
-              return (
-                <tr key={index}>
-                  {value.map((val, i) => {
-                    return <td key={i}>{val}</td>;
-                  })}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    );
+  const [openModal, setOpenModal] = useState(false);
+  const open = () => {
+    setOpenModal(true)
+    document.querySelector('body').classList.add('modal-open')
   }
+  return (
+    <div>
+      <h2>Voucher Management</h2>
+      <p>Remaining number of codes will go here</p>
+      <Modal setOpenModal={setOpenModal} openModal={openModal}/>
+      <button onClick={() => open()}>Add Codes</button>
+    </div>
+  );
+}
 
-export default UploadVouchers;
+export default VoucherManagement;
