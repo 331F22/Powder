@@ -78,6 +78,7 @@
     color: white;
     font-weight: 600;
     letter-spacing: 2px;
+    line-height: 40px;
 }
 
 .modal-Header-Logo{
@@ -89,4 +90,14 @@
     letter-spacing: 5px;
     width: 100px;
     padding-left: 10px;
+    line-height: 40px;
+}
+
+@media (max-width: 650px) {
+    .modal-Header-Text{
+        font-size: 20px;
+    }
+    .modal-Header-Logo{
+        font-size: 20px;
+    }
 }
