@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import React, { Component }  from 'react';
+import React/*, { Component }  */from 'react';
 import axios from 'axios'
 import SendVouchers from './SendVouchers';
 
@@ -9,13 +9,23 @@ const CurrentEntries = () => {
 
   const [entryList, setEntryList] = useState([])
 
+  const currentEvent = localStorage.getItem('Event')
+
+  let page = ``;
 
   // READ (GET)
+  if (currentEvent === '0') {
+    page = ``
+  }
+  else {
+    page =`/${currentEvent}`
+  }
+
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_HOST}/api/read`).then((response) => {
+    axios.get(`${process.env.REACT_APP_HOST}/api/read${page}`).then((response) => {
       setEntryList(response.data)
     })
-  }, [entryList])
+  }, [page])
 
   const [newEmail, setNewEmail] = useState('')
   const [passcode, setPasscode] = useState('')

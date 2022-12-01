@@ -20,11 +20,34 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 // READ
 app.get("/api/read", (req, res) => {
-    const sqlSelect = "SELECT * FROM volunteers;"
+    const sqlSelect = "SELECT DISTINCT first_name, last_name, email_address FROM volunteers order by last_name;"
     db.query(sqlSelect, (err, result) => { 
         if(err){
             throw err;
         }
+        res.send(result);
+    })
+})
+
+app.get("/api/read/:event_id", (req, res) => {
+    const ea = req.params.event_id
+    const sqlSelect = "SELECT * FROM volunteers where event_id = ? order by last_name;"
+    db.query(sqlSelect, [ea], (err, result) => {        
+        if(err){
+            throw err;
+        }
+        
+        res.send(result);
+    })
+})
+
+app.get("/api/readEvents", (req, res) => {
+    const sqlSelect = "SELECT * FROM events;"
+    db.query(sqlSelect, (err, result) => {        
+        if(err){
+            throw err;
+        }
+        
         res.send(result);
     })
 })
@@ -57,9 +80,10 @@ app.post("/api/create", (req, res) => {
     const fn = req.body.first
     const ln = req.body.last
     const ea = req.body.email
+    const ev = req.body.event
     console.log(fn + " " + ln + " " + ea);
-    const sqlInsert = "INSERT INTO volunteers (first_name, last_name, email_address) VALUES (?,?,?);"
-    db.query(sqlInsert, [fn, ln, ea], (err, result) => {
+    const sqlInsert = "INSERT INTO volunteers (first_name, last_name, email_address, event_id) VALUES (?,?,?,?);"
+    db.query(sqlInsert, [fn, ln, ea, ev], (err, result) => {
         if(err) throw err
         console.log("Server posted: ", fn, ln)
         res.send(result)
@@ -93,7 +117,7 @@ app.put("/api/update", (req, res) => {
     })
 })
 
-const PORT = 5006 //process.env.EXPRESSPORT;
+const PORT = 5034 //process.env.EXPRESSPORT;
 const msg = `Running on PORT ${PORT}`
 const dbInfo = `
     <p>

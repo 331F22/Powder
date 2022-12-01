@@ -81,3 +81,11 @@ body {
 #submitEmailsButton{
   display: none;
 }
+
+.eventList {
+  display: none;
+}
+
+#showEventButton {
+  display: block;
+}
