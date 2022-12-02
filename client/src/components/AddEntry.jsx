@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import React/*, { Component } */ from 'react';
 import axios from 'axios'
 
 const AddEntry = () => {
@@ -6,17 +7,25 @@ const AddEntry = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
+  const [currentEvent] = useState(parseInt(localStorage.getItem('Event')))
   const [entryList, setEntryList] = useState([])
 
   const ref1 = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
 
+  if (localStorage.getItem('Event') === '0') {
+    return (
+      <p>To add volunteers please select an event above</p>
+    )
+  }
+
   // CREATE (POST)
   function submitEntry() {
-    console.log(`sending entry to ${process.env.REACT_APP_HOST}/api/create`)
-    axios.post(`${process.env.REACT_APP_HOST}/api/create`, { first: firstName, last: lastName, email: emailAddress }).then((response) => {
-      setEntryList([...entryList, { first_name: firstName, last_name: lastName, email_address: emailAddress }]
+    //console.log("submitting entry to server")
+    //console.log("sending to ip " + process.env.REACT_APP_HOST)
+    axios.post(`${process.env.REACT_APP_HOST}/api/create`, { first: firstName, last: lastName, email: emailAddress, event: currentEvent }).then((response) => {
+          setEntryList([...entryList, { first_name: firstName, last_name: lastName, email_address: emailAddress }]
       )
     })
 
@@ -26,6 +35,8 @@ const AddEntry = () => {
     setLastName('')
     ref3.current.value = ""
     setEmailAddress('')
+    window.location.reload(false);
+
   }
 
   return (
@@ -47,7 +58,8 @@ const AddEntry = () => {
         <button className="submitBtn"
           onClick={() => {
             if (firstName.length > 0 && lastName.length > 0 && emailAddress.length > 0) {
-              submitEntry()
+              submitEntry();
+              window.location.reload(false);
             }
           }}
         >Add Entry</button>

@@ -21,11 +21,34 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 // READ
 app.get("/api/read", (req, res) => {
-    const sqlSelect = "SELECT * FROM volunteers;"
-    db.query(sqlSelect, (err, result) => {
+    const sqlSelect = "SELECT DISTINCT first_name, last_name, email_address FROM volunteers order by last_name;"
+    db.query(sqlSelect, (err, result) => { 
         if(err){
             throw err;
         }
+        res.send(result);
+    })
+})
+
+app.get("/api/read/:event_id", (req, res) => {
+    const ea = req.params.event_id
+    const sqlSelect = "SELECT * FROM volunteers where event_id = ? order by last_name;"
+    db.query(sqlSelect, [ea], (err, result) => {        
+        if(err){
+            throw err;
+        }
+        
+        res.send(result);
+    })
+})
+
+app.get("/api/readEvents", (req, res) => {
+    const sqlSelect = "SELECT * FROM events;"
+    db.query(sqlSelect, (err, result) => {        
+        if(err){
+            throw err;
+        }
+        
         res.send(result);
     })
 })
@@ -54,16 +77,20 @@ app.get("/api/sendvouchers", (req, res) => {
 
 // CREATE
 app.post("/api/create", (req, res) => {
+    console.log("entry received:")
     const fn = req.body.first
     const ln = req.body.last
     const ea = req.body.email
-    const sqlInsert = "INSERT INTO volunteers (first_name, last_name, email_address) VALUES (?,?,?);"
-    db.query(sqlInsert, [fn, ln, ea], (err, result) => {
+    const ev = req.body.event
+    console.log(fn + " " + ln + " " + ea);
+    const sqlInsert = "INSERT INTO volunteers (first_name, last_name, email_address, event_id) VALUES (?,?,?,?);"
+    db.query(sqlInsert, [fn, ln, ea, ev], (err, result) => {
         if(err) throw err
         console.log("Server posted: ", fn, ln)
         res.send(result)
     })
-})
+}) 
+
 
 // DELETE
 app.delete("/api/delete/:emailAddress", (req, res) => {
@@ -74,7 +101,8 @@ app.delete("/api/delete/:emailAddress", (req, res) => {
         if(err) throw err
         console.log("Server: deleted: ", ea)
         res.send(result)
-    })
+    }) 
+
 })
 
 // UPDATE
@@ -94,8 +122,15 @@ app.put("/api/update", (req, res) => {
 
 const PORT = process.env.EXPRESSPORT;
 const msg = `Running on PORT ${PORT}`
+const dbInfo = `
+    <p>
+    user: ${process.env.DBUSER}, 
+    password: ${process.env.DBPASS}, 
+    database: ${process.env.DATABASE}, 
+    port: ${process.env.DBPORT} </p>
+    `
 app.get("/", (req, res) => {
-    res.send(`<h1>Express Server</h1><p>${msg}<p>`)
+    res.send(`<h1>Express Server</h1><p>${msg}<p>` + dbInfo)
 })
 app.listen(PORT, () => {
     console.log(msg)
