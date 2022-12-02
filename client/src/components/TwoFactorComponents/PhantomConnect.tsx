@@ -88,7 +88,7 @@ const PhantomConnect: FC = (props) => {
 
     const validateWallet: React.MouseEventHandler<HTMLButtonElement> = (event) => {
         console.log("Validating Wallet");
-        const connection = new Connection("https://api.mainnet-beta.solana.com");
+        const connection = new Connection("https://little-special-paper.solana-mainnet.discover.quiknode.pro/52e57037c604639840179d51c6e37af571c931dd/");
 
         let tokenMint = "F91KwtnAX3ZSXwwCRsYXouEC5oj2rfLcseAAgxEia7xr";
 
@@ -120,6 +120,8 @@ const PhantomConnect: FC = (props) => {
 
                 if (NFTHolder == pubKey) {
                     props.Test(true);
+                } else {
+                    setMess("Wallet dose not contain valid Pass");
                 }
 
             });
@@ -149,7 +151,7 @@ const PhantomConnect: FC = (props) => {
                 { connected ? <p>Connected! </p> : null }
                 <br />
                 <br />
-                { connected ? <div> <button onClick={validateWallet}>Validate Wallet</button> </div> : null}
+                { connected ? <div> <button onClick={validateWallet}>Validate Wallet</button> <br/> <br/> <p className="text-danger">{Mess}</p> </div> : null}
 
                 {}
                 </>

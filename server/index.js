@@ -76,8 +76,8 @@ app.post("/api/create", (req, res) => {
     db.query(sqlInsert, [fn, ln, ea, pn], (err, result) => {
         if(err) throw err
         console.log("Server posted: ", fn, ln, ea, pn)
-        res.send(result)
     });
+    
 });
 
 
