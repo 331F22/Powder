@@ -25,7 +25,7 @@ const AddEntry = () => {
     //console.log("submitting entry to server")
     //console.log("sending to ip " + process.env.REACT_APP_HOST)
     axios.post(`${process.env.REACT_APP_HOST}/api/create`, { first: firstName, last: lastName, email: emailAddress, event: currentEvent }).then((response) => {
-      setEntryList([...entryList, { first_name: firstName, last_name: lastName, email_address: emailAddress }]
+          setEntryList([...entryList, { first_name: firstName, last_name: lastName, email_address: emailAddress }]
       )
     })
 
@@ -35,8 +35,8 @@ const AddEntry = () => {
     setLastName('')
     ref3.current.value = ""
     setEmailAddress('')
-
     window.location.reload(false);
+
   }
 
   return (

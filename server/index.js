@@ -6,6 +6,7 @@ const mysql = require('mysql')
 const dotenv = require('dotenv').config()
 const emailer = require('./emailer/emailer')
 
+
 const db = mysql.createPool({ // createConnection
     host: 'localhost',
     user: process.env.DBUSER,
@@ -90,6 +91,7 @@ app.post("/api/create", (req, res) => {
     })
 }) 
 
+
 // DELETE
 app.delete("/api/delete/:emailAddress", (req, res) => {
     const ea = req.params.emailAddress;
@@ -100,12 +102,13 @@ app.delete("/api/delete/:emailAddress", (req, res) => {
         console.log("Server: deleted: ", ea)
         res.send(result)
     }) 
+
 })
 
 // UPDATE
 app.put("/api/update", (req, res) => {
     // console.log(req)
-    
+
     const ne = req.body.new;
     const oe = req.body.old;
     console.log("Ready to change: ", oe, "to", ne)
@@ -117,7 +120,7 @@ app.put("/api/update", (req, res) => {
     })
 })
 
-const PORT = 5034 //process.env.EXPRESSPORT;
+const PORT = process.env.EXPRESSPORT;
 const msg = `Running on PORT ${PORT}`
 const dbInfo = `
     <p>

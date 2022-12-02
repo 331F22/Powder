@@ -27,6 +27,7 @@ const CurrentEntries = () => {
     })
   }, [page])
 
+
   const [newEmail, setNewEmail] = useState('')
   const [passcode, setPasscode] = useState('')
 
@@ -174,7 +175,6 @@ const CurrentEntries = () => {
             onBlur={(e) => abortPasscodeAttempt(e.target.value)} />
         </div>
         <SendVouchers />
-
       </div>
     </div>
   )

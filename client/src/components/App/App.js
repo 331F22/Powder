@@ -3,6 +3,7 @@ import './App.css';
 import AddEntry from '../AddEntry.jsx';
 import CurrentEntries from '../CurrentEntries.jsx';
 import SelectEvent from '../SelectEvent';
+import Footer from '../Footer.jsx'
 
 function App() {
 
@@ -14,7 +15,6 @@ function App() {
       <CurrentEntries />
       <hr />
       <AddEntry />
-      
     </div>
   )
 }
