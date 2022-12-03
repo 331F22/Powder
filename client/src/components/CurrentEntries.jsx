@@ -25,8 +25,7 @@ const CurrentEntries = () => {
     axios.get(`${process.env.REACT_APP_HOST}/api/read${page}`).then((response) => {
       setEntryList(response.data)
     })
-  }, [page])
-
+  }, [])
 
   const [newEmail, setNewEmail] = useState('')
   const [passcode, setPasscode] = useState('')
