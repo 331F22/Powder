@@ -48,14 +48,28 @@ const SelectEvent = () => {
                 </div>
 
                 <div className='eventList'>
-                    {eventList.map((val, k) => {
-                        return (<div key={k}>
-                            <div>{val.event_name}, {val.event_date} </div>
-                            <button onClick={() => {
-                                selectEvent(val.event_name, val.event_id);
-                            }}>Select</button>
-                            </div>)
+                    <table>
+                        <thead>
+                            <th>Event Name</th>
+                            <th>Date</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                        {eventList.map((val, k) => {
+                            return (<tr key={k}>
+                                <td>{val.event_name}</td>
+                                <td>{val.event_date}</td>
+                                <td>
+                                    <button display="inline" onClick={() => {
+                                    selectEvent(val.event_name, val.event_id);
+                                    }}>
+                                    Select</button>
+                                </td>
+                            </tr>)
                     })}
+                        </tbody>
+                    </table>
+                    
                     <button onClick={() => {
                         selectEvent("", 0);
                     }}>View All Volunteers</button>

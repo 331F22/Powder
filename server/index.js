@@ -30,6 +30,7 @@ app.get("/api/read", (req, res) => {
     })
 })
 
+// READ VOLUNTEERS BY EVENT ID
 app.get("/api/read/:event_id", (req, res) => {
     const ea = req.params.event_id
     const sqlSelect = "SELECT * FROM volunteers where event_id = ? order by last_name;"
@@ -42,13 +43,13 @@ app.get("/api/read/:event_id", (req, res) => {
     })
 })
 
+// READ EVENTS 
 app.get("/api/readEvents", (req, res) => {
     const sqlSelect = "SELECT * FROM events;"
     db.query(sqlSelect, (err, result) => {        
         if(err){
             throw err;
         }
-        
         res.send(result);
     })
 })
