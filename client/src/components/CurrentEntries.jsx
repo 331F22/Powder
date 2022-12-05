@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios'
+import DisplayVouchers from './DisplayVouchers.jsx'
 
 const CurrentEntries = () => {
 
@@ -131,6 +132,7 @@ const CurrentEntries = () => {
   return (
 
     <div className="currentEntries posRel">
+      {/* <DisplayVouchers /> */}
       <h2>Current Entries</h2>
 
       <div className='userData'>
@@ -162,6 +164,7 @@ const CurrentEntries = () => {
             onBlur={(e) => abortPasscodeAttempt(e.target.value)} />
         </div>
         <button id="submitEmailsButton" className='submitBtn' onClick={() => alert('TODO: Send It!')}>Email Vouchers</button>
+        <DisplayVouchers />
 
       </div>
     </div>
