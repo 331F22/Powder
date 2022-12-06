@@ -19,6 +19,7 @@
     "mysql": "^2.18.1",
     "nodemon": "^2.0.19",
     "parser": "^0.1.4",
+    "react-bootstrap-validation": "^0.1.11",
     "react-router-dom": "^6.4.4"
   }
 }

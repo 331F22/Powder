@@ -1,13 +1,23 @@
-// import './App.css';
-// import AddEntry from '../AddEntry.jsx';
-// import CurrentEntries from './CurrentEntries.jsx';
-// import Footer from './Footer.jsx'
-// import React, { Component } from 'react';
 import React from 'react';
+import CurrentEntries from './CurrentEntries';
+
 
 function Admin() {
+    const top_container_style = {
+        'width': '40%',
+        // 'border': '3px solid black',
+        // 'text-align': 'center'
+    };
+
     return (
-        <h1>this is the admin page</h1>
+        <div>
+            <h1 style={{'text-align': 'center'}}>Admin page</h1>
+            <hr />
+            <div style={top_container_style}>
+            <CurrentEntries />
+            </div>
+            
+        </div>
     );
 }
 

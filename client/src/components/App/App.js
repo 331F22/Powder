@@ -3,7 +3,7 @@ import './App.css';
 import AddEntry from '../AddEntry.jsx';
 import CurrentEntries from '../CurrentEntries.jsx';
 import Footer from '../Footer.jsx'
-import Navbar from '../../NavBar';
+import Navbar from '../../NavBar/PageNavBar';
 import Layout from '../Layout';
 
 
@@ -16,7 +16,7 @@ function App() {
 
       <AddEntry />
       <hr />
-      <CurrentEntries />
+      {/* <CurrentEntries /> */}
       <hr />
       <Footer />
     </div>

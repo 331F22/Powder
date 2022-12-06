@@ -10,6 +10,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "react": "^18.2.0",
+    "react-bootstrap-validation": "^0.1.11",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.4",
     "react-scripts": "5.0.1",

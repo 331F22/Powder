@@ -1,11 +1,11 @@
 import React from "react";
 import {Outlet} from "react-router-dom";
-import Navbar from "../NavBar";
+import PageNavBar from "../NavBar/PageNavBar";
 
 const Layout = () => {
   return (
     <>
-      <Navbar />
+      <PageNavBar />
       <Outlet />
     </>
   );
