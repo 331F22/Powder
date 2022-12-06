@@ -1,0 +1,2 @@
+To add the Ski resort info sql file to database run the command below while subbing in your permissions in place of the XX's:
+mysql -u userXX -pXXouse dbXX < BSF\ Ski\ Resort\ Info.sql
