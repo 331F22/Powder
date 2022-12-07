@@ -71,7 +71,7 @@ const CurrentEntries = () => {
       console.log(entryListCopy)
       console.log(entryListCopy[0])
       console.log(entryListCopy[0].VouchersRemaining)
-      
+
       setVouchRem(entryListCopy[0].VouchersRemaining)
       voucherCount.innerHTML = vouchRem
     })
@@ -182,7 +182,7 @@ const CurrentEntries = () => {
             placeholder='Enter passcode' onChange={checkPasscode}
             onBlur={(e) => abortPasscodeAttempt(e.target.value)} />
         </div>
-        <button id="submitEmailsButton" className='submitBtn' onClick={() => alert('TODO: Send It!')}>Email Vouchers</button>
+        <button id="submitEmailsButton" className='submitBtn' onClick={() => alert('TODO: Send It!')}>Eat Snails</button>
 
         <div id="vouchersLeft">Unused Vouchers: <span id="voucherCount"></span></div>
 
