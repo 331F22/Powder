@@ -2,19 +2,16 @@ import React from 'react';
 import './App.css';
 import AddEntry from '../AddEntry.jsx';
 import CurrentEntries from '../CurrentEntries.jsx';
-import Footer from '../Footer.jsx'
+import Dropdown from '../Dropdown.jsx';
 
 function App() {
 
   return (
     <div className="App">
-      <h1>Entries</h1>
-
-      <AddEntry />
+      <h1>Trail Maps</h1>
+	  <hr />
+	  <Dropdown />
       <hr />
-      <CurrentEntries />
-      <hr />
-      <Footer />
     </div>
   )
 }
