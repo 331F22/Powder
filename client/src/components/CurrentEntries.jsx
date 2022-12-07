@@ -70,6 +70,7 @@ const CurrentEntries = () => {
       let entryListCopy = response.data
       console.log(entryListCopy)
       console.log(entryListCopy[0])
+      console.log(entryListCopy[0].VouchersRemaining)
       setVouchRem(entryListCopy[0].VouchersRemaining)
     })
     voucherCount.innerHTML = vouchRem
