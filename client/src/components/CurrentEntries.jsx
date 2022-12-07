@@ -66,7 +66,7 @@ const CurrentEntries = () => {
   // READ (Display Num Vouchers left)
   const getVoucherCount = () => {
     const voucherCount = document.getElementById('voucherCount')
-    app.get(`${process.env.REACT_APP_HOST}/api/vouchersRemaining`).then((response) => {
+    axios.get(`${process.env.REACT_APP_HOST}/api/vouchersRemaining`).then((response) => {
       let entryListCopy = response.data
       console.log(entryListCopy)
       console.log(entryListCopy[0])
@@ -93,8 +93,9 @@ const CurrentEntries = () => {
       editButton.style.display = 'none'
       editPasscodeInput.style.visibility = 'hidden'
       submitEmailsButton.style.display = 'block'
-      voucherLabel.style.display = 'inline'
+
       getVoucherCount()
+      voucherLabel.style.display = 'inline'
 
     } else {
       for (let i = 0; i < collection.length; i++)
