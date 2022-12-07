@@ -66,7 +66,7 @@ const CurrentEntries = () => {
   // READ (Display Num Vouchers left)
   const getVoucherCount = () => {
     const voucherCount = document.getElementById('voucherCount')
-    axios.get(`${process.env.REACT_APP_HOST}/api/vouchersRemaining`).then((response) => {
+    app.get(`${process.env.REACT_APP_HOST}/api/vouchersRemaining`).then((response) => {
       let entryListCopy = response.data
       console.log(entryListCopy)
       console.log(entryListCopy[0])
