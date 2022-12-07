@@ -1,40 +1,41 @@
 import React from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import './PageNavStyle.css'
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
 
-const PageNavbar = () => {
-
+const PageNavbar = () => { 
   
+  function promptMe(){
+    var curr_href = window.location.href;
+    if (!(curr_href === 'http://localhost:5068/Admin')) {
+      var userAdjective = prompt("Enter the passcode.");
+      if (!(userAdjective == "777")) {
+        window.location.reload();
+      }
+    }
+  }
+
+  function reload_page(){
+    window.location.reload();
+  }
+
   return (
     <div class="pos-f-t">
     <div class="collapse" id="navbarToggleExternalContent">
       <div class="bg-dark p-4">
-        <h4 class="text-white"> <Link to="/">User</Link></h4>
-        <h4 class="text-white"> <Link to="/Admin">Admin</Link></h4>
+        <h4  onClick={reload_page} class="text-white"> <Link to="/">User</Link></h4>
+        <h4 onClick={reload_page} class="text-white"> <Link to="/Admin">Admin</Link></h4>
         {/* <span class="text-muted"><Link to="/Admin">Admin</Link></span> */}
       </div>
     </div>
     <nav class="navbar navbar-dark bg-dark">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button onClick={promptMe} class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
     </nav>
   </div> 
  
- 
-  //     <nav id="navbar-top">
-  //   <ul>
-  //     <li>
-  //       <Link to="/">User</Link>
-  //     </li>
-  //     <li>
-  //       <Link to="/Admin">Admin</Link>
-  //     </li>
-  //   </ul>
-  // </nav>  
-
-  
   );
 }
 

@@ -12,6 +12,11 @@
   "author": "Daniel DeFrance",
   "license": "ISC",
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.10.16",
+    "@mui/material": "^5.10.17",
+    "@mui/styled-engine-sc": "^5.10.16",
     "body": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
@@ -20,6 +25,7 @@
     "nodemon": "^2.0.19",
     "parser": "^0.1.4",
     "react-bootstrap-validation": "^0.1.11",
-    "react-router-dom": "^6.4.4"
+    "react-router-dom": "^6.4.4",
+    "styled-components": "^5.3.6"
   }
 }
