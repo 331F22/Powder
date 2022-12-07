@@ -65,7 +65,6 @@ const CurrentEntries = () => {
 
   // READ (Display Num Vouchers left)
   const getVoucherCount = () => {
-    const voucherCount = document.getElementById('voucherCount')
     axios.get(`${process.env.REACT_APP_HOST}/api/vouchersremaining`).then((response) => {
       let entryListCopy = response.data
       console.log(entryListCopy)
@@ -73,7 +72,6 @@ const CurrentEntries = () => {
       console.log(entryListCopy[0].VouchersRemaining)
 
       setVouchRem(entryListCopy[0].VouchersRemaining)
-      voucherCount.innerHTML = vouchRem
     })
   }
 
@@ -86,6 +84,7 @@ const CurrentEntries = () => {
     const editPasscodeInput = document.getElementById('editPasscodeInput')
     const submitEmailsButton = document.getElementById('submitEmailsButton')
     const voucherLabel = document.getElementById('vouchersLeft')
+    const voucherCount = document.getElementById('voucherCount')
 
     if (passcode === SECRET) {
       for (let i = 0; i < collection.length; i++)
@@ -96,6 +95,7 @@ const CurrentEntries = () => {
       submitEmailsButton.style.display = 'block'
 
       getVoucherCount()
+      voucherCount.innerHTML = vouchRem
       voucherLabel.style.display = 'inline'
 
     } else {
@@ -182,7 +182,7 @@ const CurrentEntries = () => {
             placeholder='Enter passcode' onChange={checkPasscode}
             onBlur={(e) => abortPasscodeAttempt(e.target.value)} />
         </div>
-        <button id="submitEmailsButton" className='submitBtn' onClick={() => alert('TODO: Send It!')}>Eat Snails</button>
+        <button id="submitEmailsButton" className='submitBtn' onClick={() => alert('TODO: Send It!')}>Email Vouchers</button>
 
         <div id="vouchersLeft">Unused Vouchers: <span id="voucherCount"></span></div>
 
