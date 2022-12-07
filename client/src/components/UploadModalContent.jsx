@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import IconMenuClose from "./Icons";
 import Papa from "papaparse";
-
 import "../stylesheets/voucherModal.css";
+
+const axios = require('axios')
 
 const UploadContent = (prop) => {
   const { setOpenModal } = prop;
@@ -40,6 +41,21 @@ const UploadContent = (prop) => {
     setOpenModal(false);
     document.querySelector("body").classList.remove("modal-open");
   };
+
+  const requestUpload = (values) => {
+    const data = {
+      voucherCode: values
+    }
+    axios.post(process.env.REACT_APP_HOST + '/api/uploadVouchers', data)
+      .then(res => {
+        console.log(`Status: ${res.status}`)
+        console.log("Body: ", res.data)
+      })
+      .catch(err => {
+        console.error(err)
+      })
+  };
+
   return (
     <div className="modal-Container">
       <div className="modal-Header">
@@ -84,7 +100,7 @@ const UploadContent = (prop) => {
             })}
           </tbody>
         </table>
-        {values[0] ? <><button className="btn btn-danger" onClick={() => discard()}>Discard</button><button className="btn btn-primary">Upload {values.length} Codes to Database</button></> : ''}
+        {values[0] ? <><button className="btn btn-danger" onClick={() => discard()}>Discard</button><button className="btn btn-primary" onClick={() => requestUpload(values)}>Upload {values.length} Codes to Database</button></> : ''}
       </div>
     </div>
   );

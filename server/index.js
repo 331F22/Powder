@@ -17,9 +17,26 @@ app.use(cors())
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
+// returns true if voucher is valid
+function validateVoucher(voucherCode) {
+    const voucherFormat = /^(?!^.{9})[A-Z]{3}[a-z]{3}[0-9]{2}/
+    return voucherFormat.test(voucherCode)
+}
+
 // READ
 app.get("/api/read", (req, res) => {
     const sqlSelect = "SELECT * FROM volunteers;"
+    db.query(sqlSelect, (err, result) => {
+        if(err){
+            throw err;
+        }
+        res.send(result);
+    })
+})
+
+// READ VOUCHERS
+app.get("/api/readVouchers", (req, res) => {
+    const sqlSelect = "SELECT * FROM tickets;"
     db.query(sqlSelect, (err, result) => {
         if(err){
             throw err;
@@ -37,6 +54,40 @@ app.post("/api/create", (req, res) => {
     db.query(sqlInsert, [fn, ln, ea], (err, result) => {
         if(err) throw err
         console.log("Server posted: ", fn, ln)
+        res.send(result)
+    })
+})
+
+// INSERT VOUCHERS
+app.post("/api/uploadVouchers", (req, res) => {
+    const voucherCode = req.body.voucherCode;
+    const sqlInsert = "INSERT IGNORE INTO tickets (ticketCode) VALUES (?);"
+
+    let invalidCodes = []
+    voucherCode.forEach(code => {
+        if (validateVoucher(code)){
+            db.query(sqlInsert, [code, code], (err, result) => {
+                if (err) throw err
+                console.log(`Uploaded code: ${code}`)
+            })
+        } else {
+            console.log(`Invalid code: ${code}`)
+            invalidCodes.push(code)
+        }
+    });
+    let data = {
+        failures: invalidCodes.length,
+        failedCodes: invalidCodes
+    }
+    res.send(data)
+})
+
+app.get("/api/clearTickets", (req, res) => {
+    const sqlTruncate = "TRUNCATE TABLE tickets;"
+
+    db.query(sqlTruncate, (err, result) => {
+        if (err) throw err
+        console.log("Tickets cleared")
         res.send(result)
     })
 })
@@ -71,7 +122,7 @@ app.put("/api/update", (req, res) => {
 const PORT = process.env.EXPRESSPORT;
 const msg = `Running on PORT ${PORT}`
 app.get("/", (req, res) => {
-    res.send(`<h1>Express Server</h1><p>${msg}<p>`)
+    res.send(`<h1>Express Server test</h1><p>${msg}<p>`)
 })
 app.listen(PORT, () => {
     console.log(msg)
