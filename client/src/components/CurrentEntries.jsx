@@ -91,14 +91,14 @@ const CurrentEntries = () => {
 
 
     if (passcode === SECRET) {
+      getVoucherCount()
+
       for (let i = 0; i < collection.length; i++)
         collection[i].style.display = 'block'
       doneButton.style.display = 'inline'
       editButton.style.display = 'none'
       editPasscodeInput.style.visibility = 'hidden'
       submitEmailsButton.style.display = 'block'
-
-      getVoucherCount()
 
 
     } else {
