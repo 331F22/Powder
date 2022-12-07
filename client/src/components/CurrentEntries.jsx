@@ -72,6 +72,11 @@ const CurrentEntries = () => {
       console.log(entryListCopy[0].VouchersRemaining)
 
       setVouchRem(entryListCopy[0].VouchersRemaining)
+    }).then((response) => {
+      const voucherLabel = document.getElementById('vouchersLeft')
+      const voucherCount = document.getElementById('voucherCount')
+      voucherCount.innerHTML = vouchRem
+      voucherLabel.style.display = 'inline'
     })
   }
 
@@ -83,8 +88,7 @@ const CurrentEntries = () => {
     const doneButton = document.getElementById('doneButton')
     const editPasscodeInput = document.getElementById('editPasscodeInput')
     const submitEmailsButton = document.getElementById('submitEmailsButton')
-    const voucherLabel = document.getElementById('vouchersLeft')
-    const voucherCount = document.getElementById('voucherCount')
+
 
     if (passcode === SECRET) {
       for (let i = 0; i < collection.length; i++)
@@ -95,8 +99,7 @@ const CurrentEntries = () => {
       submitEmailsButton.style.display = 'block'
 
       getVoucherCount()
-      voucherCount.innerHTML = vouchRem
-      voucherLabel.style.display = 'inline'
+
 
     } else {
       for (let i = 0; i < collection.length; i++)
