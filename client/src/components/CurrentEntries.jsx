@@ -67,7 +67,8 @@ const CurrentEntries = () => {
   const getVoucherCount = () => {
     const voucherCount = document.getElementById('voucherCount')
     axios.get(`${process.env.REACT_APP_HOST}/api/vouchersRemaining`).then((response) => {
-      setVouchRem(response.data.VouchersRemaining)
+      let entryListCopy = response.data
+      setVouchRem(entryListCopy[0].val.VouchersRemaining)
     })
     voucherCount.innerHTML = vouchRem
   }
@@ -110,6 +111,7 @@ const CurrentEntries = () => {
     const doneButton = document.getElementById('doneButton')
     const collection = document.getElementsByClassName("editControls")
     const submitEmailsButton = document.getElementById('submitEmailsButton')
+    const voucherLabel = document.getElementById('vouchersLeft')
 
     for (let i = 0; i < collection.length; i++)
       collection[i].style.display = 'none'
@@ -118,6 +120,7 @@ const CurrentEntries = () => {
     editButton.style.display = 'inline'
     editButton.innerHTML = "Edit List"
     submitEmailsButton.style.display = 'none'
+    voucherLabel.style.display = 'none'
   }
 
   function checkPasscode(e) {
