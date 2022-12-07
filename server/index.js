@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 // READ (remaining vouchers)
 app.get("/api/vouchersremaining", (req, res) => {
-    const voucherRead = "SELECT SUM(is_issued) as VouchersRemaining FROM tickets;"
+    const voucherRead = "SELECT is_issued, COUNT(*) AS Count FROM tickets GROUP BY is_issued;"
     db.query(voucherRead, (err, result) => {
         if(err){
             throw err;
