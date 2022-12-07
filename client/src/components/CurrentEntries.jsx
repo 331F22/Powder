@@ -69,9 +69,9 @@ const CurrentEntries = () => {
       let entryListCopy = response.data
       console.log(entryListCopy)
       console.log(entryListCopy[0])
-      console.log(entryListCopy[0].VouchersRemaining)
+      console.log(entryListCopy[0].Count)
 
-      setVouchRem(entryListCopy[0].VouchersRemaining)
+      setVouchRem(entryListCopy[0].Count)
     }).then((response) => {
       const voucherLabel = document.getElementById('vouchersLeft')
       const voucherCount = document.getElementById('voucherCount')
