@@ -45,7 +45,7 @@ app.get("/api/read/:event_id", (req, res) => {
 
 // READ EVENTS 
 app.get("/api/readEvents", (req, res) => {
-    const sqlSelect = "SELECT * FROM events;"
+    const sqlSelect = "SELECT event_id, event_name, DATE_FORMAT(event_date, '%m/%d/%Y') as event_date FROM events;"
     db.query(sqlSelect, (err, result) => {        
         if(err){
             throw err;
@@ -92,6 +92,18 @@ app.post("/api/create", (req, res) => {
     })
 }) 
 
+// CREATE EVENT
+app.post("/api/createEvent", (req, res) => {
+    console.log("entry received:")
+    const nm = req.body.event_name
+    const dt = req.body.event_date
+    const sqlInsert = "INSERT INTO events (event_name, event_date) VALUES (?,?);"
+    db.query(sqlInsert, [nm,dt], (err, result) => {
+        if(err) throw err
+        console.log("Server posted: ", nm)
+        res.send(result)
+    })
+}) 
 
 // DELETE
 app.delete("/api/delete/:emailAddress", (req, res) => {
@@ -103,13 +115,22 @@ app.delete("/api/delete/:emailAddress", (req, res) => {
         console.log("Server: deleted: ", ea)
         res.send(result)
     }) 
+})
 
+// DELETE EVENT
+app.delete("/api/deleteEvent/:event_id", (req, res) => {
+    const id = req.params.event_id;
+    console.log(id)
+    const sqlDelete = "DELETE FROM events WHERE event_id = ?";
+    db.query(sqlDelete, [id], (err, result) => {
+        if(err) throw err
+        console.log("Server: deleted: ", id)
+        res.send(result)
+    }) 
 })
 
 // UPDATE
 app.put("/api/update", (req, res) => {
-    // console.log(req)
-
     const ne = req.body.new;
     const oe = req.body.old;
     console.log("Ready to change: ", oe, "to", ne)
@@ -117,6 +138,20 @@ app.put("/api/update", (req, res) => {
     db.query(sqlUpdate, [ne, oe], (err, result)=>{
         if(err)  throw err;
         console.log("Server changed: ", oe, "to", ne)
+        res.send(result)
+    })
+})
+
+// UPDATE EVENT NAME AND DATE
+app.put("/api/updateEvent", (req, res) => {
+    const nm = req.body.newName;
+    const dt = req.body.newDate;
+    const id = req.body.event_id;
+    console.log("Updating event: " + id)
+    const sqlUpdate = "UPDATE events SET event_name = ?, event_date = ? WHERE event_id = ?"
+    db.query(sqlUpdate, [nm, dt, id], (err, result)=>{
+        if(err)  throw err;
+        console.log("Server updated: ", id);
         res.send(result)
     })
 })
