@@ -36,6 +36,7 @@ app.get("/api/read", (req, res) => {
             throw err;
         }
         res.send(result);
+        console.log("Ran a read")
     })
 })
 
