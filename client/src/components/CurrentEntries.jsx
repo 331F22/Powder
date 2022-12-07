@@ -6,6 +6,7 @@ const CurrentEntries = () => {
   const SECRET = process.env.REACT_APP_PASSCODE
 
   const [entryList, setEntryList] = useState([])
+  const [vouchRem, setVouchRem] = useState(-1);
 
 
   // READ (GET)
@@ -62,6 +63,15 @@ const CurrentEntries = () => {
     }
   }
 
+  // READ (Display Num Vouchers left)
+  const getVoucherCount = () => {
+    const voucherCount = document.getElementById('voucherCount')
+    axios.get(`${process.env.REACT_APP_HOST}/api/vouchersRemaining`).then((response) => {
+      setVouchRem(response.data.VouchersRemaining)
+    })
+    voucherCount.innerHTML = vouchRem
+  }
+
   const refPass = useRef(null);
 
   function handleEditList(e) {
@@ -70,6 +80,7 @@ const CurrentEntries = () => {
     const doneButton = document.getElementById('doneButton')
     const editPasscodeInput = document.getElementById('editPasscodeInput')
     const submitEmailsButton = document.getElementById('submitEmailsButton')
+    const voucherLabel = document.getElementById('vouchersLeft')
 
     if (passcode === SECRET) {
       for (let i = 0; i < collection.length; i++)
@@ -78,6 +89,8 @@ const CurrentEntries = () => {
       editButton.style.display = 'none'
       editPasscodeInput.style.visibility = 'hidden'
       submitEmailsButton.style.display = 'block'
+      voucherLabel.style.display = 'inline'
+      getVoucherCount()
 
     } else {
       for (let i = 0; i < collection.length; i++)
@@ -162,6 +175,8 @@ const CurrentEntries = () => {
             onBlur={(e) => abortPasscodeAttempt(e.target.value)} />
         </div>
         <button id="submitEmailsButton" className='submitBtn' onClick={() => alert('TODO: Send It!')}>Email Vouchers</button>
+
+        <div id="vouchersLeft">Unused Vouchers: <span id="voucherCount"></span></div>
 
       </div>
     </div>
