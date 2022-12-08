@@ -29,13 +29,51 @@ app.get("/api/vouchersremaining", (req, res) => {
 })
 
 // READ (volunteers who don't have a voucher assigned)
-app.get("/api/unrewardedvolunteers", (req, res) => {
+app.get("/api/unrewardedvolunteercount", (req, res) => {
     const checkVolunteers = "select is_issued, COUNT(*) as Count from volunteers LEFT join tickets on volunteers.id = tickets.issued_to GROUP BY is_issued;"
     db.query(checkVolunteers, (err, result) => {
         if (err){
             throw err;
         }
         res.send(result);
+    })
+})
+
+// READ (get only volunteers without voucher)
+app.get("/api/unrewardedvolunteers", (req,res) => {
+    const getVolunteers = ""
+    db.query(getVolunteers, (err, result) => {
+        if (err) {
+            throw err;
+        }
+        res.send(result);
+    })
+})
+
+// READ (get only available vouchers)
+app.get("/api/getvouchers", (req, res) => {
+    const getVouchers = ""
+    db.query(getVouchers, (err, result) => {
+        if (err) {
+            throw err;
+        }
+        res.send(result);
+    })
+})
+
+// UPDATE (Assign vouchers to volunteers)
+app.put("/api/assignvouchers", (req, res) => {
+    console.log("Make the volunteers go in the voucher table")
+    // get params from req.body.variableName
+    param = 1
+    param1 = 2
+
+    const update = ""
+    db.query(update, [param, param1], (err, result) => {
+        if(err) {
+            throw err;
+        }
+        res.send(result)
     })
 })
 
@@ -91,10 +129,6 @@ app.put("/api/update", (req, res) => {
     })
 })
 
-// UPDATE (Assign vouchers to volunteers)
-app.put("/api/rewardvolunteers", (req, res) => {
-    console.log("Make the volunteers go in the voucher table")
-})
 
 
 const PORT = process.env.EXPRESSPORT;

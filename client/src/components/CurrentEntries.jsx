@@ -78,7 +78,7 @@ const CurrentEntries = () => {
 
   // READ (Display number of volunteers without vouchers)
   const getNewVolunteers = () => {
-    axios.get(`${process.env.REACT_APP_HOST}/api/unrewardedvolunteers`).then((response) => {
+    axios.get(`${process.env.REACT_APP_HOST}/api/unrewardedvolunteercount`).then((response) => {
       let entryListCopy = response.data
       console.log(entryListCopy)
       console.log(entryListCopy[0])
@@ -86,6 +86,22 @@ const CurrentEntries = () => {
 
       setNewVols(entryListCopy[0].Count)
     })
+  }
+
+  function handleEmailVouchers() {
+    alert('This button has limited use. It only assigns voucher codes to volunteers, does not yet send them out in emails.')
+    
+    // first get available vouchers
+    axios.get(`${process.env.REACT_APP_HOST}/api/getvouchers`).then((response) => {
+      let entryListCopy= response.data
+      console.log(entryListCopy)
+      console.log(entryListCopy[0])
+    })
+
+    // then get people who need a voucher
+    
+    // then put them together
+    //axios.put(`${process.env.REACT_APP_HOST}/api/assignvouchers`)
   }
 
   const refPass = useRef(null);
@@ -134,10 +150,6 @@ const CurrentEntries = () => {
     refPass.current.value = ''
   }
 
-  function handleEmailVouchers() {
-    alert('This button has limited use. It only assigns voucher codes to volunteers, does not yet send them out in emails.')
-    
-  }
 
   function handleFinishedEditing() {
     const editPasscodeInput = document.getElementById('editPasscodeInput')
