@@ -1,11 +1,10 @@
 import React from "react";
+import DisplayVouchers from "../components/DisplayVouchers";
 
 const Admin = () => {
     return (
         <div>
-            <h1>
-               This is the Admin Page
-            </h1>
+            <DisplayVouchers />
         </div>
     );
 };
