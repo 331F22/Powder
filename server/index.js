@@ -41,7 +41,7 @@ app.get("/api/unrewardedvolunteercount", (req, res) => {
 
 // READ (get only volunteers without voucher)
 app.get("/api/unrewardedvolunteers", (req,res) => {
-    const getVolunteers = "SELECT * FROM volunteers LEFT OUTER JOIN tickets on volunteers.id = tickets.issued_to WHERE is_issued in NULL;"
+    const getVolunteers = "SELECT * FROM volunteers LEFT OUTER JOIN tickets on volunteers.id = tickets.issued_to WHERE is_issued is NULL;"
     db.query(getVolunteers, (err, result) => {
         if (err) {
             throw err;
