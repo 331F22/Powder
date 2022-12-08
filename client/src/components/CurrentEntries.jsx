@@ -97,10 +97,10 @@ const CurrentEntries = () => {
     const editPasscodeInput = document.getElementById('editPasscodeInput')
     const submitEmailsButton = document.getElementById('submitEmailsButton')
 
+    getVoucherCount()
+    getNewVolunteers()
 
     if (passcode === SECRET) {
-      getVoucherCount()
-      getNewVolunteers()
 
       for (let i = 0; i < collection.length; i++)
         collection[i].style.display = 'block'
