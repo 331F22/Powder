@@ -28,6 +28,17 @@ app.get("/api/vouchersremaining", (req, res) => {
     })
 })
 
+// READ (volunteers who don't have a voucher assigned)
+app.get("/api/unrewardedvolunteers", (req, res) => {
+    const checkVolunteers = "SELECT * FROM volunteers;"
+    db.query(checkVolunteers, (err, result) => {
+        if (err){
+            throw err;
+        }
+        res.send(result);
+    })
+})
+
 // READ
 app.get("/api/read", (req, res) => {
     const sqlSelect = "SELECT * FROM volunteers;"
@@ -79,6 +90,12 @@ app.put("/api/update", (req, res) => {
         res.send(result)
     })
 })
+
+// UPDATE (Assign vouchers to volunteers)
+app.put("/api/rewardvolunteers", (req, res) => {
+    console.log("Make the volunteers go in the voucher table")
+})
+
 
 const PORT = process.env.EXPRESSPORT;
 const msg = `Running on PORT ${PORT}`
