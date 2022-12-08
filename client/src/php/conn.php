@@ -34,5 +34,7 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
       );
 }
  
-echo json_encode($trails);
+<script type="text/javascript">
+    var phpTrails = <?php echo json_encode($trails) ?>;
+</script>
 ?>
