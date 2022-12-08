@@ -6,6 +6,7 @@ import { HashRouter as Router, Routes, Route}
 import Home from './pages/home'
 import Login from './pages/login'
 import About from "./pages/about";
+import Admin from "./pages/admin";
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
             <Navbar />
             <Routes>
                 <Route path = '/home' element ={<Home />} />
+                <Route path = '/admin' element = {<Admin />} />
                 <Route path = '/login' element ={<Login />} />
                 {/* 👇️ react router link */}
                 <Route path = '/about' element ={<About />} />

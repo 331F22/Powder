@@ -1,5 +1,5 @@
 import React from "react";
-import {Route, Routes, useNavigate} from "react-router-dom";
+import {redirect, Route, Routes, useNavigate, withRouter} from "react-router-dom";
 import Home from "./home";
 import Admin from "./admin";
 

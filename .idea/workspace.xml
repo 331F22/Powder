@@ -2,25 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="45f2840c-bfde-4a35-ae62-93f4662a68dd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs 2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/BSFsmallLogo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Navbar/NavbarElements.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Navbar/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/about.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/admin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/home.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Powder.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Powder.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/App/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/App/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/login.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
