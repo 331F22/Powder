@@ -52,7 +52,7 @@ app.get("/api/unrewardedvolunteers", (req,res) => {
 
 // READ (get only available vouchers)
 app.get("/api/getvouchers", (req, res) => {
-    const getVouchers = "SELECT * FROM tickets;"
+    const getVouchers = "SELECT * FROM tickets WHERE is_issued = 0;"
     db.query(getVouchers, (err, result) => {
         if (err) {
             throw err;
