@@ -93,13 +93,18 @@ const CurrentEntries = () => {
     
     // first get available vouchers
     axios.get(`${process.env.REACT_APP_HOST}/api/getvouchers`).then((response) => {
-      let entryListCopy= response.data
-      console.log(entryListCopy)
-      console.log(entryListCopy[0])
+      let voucherList = response.data
+      console.log(voucherList)
+      console.log(voucherList[0])
     })
 
     // then get people who need a voucher
-    
+    axios.get(`${process.env.REACT_APP_HOST}/api/unrewardedvolunteers`).then((response) => {
+      let volunteerList = response.data
+      console.log(volunteerList)
+      console.log(volunteerList[0])
+    })
+
     // then put them together
     //axios.put(`${process.env.REACT_APP_HOST}/api/assignvouchers`)
   }
