@@ -81,6 +81,10 @@ const CurrentEntries = () => {
     axios.get(`${process.env.REACT_APP_HOST}/api/unrewardedvolunteers`).then((response) => {
       let entryListCopy = response.data
       console.log(entryListCopy)
+      console.log(entryListCopy[0])
+      console.log(entryListCopy[0].Count)
+
+      setNewVols(entryListCopy[0].Count)
     })
   }
 

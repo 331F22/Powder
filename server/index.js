@@ -30,7 +30,7 @@ app.get("/api/vouchersremaining", (req, res) => {
 
 // READ (volunteers who don't have a voucher assigned)
 app.get("/api/unrewardedvolunteers", (req, res) => {
-    const checkVolunteers = "SELECT * FROM volunteers;"
+    const checkVolunteers = "select is_issued, COUNT(*) as Count from volunteers LEFT join tickets on volunteers.id = tickets.issued_to GROUP BY is_issued;"
     db.query(checkVolunteers, (err, result) => {
         if (err){
             throw err;
