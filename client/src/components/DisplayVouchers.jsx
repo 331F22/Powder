@@ -108,6 +108,8 @@ const DisplayVouchers = () => {
           })
         }
       } // end loop
+      getVoucherCount()
+      getNewVolunteerCount()
     }   // end function assignVouchers
   
     function updateCounts() {
