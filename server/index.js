@@ -65,11 +65,11 @@ app.get("/api/getvouchers", (req, res) => {
 app.put("/api/assignvouchers", (req, res) => {
     console.log("Make the volunteers go in the voucher table")
     // get params from req.body.variableName
-    param = 1
-    param1 = 2
+    personId = parseInt(req.body.personId)
+    ticket = req.body.ticket;
 
-    const update = ""
-    db.query(update, [param, param1], (err, result) => {
+    const update = "UPDATE tickets SET issued_to = ?, is_issued = 1 WHERE ticketCode = ?;"
+    db.query(update, [personId, ticket], (err, result) => {
         if(err) {
             throw err;
         }

@@ -93,7 +93,7 @@ const CurrentEntries = () => {
     alert('This button has limited use. It only assigns voucher codes to volunteers, does not yet send them out in emails.')
     
     let vouchers = []
-    let emails = []
+    let people = []
 
     // first get available vouchers
     axios.get(`${process.env.REACT_APP_HOST}/api/getvouchers`).then((response) => {
@@ -112,36 +112,27 @@ const CurrentEntries = () => {
       console.log(volunteerList[0].first_name)
 
       for (let person of volunteerList) {
-        emails.push(person.email_address)
+        people.push(person.id)
       }
-      console.log(emails)
+      console.log(people)
     })
 
-    // wait some time to be sure these lists are populated
-    // then put them together
-    setVouchers(vouchers)
-    setEmails(emails)
-    sleep(1000, null)
-    sleep(3000, [gVouchers, gEmails])
+    for (let i = 0; i < people.length; i++) {
+      // first check if we're out of vouchers
+      if (i >= vouchers.length) {
+        alert('*******!!!OUT OF VOUCHERS!!!*******\nNot all volunteers have been given a voucher for Bridger. Please request more immediately! (And keep a better eye on our fancy voucher count too)')
+      } else {
+        let id = people[i]
+        let voucher = vouchers[i]
 
-  }
-
-  const sleep = (milliseconds, params) => {
-    if (params == null) {
-      console.log("wait")
-      return new Promise(resolve => setTimeout(resolve, milliseconds))
-    } else {
-      console.log("let's do the assign")
-      return new Promise(() => setTimeout(assignVouchers(params[0], params[1]), milliseconds))
-    }
-  }
-
-  const assignVouchers = (vouchers, emails) => {
-    // axios.get(`${process.env.REACT_APP_HOST}/api/assignvouchers`).then((response) => {
-    console.log("Put them together")
-    // })
-
-}
+        axios.put(`${process.env.REACT_APP_HOST}/api/assignvouchers`, { personId: id, ticket: voucher }).then((response) => {
+          console.log("Put them together")
+          getVoucherCount()
+          getNewVolunteerCount()
+        })
+      }
+    } // end loop
+  }   // end function emailVouchers
 
   const refPass = useRef(null);
 
