@@ -5,7 +5,6 @@ const DisplayVouchers = () => {
 
     const [vouchRem, setVouchRem] = useState(-1);
     const [newVols, setNewVols] = useState(-1);
-    const [assignedPeople, setPeople] = useState([]);
 
     const countLow = {
         color: 'red',
@@ -55,17 +54,13 @@ const DisplayVouchers = () => {
   
     // Called from button click, does some read/write
     function handleEmailVouchers() {
-
       // update label of Email Vouchers button to run again but just change the numbers
       const button = document.getElementById('submitEmailsButton')
-      let flag = false
       if (button.innerHTML === 'Email Vouchers') {
         alert('This button has limited use. It only assigns voucher codes to volunteers, does not yet send them out in emails.')
         button.innerHTML = 'Update Counts'
-        flag = true
       } else if (button.innerHTML === 'Update Counts') {
         button.innerHTML = 'Email Vouchers'
-        flag = false
       }
       
       let vouchers = []
@@ -90,11 +85,6 @@ const DisplayVouchers = () => {
             people.push(person.id)
           }
           console.log(people)
-
-          // save these people
-          if (flag) {
-            setPeople(people)
-          }
       
           // then assign the vouchers to the people
           assignVouchers(vouchers, people)
@@ -129,18 +119,13 @@ const DisplayVouchers = () => {
       getNewVolunteerCount()
     }   // end function assignVouchers
   
-    function undoAssignent() {
-      // loop through all the people who were just assigned a voucher
-      for (let i = 0; i < assignedPeople.length; i++) {
-        let id = assignedPeople[i]
-        // call the api to update the databse by cancelling voucher assignment
-        axios.put(`${process.env.REACT_APP_HOST}/api/undovouching`, { personId: id }).then((response) => {
-          console.log("Take them back apart")
+    function reset() {
+      // call the api to reset the databse to my set values
+      axios.post(`${process.env.REACT_APP_HOST}/api/resetdb`).then((response) => {
+          console.log("Reset back to preset default")
         })
-      } // end loop
       getVoucherCount()
       getNewVolunteerCount()
-      setPeople([])
     } // end function undoAssignment
 
 
@@ -200,7 +185,7 @@ const DisplayVouchers = () => {
             <h4>Vouchers Remaining: <span id="voucherCount">{ShowCount(vouchRem)}</span></h4>
             <h5>Volunteers without Tickets: <span id="volunteerCount">{newVols}</span></h5>
             <button id="submitEmailsButton" className='submitBtn' onClick={handleEmailVouchers}>Email Vouchers</button>
-            <button id="undoButton" className='undoBtn' onClick={undoAssignent}>Undo Email Vouchers</button>
+            <button id="resetButton" className='resetBtn' onClick={reset}>Reset DB</button>
         </div>
     );
 };
