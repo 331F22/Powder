@@ -1,11 +1,10 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios'
 
 const DisplayVouchers = () => {
 
     const [vouchRem, setVouchRem] = useState(-1);
     const [newVols, setNewVols] = useState(-1);
-    getVoucherCount()
 
     const countLow = {
         color: 'red',
@@ -100,6 +99,7 @@ const DisplayVouchers = () => {
       } // end loop
     }   // end function assignVouchers
   
+    getVoucherCount()
 
 
 
