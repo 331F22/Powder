@@ -54,8 +54,7 @@ const DisplayVouchers = () => {
   
     // Called from button click, does some read/write
     function handleEmailVouchers() {
-      const updateBtn = document.getElementById('updateCountsButton')
-      updateBtn.style.display = 'inline';
+
       alert('This button has limited use. It only assigns voucher codes to volunteers, does not yet send them out in emails.')
       
       let vouchers = []
