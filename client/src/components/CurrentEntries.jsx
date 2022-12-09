@@ -270,7 +270,6 @@ const CurrentEntries = () => {
             placeholder='Enter passcode' onChange={checkPasscode}
             onBlur={(e) => abortPasscodeAttempt(e.target.value)} />
         </div>
-        <button id="submitEmailsButton" className='submitBtn' onClick={handleEmailVouchers}>Email Vouchers</button>
 
         <div id="vouchersLeft">Unused Vouchers: <span id="voucherCount"></span></div>
         <div id="newVolunteers">New Volunteers w/o vouchers: <span id="volunteerCount"></span></div>

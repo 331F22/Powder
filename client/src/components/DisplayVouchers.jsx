@@ -21,6 +21,11 @@ const DisplayVouchers = () => {
         }
         return <High/>;
     }
+//    TODO: Connor - implement some function to display the volunteers without tickets
+//                  Same way you did the vouchers, but this time, if it's anything over 0, make it red
+
+//    TODO: Connor - add some other styling to the admin page so it's not just words
+//                  - and to the email vouchers button too
 
       
     // READ (Display Num Vouchers left)
@@ -100,6 +105,7 @@ const DisplayVouchers = () => {
     }   // end function assignVouchers
   
     getVoucherCount()
+    getNewVolunteerCount()
 
 
 
@@ -107,6 +113,7 @@ const DisplayVouchers = () => {
         <div>
             <h1>Display Vouchers</h1>
             <h4>Vouchers Remaining: {ShowCount(vouchRem)}</h4>
+            <h5>Volunteers without Tickets: {newVols}</h5>
             <button id="submitEmailsButton" className='submitBtn' onClick={handleEmailVouchers}>Email Vouchers</button>
         </div>
     );

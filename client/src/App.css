@@ -80,9 +80,6 @@ body {
 #editPasscodeInput{
   visibility: hidden;
 }
-#submitEmailsButton{
-  display: none;
-}
 #vouchersLeft{
   display: none;
 }
