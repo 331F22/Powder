@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios'
+import { setTimeout } from "timers/promises";
 
 const CurrentEntries = () => {
 
@@ -67,29 +68,31 @@ const CurrentEntries = () => {
 
   // READ (Display Num Vouchers left)
   const getVoucherCount = () => {
-    axios.get(`${process.env.REACT_APP_HOST}/api/vouchersremaining`).then((response) => {
+    axios.get(`${process.env.REACT_APP_HOST}/api/vouchersremaining`).then(async (response) => {
       let entryListCopy = response.data
       console.log(entryListCopy)
       console.log(entryListCopy[0])
       console.log(entryListCopy[0].Count)
 
       setVouchRem(entryListCopy[0].Count)
+      await setTimeout(750);
     })
   }
 
   // READ (Display number of volunteers without vouchers)
   const getNewVolunteerCount = () => {
-    axios.get(`${process.env.REACT_APP_HOST}/api/unrewardedvolunteercount`).then((response) => {
+    axios.get(`${process.env.REACT_APP_HOST}/api/unrewardedvolunteercount`).then(async (response) => {
       let entryListCopy = response.data
       console.log(entryListCopy)
       console.log(entryListCopy[0])
       console.log(entryListCopy[0].Count)
 
       setNewVols(entryListCopy[0].Count)
+      await setTimeout(750);
     })
   }
 
-  function handleEmailVouchers() {
+  const handleEmailVouchers = async () => {
     alert('This button has limited use. It only assigns voucher codes to volunteers, does not yet send them out in emails.')
     
     let vouchers = []
@@ -104,8 +107,10 @@ const CurrentEntries = () => {
         vouchers.push(voucher.ticketCode)
       }
       console.log(vouchers)
+
     })
 
+    await setTimeout(1000)
     // then get people who need a voucher
     axios.get(`${process.env.REACT_APP_HOST}/api/unrewardedvolunteers`).then((response) => {
       let volunteerList = response.data
@@ -117,6 +122,7 @@ const CurrentEntries = () => {
       console.log(people)
     })
 
+    await setTimeout(1000)
     for (let i = 0; i < people.length; i++) {
       // first check if we're out of vouchers
       if (i >= vouchers.length) {
