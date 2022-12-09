@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import React/*, { Component }  */from 'react';
 import axios from 'axios'
 import SendVouchers from './SendVouchers';
+import AssignVouchers from './AssignVouchers';
 
 const CurrentEntries = () => {
 
@@ -22,10 +23,11 @@ const CurrentEntries = () => {
   }
 
   useEffect(() => {
+    console.log("Calling CurrentEntries useEffect...");
     axios.get(`${process.env.REACT_APP_HOST}/api/read${page}`).then((response) => {
       setEntryList(response.data)
     })
-  }, )
+  }, [])
 
   const [newEmail, setNewEmail] = useState('')
   const [passcode, setPasscode] = useState('')
@@ -173,7 +175,8 @@ const CurrentEntries = () => {
             placeholder='Enter passcode' onChange={checkPasscode}
             onBlur={(e) => abortPasscodeAttempt(e.target.value)} />
         </div>
-        <SendVouchers />
+        <SendVouchers eventId={currentEvent} />
+        <AssignVouchers eventId={currentEvent} />
       </div>
     </div>
   )

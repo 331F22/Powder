@@ -50,9 +50,11 @@ const SelectEvent = () => {
                 <div className='eventList'>
                     <table>
                         <thead>
+                            <tr>
                             <th>Event Name</th>
                             <th>Date</th>
                             <th></th>
+                            </tr>
                         </thead>
                         <tbody>
                         {eventList.map((val, k) => {
