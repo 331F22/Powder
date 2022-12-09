@@ -54,6 +54,8 @@ const DisplayVouchers = () => {
   
     // Called from button click, does some read/write
     function handleEmailVouchers() {
+      const updateBtn = document.getElementById('updateCountsButton')
+      updateBtn.style.display = 'inline';
       alert('This button has limited use. It only assigns voucher codes to volunteers, does not yet send them out in emails.')
       
       let vouchers = []
@@ -87,16 +89,13 @@ const DisplayVouchers = () => {
       // get new values from queries
       getVoucherCount()
       getNewVolunteerCount() 
-      
-      const updateBtn = document.getElementById('updateCountsButton')
-      updateBtn.syle.display = 'block';
 
     }
   
     function assignVouchers(vouchers, people) {
       // loop through each person in need of a voucher
       if (people.length === 0) {
-        alert("You don't need to send out any vouchers, all volunteers have been given tickets alreay.")
+        alert("You don't need to send out any vouchers, all volunteers have been given tickets already.")
       }
       for (let i = 0; i < people.length; i++) {
         // first check if we're out of vouchers
