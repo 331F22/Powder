@@ -97,7 +97,7 @@ const CurrentEntries = () => {
       console.log(voucherList)
       console.log(voucherList[0])
 
-      for (let voucher in voucherList) {
+      for (let voucher of voucherList) {
         console.log(voucher)
       }
     })
@@ -108,7 +108,7 @@ const CurrentEntries = () => {
       console.log(volunteerList)
       console.log(volunteerList[0])
 
-      for (let person in volunteerList) {
+      for (let person of volunteerList) {
         console.log(person)
       }
     })
