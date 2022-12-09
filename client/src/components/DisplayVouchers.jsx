@@ -54,8 +54,12 @@ const DisplayVouchers = () => {
   
     // Called from button click, does some read/write
     function handleEmailVouchers() {
-      const updateBtn = document.getElementById('updateCountsButton')
-      updateBtn.style.display = 'inline';
+      const button = document.getElementById('submitEmailsButton')
+      if (button.innerHTML === 'Email Vouchers') {
+        button.innerHTML = 'Update Counts'
+      } else if (button.innerHTML === 'Update Counts') {
+        button.innerHTML = 'Email Vouchers'
+      }
       alert('This button has limited use. It only assigns voucher codes to volunteers, does not yet send them out in emails.')
       
       let vouchers = []
@@ -167,7 +171,7 @@ const DisplayVouchers = () => {
             <h4>Vouchers Remaining: <span id="voucherCount">{ShowCount(vouchRem)}</span></h4>
             <h5>Volunteers without Tickets: <span id="volunteerCount">{newVols}</span></h5>
             <button id="submitEmailsButton" className='submitBtn' onClick={handleEmailVouchers}>Email Vouchers</button>
-            <button id="updateCountsButton" className='updateBtn' onClick={updateCounts}>Update Counts</button>
+            {/* <button id="updateCountsButton" className='updateBtn' onClick={updateCounts}>Update Counts</button> */}
         </div>
     );
 };
