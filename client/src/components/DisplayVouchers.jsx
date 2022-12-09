@@ -95,6 +95,9 @@ const DisplayVouchers = () => {
   
     function assignVouchers(vouchers, people) {
       // loop through each person in need of a voucher
+      if (people.length === 0) {
+        alert("You don't need to send out any vouchers, all volunteers have been given tickets alreay.")
+      }
       for (let i = 0; i < people.length; i++) {
         // first check if we're out of vouchers
         if (i >= vouchers.length) {
