@@ -89,6 +89,6 @@ body {
 a:hover{
   color: #A22C28;
 }
-#updateCountsButton {
+#undoButton {
   display: none;
 }

@@ -17,6 +17,10 @@ app.use(cors())
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
+// =====================
+// === GROUP 20 WORK ===
+// =====================
+
 // READ (remaining vouchers)
 app.get("/api/vouchersremaining", (req, res) => {
     const voucherRead = "SELECT COUNT(*) as Count FROM tickets WHERE issued_to is NULL;"
@@ -75,6 +79,22 @@ app.put("/api/assignvouchers", (req, res) => {
         res.send(result)
     })
 })
+
+// UPDATE (undo the voucher assignment move)
+app.put("api/undovouching", (req, res) => {
+    // get params from req.body.varableName
+    personId = parseInt(req.body.personId)
+
+    const update = "UPDATE tickets SET is_issued = 0, issued_to = NULL WHERE issued_to = ?;"
+    db.query(update, [personId], (err, result) => {
+        if(err) {
+            throw err;
+        }
+        res.send(result)
+    })
+})
+
+// ====== END GROUP 20 ======
 
 // READ
 app.get("/api/read", (req, res) => {
