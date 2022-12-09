@@ -119,15 +119,17 @@ const DisplayVouchers = () => {
       getNewVolunteerCount()
     }   // end function assignVouchers
   
-    function reset() {
-      // call the api to reset the databse to my set values
-      axios.get(`${process.env.REACT_APP_HOST}/api/resetdb`).then((response) => {
-          console.log("Reset back to preset default")
-        })
-    } // end function undoAssignment
 
 
     // ============= IGNORE THIS FUNCTION BELOW =================== //
+
+    // function reset() {
+    //   // call the api to reset the databse to my set values
+    //   axios.get(`${process.env.REACT_APP_HOST}/api/resetdb`).then((response) => {
+    //       console.log("Reset back to preset default")
+    //     })
+    // } // end function undoAssignment
+
 
     // function updateCounts() {
     //   // get new values from queries
@@ -183,7 +185,7 @@ const DisplayVouchers = () => {
             <h4>Vouchers Remaining: <span id="voucherCount">{ShowCount(vouchRem)}</span></h4>
             <h5>Volunteers without Tickets: <span id="volunteerCount">{newVols}</span></h5>
             <button id="submitEmailsButton" className='submitBtn' onClick={handleEmailVouchers}>Email Vouchers</button>
-            <button id="resetButton" className='resetBtn' onClick={reset}>Reset DB</button>
+            {/* <button id="resetButton" className='resetBtn' onClick={reset}>Reset DB</button> */}
         </div>
     );
 };
