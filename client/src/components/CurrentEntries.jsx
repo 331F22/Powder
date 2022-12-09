@@ -5,9 +5,11 @@ const CurrentEntries = () => {
 
   const SECRET = process.env.REACT_APP_PASSCODE
 
-  const [entryList, setEntryList] = useState([])
+  const [entryList, setEntryList] = useState([]);
   const [vouchRem, setVouchRem] = useState(-1);
   const [newVols, setNewVols] = useState(-1);
+  const [voucherList, setVoucherList] = useState([]);
+  const [volunteerList, setVolList] = useState([]);
 
 
   // READ (GET)
@@ -77,7 +79,7 @@ const CurrentEntries = () => {
   }
 
   // READ (Display number of volunteers without vouchers)
-  const getNewVolunteers = () => {
+  const getNewVolunteerCount = () => {
     axios.get(`${process.env.REACT_APP_HOST}/api/unrewardedvolunteercount`).then((response) => {
       let entryListCopy = response.data
       console.log(entryListCopy)
@@ -93,16 +95,24 @@ const CurrentEntries = () => {
     
     // first get available vouchers
     axios.get(`${process.env.REACT_APP_HOST}/api/getvouchers`).then((response) => {
-      let voucherList = response.data
+      setVoucherList(response.data)
       console.log(voucherList)
       console.log(voucherList[0])
+
+      for (voucher of voucherList) {
+        console.log(voucher.ticketCode)
+      }
     })
 
     // then get people who need a voucher
     axios.get(`${process.env.REACT_APP_HOST}/api/unrewardedvolunteers`).then((response) => {
-      let volunteerList = response.data
+      setVolList(response.data)
       console.log(volunteerList)
       console.log(volunteerList[0])
+
+      for (person of volunteerList) {
+        console.log(person.first_name)
+      }
     })
 
     // then put them together
@@ -119,7 +129,7 @@ const CurrentEntries = () => {
     const submitEmailsButton = document.getElementById('submitEmailsButton')
 
     getVoucherCount()
-    getNewVolunteers()
+    getNewVolunteerCount()
 
     if (passcode === SECRET) {
 
