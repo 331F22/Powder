@@ -128,8 +128,10 @@ const CurrentEntries = () => {
 
   const sleep = (milliseconds, params) => {
     if (params == null) {
+      console.log("wait")
       return new Promise(resolve => setTimeout(resolve, milliseconds))
     } else {
+      console.log("let's do the assign")
       return new Promise(() => setTimeout(assignVouchers(params[0], params[1]), milliseconds))
     }
   }
