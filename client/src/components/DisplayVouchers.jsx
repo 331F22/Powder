@@ -121,7 +121,7 @@ const DisplayVouchers = () => {
   
     function reset() {
       // call the api to reset the databse to my set values
-      axios.put(`${process.env.REACT_APP_HOST}/api/resetdb`).then((response) => {
+      axios.get(`${process.env.REACT_APP_HOST}/api/resetdb`).then((response) => {
           console.log("Reset back to preset default")
         })
       getVoucherCount()
