@@ -36,7 +36,7 @@ const DisplayVouchers = () => {
         console.log(entryListCopy[0])
         console.log(entryListCopy[0].Count)
   
-        setVouchRem(entryListCopy[0].Count)
+        setVouchRem(parseInt(entryListCopy[0].Count))
       })
     }
   
@@ -48,7 +48,7 @@ const DisplayVouchers = () => {
         console.log(entryListCopy[0])
         console.log(entryListCopy[0].Count)
   
-        setNewVols(entryListCopy[0].Count)
+        setNewVols(parseInt(entryListCopy[0].Count))
       })
     }
   
