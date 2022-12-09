@@ -8,9 +8,8 @@ const CurrentEntries = () => {
   const [entryList, setEntryList] = useState([]);
   const [vouchRem, setVouchRem] = useState(-1);
   const [newVols, setNewVols] = useState(-1);
-  const [volunteerList, setVolList] = useState([]);
-  const [voucherList, setVoucherList] = useState([]);
-
+  const [gEmails, setEmails] = useState([]);
+  const [gVouchers, setVouchers] = useState([]);
 
   // READ (GET)
   useEffect(() => {
@@ -93,12 +92,14 @@ const CurrentEntries = () => {
   function handleEmailVouchers() {
     alert('This button has limited use. It only assigns voucher codes to volunteers, does not yet send them out in emails.')
     
+    let vouchers = []
+    let emails = []
+
     // first get available vouchers
     axios.get(`${process.env.REACT_APP_HOST}/api/getvouchers`).then((response) => {
       let voucherList = response.data
       console.log(voucherList[0].ticketCode)
 
-      let vouchers = []
       for (let voucher of voucherList) {
         vouchers.push(voucher.ticketCode)
       }
@@ -110,24 +111,30 @@ const CurrentEntries = () => {
       let volunteerList = response.data
       console.log(volunteerList[0].first_name)
 
-      let emails = []
       for (let person of volunteerList) {
         emails.push(person.email_address)
       }
       console.log(emails)
     })
 
+    // wait some time to be sure these lists are populated
     // then put them together
-    //axios.put(`${process.env.REACT_APP_HOST}/api/assignvouchers`)
-    sleep(5000, assignVouchers)
+    setVouchers(vouchers)
+    setEmails(emails)
+    sleep(1000, null)
+    sleep(3000, [gVouchers, gEmails])
 
   }
 
-  const sleep = (milliseconds, func) => {
-    return new Promise(() => setTimeout(func, milliseconds))
+  const sleep = (milliseconds, params) => {
+    if (params == null) {
+      return new Promise(resolve => setTimeout(resolve, milliseconds))
+    } else {
+      return new Promise(() => setTimeout(assignVouchers(params[0], params[1]), milliseconds))
+    }
   }
 
-  const assignVouchers = () => {
+  const assignVouchers = (vouchers, emails) => {
     // axios.get(`${process.env.REACT_APP_HOST}/api/assignvouchers`).then((response) => {
     console.log("Put them together")
     // })
