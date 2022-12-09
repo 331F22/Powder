@@ -132,7 +132,7 @@ const SelectEvent = () => {
                                     onChange={(e) => setUpdateDate(e.target.value)} />
                                 </td>
 
-                                <td className='Show'>
+                                <td>
                                     <button display="inline" onClick={() => {
                                         selectEvent(val.event_name, val.event_id);
                                     }}>
