@@ -105,7 +105,6 @@ app.get("/api/resetdb", (req, res) => {
         if(err) {
             throw err;
         }
-        res.send(result)
     })
 })
 

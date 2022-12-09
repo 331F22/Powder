@@ -124,8 +124,6 @@ const DisplayVouchers = () => {
       axios.get(`${process.env.REACT_APP_HOST}/api/resetdb`).then((response) => {
           console.log("Reset back to preset default")
         })
-      getVoucherCount()
-      getNewVolunteerCount()
     } // end function undoAssignment
 
 
