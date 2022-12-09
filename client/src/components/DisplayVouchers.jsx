@@ -54,7 +54,8 @@ const DisplayVouchers = () => {
   
     // Called from button click, does some read/write
     function handleEmailVouchers() {
-
+      const updateBtn = document.getElementById('updateCountsButton')
+      updateBtn.style.display = 'inline';
       alert('This button has limited use. It only assigns voucher codes to volunteers, does not yet send them out in emails.')
       
       let vouchers = []
@@ -126,6 +127,32 @@ const DisplayVouchers = () => {
 
       voucherCount.innerHTML = {count}
       volunteerCount.innerHTML = newVols
+
+      let vouchers = []
+      let people = []
+  
+      // first get available vouchers
+      axios.get(`${process.env.REACT_APP_HOST}/api/getvouchers`).then((response) => {
+        let voucherList = response.data
+        console.log(voucherList[0].ticketCode)
+  
+        for (let voucher of voucherList) {
+          vouchers.push(voucher.ticketCode)
+        }
+        console.log(vouchers)
+  
+        // then get people who need a voucher
+        axios.get(`${process.env.REACT_APP_HOST}/api/unrewardedvolunteers`).then((response) => {
+          let volunteerList = response.data
+          console.log(volunteerList[0].first_name)
+  
+          for (let person of volunteerList) {
+            people.push(person.id)
+          }
+          console.log(people)
+        })  
+      })
+      
     }
 
 
@@ -140,7 +167,7 @@ const DisplayVouchers = () => {
             <h4>Vouchers Remaining: <span id="voucherCount">{ShowCount(vouchRem)}</span></h4>
             <h5>Volunteers without Tickets: <span id="volunteerCount">{newVols}</span></h5>
             <button id="submitEmailsButton" className='submitBtn' onClick={handleEmailVouchers}>Email Vouchers</button>
-            {/* <button id="updateCountsButton" className='updateBtn' onClick={updateCounts}>Update Counts</button> */}
+            <button id="updateCountsButton" className='updateBtn' onClick={updateCounts}>Update Counts</button>
         </div>
     );
 };
