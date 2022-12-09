@@ -17,6 +17,10 @@ app.use(cors())
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
+// =====================
+// === GROUP 20 WORK ===
+// =====================
+
 // READ (remaining vouchers)
 app.get("/api/vouchersremaining", (req, res) => {
     const voucherRead = "SELECT COUNT(*) as Count FROM tickets WHERE issued_to is NULL;"
@@ -75,6 +79,36 @@ app.put("/api/assignvouchers", (req, res) => {
         res.send(result)
     })
 })
+
+// UPDATE (undo the voucher assignment move)
+app.get("/api/resetdb", (req, res) => {
+    const update = "DELETE FROM tickets;"
+    db.query(update, (err, result) => {
+        if(err) {
+            throw err;
+        }
+    })    
+    update = "INSERT INTO tickets (ticketCode, is_issued, issued_on, issued_to) VALUES ('000aaa00', 1, 0, 258), ('000kkk00', 1, 0, 271), ('111bbb11', 1, 0, 256), ('111lll11', 1, 0, 257), ('222ccc22', 1, 0, 257), ('333ddd33', 0, 0, NULL), ('333nnn33', 0, 0, NULL), ('444eee44', 1, 0, 272), ('444ooo44', 0, 0, NULL), ('555fff55', 0, 0, NULL), ('555ppp55', 0,0, NULL), ('555zzz55', 0,0, NULL), ('666ggg66', 0, 0, NULL), ('666qqq66', 0, 0, NULL), ('777hhh77', 0, 0, NULL), ('777rrr77', 0, 0, NULL), ('888iii88', 0, 0, NULL), ('888sss88', 0, 0, NULL), ('999jjj99', 0, 0, NULL), ('999ttt99', 0, 0, NULL);"
+    db.query(update, (err, result) => {
+        if(err) {
+            throw err;
+        }
+    })
+    update = "DELETE FROM volunteers;"
+    db.query(update, (err, result) => {
+        if(err) {
+            throw err;
+        }
+    })    
+    update = "INSERT INTO volunteers (id, first_name, last_name, email_address, time_in) VALUES (256, 'Keri', 'Hallau', 'keri.hallau@montana.edu', NULL), (257, 'Britney', 'Gibbs', 'brit@demo.com', NULL), (258, 'Daniel', 'DeFrance', 'dan@gmail.com', NULL), (274, 'John', 'Brown', 'dont message@gmail.com', NULL), (275, 'Joey', 'Schlabotnik', 'elebentyseven@yoohoo.com', NULL), (276, 'Mal', 'Roberts', 'mal.rob@icloud.com', NULL), (277, 'Mak', 'B', 'mickie@gmail.com', NULL), (278, 'Con', 'Carl', 'CMAN@gmail.com', NULL), (279, 'bananas', 'foster', 'eatmeup.com', NULL);"
+    db.query(update, (err, result) => {
+        if(err) {
+            throw err;
+        }
+    })
+})
+
+// ====== END GROUP 20 ======
 
 // READ
 app.get("/api/read", (req, res) => {
