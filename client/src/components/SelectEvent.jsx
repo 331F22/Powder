@@ -109,7 +109,7 @@ const SelectEvent = () => {
                 </div>
 
                 <div className='eventList'>
-                    <table>
+                    <table style={{tableLayout:"auto", width:"100%"}}>
                         <thead>
                             <tr>
                                 <th>Event Name</th>

@@ -11,7 +11,7 @@ function SendVouchers({eventId}){
     }
 
     return(
-        <button id="submitEmailsButton" className='submitBtn' onClick={() => emailParticipants()}>Email Vouchers (new button)</button>
+        <button id="submitEmailsButton" className='submitBtn' onClick={() => emailParticipants()}>Email Vouchers</button>
     )
 }
 

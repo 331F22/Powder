@@ -33,7 +33,7 @@ app.get("/api/read", (req, res) => {
 // READ VOLUNTEERS BY EVENT ID FROM DB
 function getVolunteersByEventId(eventId){
     return new Promise((resolve, reject)=>{
-        const sqlSelect = "SELECT * FROM volunteers where event_id = ? order by last_name;"
+        const sqlSelect = "SELECT volunteers.*, tickets.ticketCode FROM volunteers LEFT JOIN tickets on volunteers.id = tickets.issued_to where event_id = ? order by last_name;"
         db.query(sqlSelect, [eventId], (err, result) => {        
             if(err){
                 reject(err);

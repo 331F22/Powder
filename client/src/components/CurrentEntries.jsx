@@ -36,7 +36,6 @@ const CurrentEntries = () => {
     let objectWithValue = {}
     entryList.forEach(entry => {
       if (Object.values(entry).indexOf(objVal) > -1) { // email value is inside obj inside array
-        console.log('entry', entry)
         objectWithValue = entry
       }
     })
@@ -84,14 +83,15 @@ const CurrentEntries = () => {
     const doneButton = document.getElementById('doneButton')
     const editPasscodeInput = document.getElementById('editPasscodeInput')
     const submitEmailsButton = document.getElementById('submitEmailsButton')
+    const assignVouchersButton = document.getElementById('assignVouchersButton')
 
     if (passcode === SECRET) {
-      for (let i = 0; i < collection.length; i++)
-        collection[i].style.display = 'block'
+      for (let i = 0; i < collection.length; i++) collection[i].style.display = 'block'
       doneButton.style.display = 'inline'
       editButton.style.display = 'none'
       editPasscodeInput.style.visibility = 'hidden'
-      submitEmailsButton.style.display = 'block'
+      submitEmailsButton.style.display = 'inline'
+      assignVouchersButton.style.display = 'inline'
 
     } else {
       for (let i = 0; i < collection.length; i++)
@@ -111,6 +111,8 @@ const CurrentEntries = () => {
     const doneButton = document.getElementById('doneButton')
     const collection = document.getElementsByClassName("editControls")
     const submitEmailsButton = document.getElementById('submitEmailsButton')
+    const assignVouchersButton = document.getElementById('assignVouchersButton')
+
 
     for (let i = 0; i < collection.length; i++)
       collection[i].style.display = 'none'
@@ -119,6 +121,7 @@ const CurrentEntries = () => {
     editButton.style.display = 'inline'
     editButton.innerHTML = "Edit List"
     submitEmailsButton.style.display = 'none'
+    assignVouchersButton.style.display = 'none'
   }
 
   function checkPasscode(e) {
@@ -151,31 +154,27 @@ const CurrentEntries = () => {
           <th>Email</th>
           <th>Voucher</th>
           <div class="editControls">
-            <th>newemail</th>
-            <th>Update</th>
-            <th>Delete</th>
+            <th> </th>
           </div> 
         </tr>
           {entryList.map((val, k) => {return (
             <tr key={k}>
-          <td>{val.last_name}, {val.first_name}</td>
-          <td style={{wordWrap:"break-word"}}>{val.email_address}</td>
-          <td>FAKE VOUCHER</td>
-        <div className="editControls editGui">
-          <td>
-                  <input type="email" className="updateInput" placeholder={val.email_address}
+          <td style={{wordWrap:"break-word"}}>{val.last_name}, {val.first_name}</td>
+          <td style={{wordWrap:"break-word"}}>
+            {val.email_address}
+            <input type="email" className="editControls editGui" value={val.email_address}
                   onChange={(e) => setNewEmail(e.target.value)} />
           </td>
+          <td>{val.ticketCode}</td>
+        <div className="editControls editGui">
           <td>
-                  <button className='update' onClick={() => {
+                  <button className='update' style={{display:"block", width:"fit-content"}} onClick={() => {
                     if (newEmail.length > 0) {
                       updateEmail(val.email_address);
                     }}}>  
                     Update
                   </button>
-          </td>
-          <td>
-                  <button className='delete' onClick={() => {deleteEntry(val.email_address)}}>
+                  <button className='delete' style={{display:"block", width:"fit-content"}} onClick={() => {deleteEntry(val.email_address)}}>
                     Delete
                   </button>
           </td>
@@ -186,12 +185,12 @@ const CurrentEntries = () => {
       <div className="editField editGui">
         <button id="editButton" onClick={handleEditList}>Edit List</button>
         <button id="doneButton" onClick={handleFinishedEditing}>Finished Editing</button>
+        <SendVouchers eventId={currentEvent} />
+        <AssignVouchers eventId={currentEvent} />
         <input id="editPasscodeInput" ref={refPass} type="password"
           placeholder='Enter passcode' onChange={checkPasscode}
           onBlur={(e) => abortPasscodeAttempt(e.target.value)} />
       </div>
-      <SendVouchers eventId={currentEvent} />
-      <AssignVouchers eventId={currentEvent} />
     </div>
   )
 }
