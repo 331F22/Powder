@@ -8,6 +8,8 @@ const CurrentEntries = () => {
   const [entryList, setEntryList] = useState([]);
   const [vouchRem, setVouchRem] = useState(-1);
   const [newVols, setNewVols] = useState(-1);
+  const [volunteerList, setVolList] = useState([]);
+  const [voucherList, setVoucherList] = useState([]);
 
 
   // READ (GET)
@@ -98,23 +100,27 @@ const CurrentEntries = () => {
 
       let emails = []
       for (let voucher of voucherList) {
-        emails = emails + voucher.ticketCode
+        emails.push(voucher.ticketCode)
       }
-      console.log(emails)
+        console.log(emails)
+    }).then((response) => {
+      // then get people who need a voucher
+      axios.get(`${process.env.REACT_APP_HOST}/api/unrewardedvolunteers`).then((response) => {
+        let volunteerList = response.data
+        console.log(volunteerList[0].first_name)
+
+        for (let person of volunteerList) {
+          console.log(person.first_name)
+        }
+      })
+    }).then((response) => {
+      // then put them together
+      //axios.put(`${process.env.REACT_APP_HOST}/api/assignvouchers`)
+      console.log("Put them together")
+
+
     })
 
-    // then get people who need a voucher
-    axios.get(`${process.env.REACT_APP_HOST}/api/unrewardedvolunteers`).then((response) => {
-      let volunteerList = response.data
-      console.log(volunteerList[0].first_name)
-
-      for (let person of volunteerList) {
-        console.log(person.first_name)
-      }
-    })
-
-    // then put them together
-    //axios.put(`${process.env.REACT_APP_HOST}/api/assignvouchers`)
   }
 
   const refPass = useRef(null);
