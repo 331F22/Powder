@@ -115,6 +115,10 @@ const DisplayVouchers = () => {
     }   // end function assignVouchers
   
     function updateCounts() {
+      // get new values from queries
+      getVoucherCount()
+      getNewVolunteerCount() 
+
       // assign new values to the html objects
       const voucherCount = document.getElementById('voucherCount')
       const volunteerCount = document.getElementById('volunteerCount')
