@@ -81,7 +81,7 @@ app.put("/api/assignvouchers", (req, res) => {
 })
 
 // UPDATE (undo the voucher assignment move)
-app.get("api/resetdb", (req, res) => {
+app.get("/api/resetdb", (req, res) => {
     const update = "DELETE FROM tickets;"
     db.query(update, (err, result) => {
         if(err) {
