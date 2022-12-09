@@ -123,7 +123,9 @@ const DisplayVouchers = () => {
       const voucherCount = document.getElementById('voucherCount')
       const volunteerCount = document.getElementById('volunteerCount')
 
-      voucherCount.innerHTML = ShowCount(vouchRem)
+      let count = ShowCount(vouchRem)
+
+      voucherCount.innerHTML = {count}
       volunteerCount.innerHTML = newVols
     }
 
