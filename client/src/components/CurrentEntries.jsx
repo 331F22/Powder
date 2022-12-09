@@ -119,13 +119,12 @@ const CurrentEntries = () => {
 
     // then put them together
     //axios.put(`${process.env.REACT_APP_HOST}/api/assignvouchers`)
-    sleep(5000)
-    assignVouchers()
+    sleep(5000, assignVouchers)
 
   }
 
-  const sleep = (milliseconds) => {
-    return new Promise(resolve => setTimeout(resolve, milliseconds))
+  const sleep = (milliseconds, func) => {
+    return new Promise(func => setTimeout(func, milliseconds))
   }
 
   const assignVouchers = () => {
