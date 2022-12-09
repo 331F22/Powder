@@ -84,8 +84,12 @@ const DisplayVouchers = () => {
           // get new values from queries
           getVoucherCount()
           getNewVolunteerCount() 
-        })
+        })  
       })
+
+      const updateBtn = document.getElementById('updateCountsButton')
+      updateBtn.display = 'inline'
+
     }
   
     function assignVouchers(vouchers, people) {
