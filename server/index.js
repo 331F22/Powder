@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 // READ (remaining vouchers)
 app.get("/api/vouchersremaining", (req, res) => {
-    const voucherRead = "SELECT is_issued, COUNT(*) AS Count FROM tickets GROUP BY is_issued;"
+    const voucherRead = "SELECT COUNT(*) as Count FROM tickets WHERE issued_to is NULL;"
     db.query(voucherRead, (err, result) => {
         if(err){
             throw err;
@@ -30,7 +30,7 @@ app.get("/api/vouchersremaining", (req, res) => {
 
 // READ (volunteers who don't have a voucher assigned)
 app.get("/api/unrewardedvolunteercount", (req, res) => {
-    const checkVolunteers = "select is_issued, COUNT(*) as Count from volunteers LEFT join tickets on volunteers.id = tickets.issued_to GROUP BY is_issued;"
+    const checkVolunteers = "SELECT COUNT(*) as Count FROM volunteers LEFT OUTER JOIN tickets on volunteers.id = tickets.issued_to WHERE is_issued is NULL"
     db.query(checkVolunteers, (err, result) => {
         if (err){
             throw err;
@@ -63,7 +63,6 @@ app.get("/api/getvouchers", (req, res) => {
 
 // UPDATE (Assign vouchers to volunteers)
 app.put("/api/assignvouchers", (req, res) => {
-    console.log("Make the volunteers go in the voucher table")
     // get params from req.body.variableName
     personId = parseInt(req.body.personId)
     ticket = req.body.ticket;

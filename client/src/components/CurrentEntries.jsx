@@ -124,7 +124,8 @@ const CurrentEntries = () => {
     
         // then assign the vouchers to the people
         assignVouchers(vouchers, people)
-
+        getVoucherCount()
+        getNewVolunteerCount()
       })
     })
   }
@@ -141,8 +142,6 @@ const CurrentEntries = () => {
         // call the api to update the database with the voucher assignment
         axios.put(`${process.env.REACT_APP_HOST}/api/assignvouchers`, { personId: id, ticket: voucher }).then((response) => {
           console.log("Put them together")
-          getVoucherCount()
-          getNewVolunteerCount()
         })
       }
     } // end loop
