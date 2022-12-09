@@ -124,7 +124,7 @@ const CurrentEntries = () => {
   }
 
   const sleep = (milliseconds, func) => {
-    return new Promise(setTimeout(func, milliseconds))
+    return new Promise(() => setTimeout(func, milliseconds))
   }
 
   const assignVouchers = () => {
