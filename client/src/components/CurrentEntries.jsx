@@ -63,6 +63,11 @@ const CurrentEntries = () => {
     }
   }
 
+
+  // =====================
+  // === FROM GROUP 20 ===
+  // =====================
+
   // READ (Display Num Vouchers left)
   const getVoucherCount = () => {
     axios.get(`${process.env.REACT_APP_HOST}/api/vouchersremaining`).then((response) => {
@@ -137,6 +142,12 @@ const CurrentEntries = () => {
       }
     } // end loop
   }   // end function assignVouchers
+
+  // =====================
+  // === FROM GROUP 20 ===
+  // =====================
+
+
 
   const refPass = useRef(null);
 
