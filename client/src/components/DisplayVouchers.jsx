@@ -81,12 +81,13 @@ const DisplayVouchers = () => {
       
           // then assign the vouchers to the people
           assignVouchers(vouchers, people)
-          // get new values from queries
-          getVoucherCount()
-          getNewVolunteerCount() 
         })  
       })
 
+      // get new values from queries
+      getVoucherCount()
+      getNewVolunteerCount() 
+      
       const updateBtn = document.getElementById('updateCountsButton')
       updateBtn.display = 'inline'
 
