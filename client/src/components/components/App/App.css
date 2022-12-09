@@ -1,0 +1,151 @@
+
+body {
+  
+  Left: 0;
+  top:0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(238, 236, 236);
+  align-items: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  animation: animate 35s ease-in-out infinite;
+  min-height: 500px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+@keyframes animate {
+  0%,100%{
+    background-image: url('../skiingimg6.jpeg');
+  }
+  25%{
+    background-image: url('../skiingimg7.jpeg');
+  }
+  50%{
+    background-image: url('../skiingimg8.jpeg');
+  }
+  75%{
+    background-image: url('../skiingimg5.webp');
+  }
+
+  
+}
+.App {
+  font-family: Arial, Helvetica, sans-serif;
+  max-width:600px;
+  margin: auto;
+  align-items: center;
+  
+}
+.addentry{
+  border: #333;
+  border-width: 10px;
+  
+  
+}
+ .entry{
+  margin: auto;
+  padding: 20px;
+
+ }
+.trail{
+  text-align: center;
+  border-width: 10px;
+}
+.drop{
+  margin: auto;
+  align-items: center;
+  padding: auto;
+}
+#userInput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#userInput div{
+  width: 100%;
+  margin: auto;
+}
+#userInput input{
+  width: 90%;
+  margin: 10px;
+  padding: 10px;
+  font-size: 2rem;
+  border-radius: 5px;
+  color: #333;
+  background-color:rgba(244, 77, 99, 0.172);
+  border-color: azure;
+  border-width: 4px;
+}
+#firstLastName {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+#userInput label{
+  display: block;
+}
+.userData {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+}
+.submitBtn {
+  margin: 20px;
+  padding: 10px;
+  width: 50%;
+  margin: 10px auto;
+  align-items: center;
+}
+.editField{
+  margin: 20px 0;
+}
+.floatLeft{
+  float:left;
+}
+.floatRight{
+  float:right;
+}
+.clear {
+  clear:both;
+}
+.emailListed{
+  float:right;
+  margin-right: 2rem;
+}
+.editControls{
+  display: none;
+}
+.editGui {
+  margin-bottom: 20px;
+}
+.editGui button {
+  width: 20%;
+  margin-right: 1em;
+}
+.editGui input {
+  width: 50%;
+  padding: 5px;
+}
+#doneButton{
+  display: none;
+}
+#editPasscodeInput{
+  visibility: hidden;
+}
+#submitEmailsButton{
+  display: none;
+}
+#first{
+  display: inline-flexbox;
+  width: auto;
+  font-size: xx-large;
+  font-family: sans-serif;
+  padding: auto;
+  padding-bottom: 30px;
+  text-align: center;
+
+}

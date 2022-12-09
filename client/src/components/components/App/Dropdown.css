@@ -1,0 +1,17 @@
+.App{
+    align-items: center;
+    margin-left: auto;
+    margin-top: 5%;
+    font-size: larger;
+    text-align: center;
+    margin-bottom: 5%;
+    background-color: rgba(248, 241, 241, 0.837);
+    border: 4px;
+    box-shadow: 4px 4px;
+
+}
+
+.drop{
+    border-top: 5px;
+    border-color: black;
+}
