@@ -143,41 +143,55 @@ const CurrentEntries = () => {
   }
 
   return (
-
     <div className="currentEntries posRel">
       <h2>Current Entries</h2>
-
-      <div className='userData'>
-        {entryList.map((val, k) => {
-          return (<div key={k}>
-            <div>{val.last_name}, {val.first_name} <span className="emailListed">{val.email_address}</span> </div>
-
-            <div className="editControls editGui">
-              <button className='delete' onClick={() => {
-
-                deleteEntry(val.email_address)
-              }}>delete</button>
-              <button className='update' onClick={() => {
-                if (newEmail.length > 0) {
-                  updateEmail(val.email_address);
-                }
-              }}>update</button>
-              <input type="email" className="updateInput" placeholder={val.email_address}
-                onChange={(e) => setNewEmail(e.target.value)} />
-            </div>
-          </div>)
-
-        })}
-        <div className="editField editGui">
-          <button id="editButton" onClick={handleEditList}>Edit List</button>
-          <button id="doneButton" onClick={handleFinishedEditing}>Finished Editing</button>
-          <input id="editPasscodeInput" ref={refPass} type="password"
-            placeholder='Enter passcode' onChange={checkPasscode}
-            onBlur={(e) => abortPasscodeAttempt(e.target.value)} />
+      <table style={{tableLayout:"auto", width:"100%" }}>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Voucher</th>
+          <div class="editControls">
+            <th>newemail</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </div> 
+        </tr>
+          {entryList.map((val, k) => {return (
+            <tr key={k}>
+          <td>{val.last_name}, {val.first_name}</td>
+          <td style={{wordWrap:"break-word"}}>{val.email_address}</td>
+          <td>FAKE VOUCHER</td>
+        <div className="editControls editGui">
+          <td>
+                  <input type="email" className="updateInput" placeholder={val.email_address}
+                  onChange={(e) => setNewEmail(e.target.value)} />
+          </td>
+          <td>
+                  <button className='update' onClick={() => {
+                    if (newEmail.length > 0) {
+                      updateEmail(val.email_address);
+                    }}}>  
+                    Update
+                  </button>
+          </td>
+          <td>
+                  <button className='delete' onClick={() => {deleteEntry(val.email_address)}}>
+                    Delete
+                  </button>
+          </td>
         </div>
-        <SendVouchers eventId={currentEvent} />
-        <AssignVouchers eventId={currentEvent} />
+        </tr>
+      )})}
+      </table>
+      <div className="editField editGui">
+        <button id="editButton" onClick={handleEditList}>Edit List</button>
+        <button id="doneButton" onClick={handleFinishedEditing}>Finished Editing</button>
+        <input id="editPasscodeInput" ref={refPass} type="password"
+          placeholder='Enter passcode' onChange={checkPasscode}
+          onBlur={(e) => abortPasscodeAttempt(e.target.value)} />
       </div>
+      <SendVouchers eventId={currentEvent} />
+      <AssignVouchers eventId={currentEvent} />
     </div>
   )
 }
