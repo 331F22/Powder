@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import React/*, { Component }  */from 'react';
+import React from 'react';
 import axios from 'axios'
 import SendVouchers from './SendVouchers';
 import AssignVouchers from './AssignVouchers';
