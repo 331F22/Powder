@@ -141,7 +141,7 @@ const DisplayVouchers = () => {
             <h4>Vouchers Remaining: <span id="voucherCount">{ShowCount(vouchRem)}</span></h4>
             <h5>Volunteers without Tickets: <span id="volunteerCount">{newVols}</span></h5>
             <button id="submitEmailsButton" className='submitBtn' onClick={handleEmailVouchers}>Email Vouchers</button>
-            <button id="updateCountsButton" className='updateBtn' onClick={updateCounts}>Update Counts</button>
+            {/* <button id="updateCountsButton" className='updateBtn' onClick={updateCounts}>Update Counts</button> */}
         </div>
     );
 };
