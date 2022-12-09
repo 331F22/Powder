@@ -111,26 +111,22 @@ const CurrentEntries = () => {
         vouchers.push(voucher.ticketCode)
       }
       console.log(vouchers)
+
+      // then get people who need a voucher
+      axios.get(`${process.env.REACT_APP_HOST}/api/unrewardedvolunteers`).then((response) => {
+        let volunteerList = response.data
+        console.log(volunteerList[0].first_name)
+
+        for (let person of volunteerList) {
+          people.push(person.id)
+        }
+        console.log(people)
+    
+        // then assign the vouchers to the people
+        assignVouchers(vouchers, people)
+
+      })
     })
-
-    // then get people who need a voucher
-    axios.get(`${process.env.REACT_APP_HOST}/api/unrewardedvolunteers`).then((response) => {
-      let volunteerList = response.data
-      console.log(volunteerList[0].first_name)
-
-      for (let person of volunteerList) {
-        people.push(person.id)
-      }
-      console.log(people)
-    })
-
-    // then assign the vouchers to the people
-    if (people.length === 0) {
-      sleep(2000);
-      assignVouchers(vouchers, people)
-    } else {
-      assignVouchers(vouchers, people)
-    }
   }
 
   function assignVouchers(vouchers, people) {
