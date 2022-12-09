@@ -8,8 +8,6 @@ const CurrentEntries = () => {
   const [entryList, setEntryList] = useState([]);
   const [vouchRem, setVouchRem] = useState(-1);
   const [newVols, setNewVols] = useState(-1);
-  const [voucherList, setVoucherList] = useState([]);
-  const [volunteerList, setVolList] = useState([]);
 
 
   // READ (GET)
@@ -95,7 +93,7 @@ const CurrentEntries = () => {
     
     // first get available vouchers
     axios.get(`${process.env.REACT_APP_HOST}/api/getvouchers`).then((response) => {
-      setVoucherList(response.data)
+      let voucherList = response.data
       console.log(voucherList)
       console.log(voucherList[0])
 
@@ -106,7 +104,7 @@ const CurrentEntries = () => {
 
     // then get people who need a voucher
     axios.get(`${process.env.REACT_APP_HOST}/api/unrewardedvolunteers`).then((response) => {
-      setVolList(response.data)
+      let volunteerList = response.data
       console.log(volunteerList)
       console.log(volunteerList[0])
 
