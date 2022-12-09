@@ -81,7 +81,7 @@ app.put("/api/assignvouchers", (req, res) => {
 })
 
 // UPDATE (undo the voucher assignment move)
-app.post("api/resetdb", (req, res) => {
+app.put("api/resetdb", (req, res) => {
     // get params from req.body.varableName
 
     const update = "DELETE FROM tickets; INSERT INTO tickets (ticketCode, is_issued, issued_on, issued_to) VALUES ('000aaa00', 1, 0, 258), ('000kkk00', 1, 0, 271), ('111bbb11', 1, 0, 256), ('111lll11', 1, 0, 257), ('222ccc22', 1, 0, 257), ('333ddd33', 0, 0, NULL), ('333nnn33', 0, 0, NULL), ('444eee44', 1, 0, 272), ('444ooo44', 0, 0, NULL), ('555fff55', 0, 0, NULL), ('555ppp55', 0,0, NULL), ('555zzz55', 0,0, NULL), ('666ggg66', 0, 0, NULL), ('666qqq66', 0, 0, NULL), ('777hhh77', 0, 0, NULL), ('777rrr77', 0, 0, NULL), ('888iii88', 0, 0, NULL), ('888sss88', 0, 0, NULL), ('999jjj99', 0, 0, NULL), ('999ttt99', 0, 0, NULL); DELETE FROM volunteers; INSERT INTO volunteers (id, first_name, last_name, email_address, time_in) VALUES (256, 'Keri', 'Hallau', 'keri.hallau@montana.edu', NULL), (257, 'Britney', 'Gibbs', 'brit@demo.com', NULL), (258, 'Daniel', 'DeFrance', 'dan@gmail.com', NULL), (274, 'John', 'Brown', 'dont message@gmail.com', NULL), (275, 'Joey', 'Schlabotnik', 'elebentyseven@yoohoo.com', NULL), (276, 'Mal', 'Roberts', 'mal.rob@icloud.com', NULL), (277, 'Mak', 'B', 'mickie@gmail.com', NULL), (278, 'Con', 'Carl', 'CMAN@gmail.com', NULL), (279, 'bananas', 'foster', 'eatmeup.com', NULL);"
