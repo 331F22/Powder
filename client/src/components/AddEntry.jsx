@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import axios from 'axios'
+import './AddEntry.css'
 
 const AddEntry = () => {
 
@@ -33,7 +34,7 @@ const AddEntry = () => {
   
   return (
     <div className="addEntry">
-      <h2>Add an Entry</h2>
+      <h2>Please fill out this basic information:</h2>
       <div id='userInput'>
         <div>
           <label htmlFor="firstName">First Name</label>
