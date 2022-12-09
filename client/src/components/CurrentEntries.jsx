@@ -165,7 +165,7 @@ const CurrentEntries = () => {
             <input type="email" className="editControls editGui" value={val.email_address}
                   onChange={(e) => setNewEmail(e.target.value)} />
           </td>
-          <td>{val.ticketCode}</td>
+          <td>{val.TicketCode}</td>
         <div className="editControls editGui">
           <td>
                   <button className='update' style={{display:"block", width:"fit-content"}} onClick={() => {

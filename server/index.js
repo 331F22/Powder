@@ -33,11 +33,12 @@ app.get("/api/read", (req, res) => {
 // READ VOLUNTEERS BY EVENT ID FROM DB
 function getVolunteersByEventId(eventId){
     return new Promise((resolve, reject)=>{
-        const sqlSelect = "SELECT volunteers.*, tickets.ticketCode FROM volunteers LEFT JOIN tickets on volunteers.id = tickets.issued_to where event_id = ? order by last_name;"
+        const sqlSelect = "SELECT volunteers.*, tickets.ticketCode as TicketCode FROM volunteers LEFT JOIN tickets on volunteers.id = tickets.issued_to where event_id = ? order by last_name;"
         db.query(sqlSelect, [eventId], (err, result) => {        
             if(err){
                 reject(err);
             } 
+            console.log(result)
             resolve(result);
         })
     })
@@ -77,6 +78,7 @@ function getNUnusedVouchers(n) {
 // UPDATE VOUCHERS IN DB
 function assignVoucher(TicketCode, user_id) {
     return new Promise((resolve, reject) => {
+        console.log("assignVoucher Func: ticket code & userId:" + TicketCode + user_id)
         const sqlUpdate = "UPDATE tickets SET is_issued = 1, issued_to = ?, issued_on = NOW() WHERE ticketCode = ?"
         db.query(sqlUpdate, [user_id, TicketCode], (err, result) => {        
             if(err){
@@ -89,6 +91,7 @@ function assignVoucher(TicketCode, user_id) {
 
 //ASSIGN VOUCHERS TO PARTICIPANTS BY EVENT ID
 app.get("/api/issuevouchers/:event_id", async (req, res) => {
+    console.log("issuing vouchers for eventID: " + req.params.event_id)
     volunteers = await getVolunteersByEventId(req.params.event_id);
     volunteerCount = volunteers.length;
 
@@ -102,6 +105,7 @@ app.get("/api/issuevouchers/:event_id", async (req, res) => {
     assignments.forEach(element => {
         assignVoucher(element.voucher_id, element.user_id);        
     });
+    res.send();
 })
 
 //email participants by event ID
@@ -126,6 +130,28 @@ app.get("/api/sendvouchers/:event_id", (req, res) => {
     })
 })
 
+//email participants upon registering
+function emailRegistrationConfirmation(volunteerId){
+
+    const sqlSelect = "SELECT volunteers.*, events.* FROM volunteers JOIN events ON volunteers.event_id = events.event_id WHERE id = ? ;";
+
+    db.query(sqlSelect, [volunteerId], (err, result) => { 
+        if(err){
+            throw err;
+        }
+        for(var i = 0; i < result.length; i++){
+            first = result[i].first_name
+            last = result[i].last_name
+            email = result[i].email_address
+            eventName = result[i].event_name
+            date = result[i].event_date
+            message = emailer.generateConfirmationEmail(first, last, email, eventName, date)
+            emailer.sendMail(message)
+        }
+    })
+}
+
+
 // CREATE
 app.post("/api/create", (req, res) => {
     const fn = req.body.first
@@ -135,7 +161,16 @@ app.post("/api/create", (req, res) => {
     const sqlInsert = "INSERT INTO volunteers (first_name, last_name, email_address, event_id) VALUES (?,?,?,?);"
     db.query(sqlInsert, [fn, ln, ea, ev], (err, result) => {
         if(err) throw err
-        res.send(result)
+        try{
+            emailRegistrationConfirmation(result.insertId);
+        }
+        catch(err){
+            console.log("could not send confirmation email.");
+            console.log(err)
+        }
+        finally{
+            res.send(result)
+        }
     })
 }) 
 
