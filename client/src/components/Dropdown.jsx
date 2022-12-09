@@ -4,7 +4,10 @@ import phpTrails from "../php/conn.php"
 
 function Dropdown() {
   //get php data somehow
-	let trails = phpTrails;
+	//if this doesnt work use backup
+	let trails = JSON.parse(phpTrails);
+	//backup
+	//let trails = {"trail1": "cool", "trail2":"ool"}
 	
 // Using state to keep track of selected trail
 let [trail, setTrail] = useState("Select a trail")
