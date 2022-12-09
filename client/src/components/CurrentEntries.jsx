@@ -114,9 +114,9 @@ const CurrentEntries = () => {
       }
       console.log(vouchers)
 
+      sleep(1500)
     })
 
-    sleep(1000)
     // then get people who need a voucher
     axios.get(`${process.env.REACT_APP_HOST}/api/unrewardedvolunteers`).then((response) => {
       let volunteerList = response.data
@@ -126,9 +126,12 @@ const CurrentEntries = () => {
         people.push(person.id)
       }
       console.log(people)
+
+      sleep(1500);
     })
 
-    sleep(1000)
+
+    sleep(5000);
     for (let i = 0; i < people.length; i++) {
       // first check if we're out of vouchers
       if (i >= vouchers.length) {
