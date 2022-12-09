@@ -3,7 +3,6 @@ import './App.css';
 import AddEntry from '../AddEntry.jsx';
 import CurrentEntries from '../CurrentEntries.jsx';
 import Footer from '../Footer.jsx';
-import DisplayVouchers from '../DisplayVouchers.jsx';
 
 function App() {
 
