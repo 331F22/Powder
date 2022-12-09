@@ -81,7 +81,6 @@ const CurrentEntries = () => {
       console.log(entryListCopy[0].Count)
 
       setVouchRem(entryListCopy[0].Count)
-      sleep(750);
     })
   }
 
@@ -94,7 +93,6 @@ const CurrentEntries = () => {
       console.log(entryListCopy[0].Count)
 
       setNewVols(entryListCopy[0].Count)
-      sleep(750);
     })
   }
 
@@ -113,8 +111,6 @@ const CurrentEntries = () => {
         vouchers.push(voucher.ticketCode)
       }
       console.log(vouchers)
-
-      sleep(1500)
     })
 
     // then get people who need a voucher
@@ -126,12 +122,19 @@ const CurrentEntries = () => {
         people.push(person.id)
       }
       console.log(people)
-
-      sleep(1500);
     })
 
+    // then assign the vouchers to the people
+    if (people.length === 0) {
+      sleep(2000);
+      assignVouchers(vouchers, people)
+    } else {
+      assignVouchers(vouchers, people)
+    }
+  }
 
-    sleep(5000);
+  function assignVouchers(vouchers, people) {
+    // loop through each person in need of a voucher
     for (let i = 0; i < people.length; i++) {
       // first check if we're out of vouchers
       if (i >= vouchers.length) {
@@ -139,7 +142,7 @@ const CurrentEntries = () => {
       } else {
         let id = people[i]
         let voucher = vouchers[i]
-
+        // call the api to update the database with the voucher assignment
         axios.put(`${process.env.REACT_APP_HOST}/api/assignvouchers`, { personId: id, ticket: voucher }).then((response) => {
           console.log("Put them together")
           getVoucherCount()
@@ -147,7 +150,7 @@ const CurrentEntries = () => {
         })
       }
     } // end loop
-  }   // end function emailVouchers
+  }   // end function assignVouchers
 
   const refPass = useRef(null);
 
