@@ -8,8 +8,6 @@ const CurrentEntries = () => {
   const [entryList, setEntryList] = useState([]);
   const [vouchRem, setVouchRem] = useState(-1);
   const [newVols, setNewVols] = useState(-1);
-  const [gEmails, setEmails] = useState([]);
-  const [gVouchers, setVouchers] = useState([]);
 
   // READ (GET)
   useEffect(() => {
@@ -63,13 +61,6 @@ const CurrentEntries = () => {
     for (let i = 0; i < updateInputs.length; i++) {
       updateInputs[i].value = ''
     }
-  }
-
-  // Pause
-  function sleep(duration) {
-    return new Promise((resolve) => {
-      setTimeout(resolve, duration)
-    })
   }
 
   // READ (Display Num Vouchers left)
@@ -135,7 +126,7 @@ const CurrentEntries = () => {
     for (let i = 0; i < people.length; i++) {
       // first check if we're out of vouchers
       if (i >= vouchers.length) {
-        alert('*******!!!OUT OF VOUCHERS!!!*******\nNot all volunteers have been given a voucher for Bridger. Please request more immediately! (And keep a better eye on our fancy voucher count too)')
+        alert('*******!!! OUT OF VOUCHERS !!!*******\nNot all volunteers have been given a voucher for Bridger. Please request more immediately!\n(And keep a better eye on our fancy voucher count too)')
       } else {
         let id = people[i]
         let voucher = vouchers[i]
