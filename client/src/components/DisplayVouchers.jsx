@@ -81,17 +81,9 @@ const DisplayVouchers = () => {
       
           // then assign the vouchers to the people
           assignVouchers(vouchers, people)
-          
           // get new values from queries
           getVoucherCount()
-          getNewVolunteerCount()      
-        
-          // assign new values to the html objects
-          const voucherCount = document.getElementById('voucherCount')
-          const volunteerCount = document.getElementById('volunteerCount')
-
-          voucherCount.innerHTML = ShowCount(vouchRem)
-          volunteerCount.innerHTML = newVols
+          getNewVolunteerCount() 
         })
       })
     }
@@ -113,6 +105,16 @@ const DisplayVouchers = () => {
       } // end loop
     }   // end function assignVouchers
   
+    function updateCounts() {
+      // assign new values to the html objects
+      const voucherCount = document.getElementById('voucherCount')
+      const volunteerCount = document.getElementById('volunteerCount')
+
+      voucherCount.innerHTML = ShowCount(vouchRem)
+      volunteerCount.innerHTML = newVols
+    }
+
+
     getVoucherCount()
     getNewVolunteerCount()
 
@@ -124,6 +126,7 @@ const DisplayVouchers = () => {
             <h4>Vouchers Remaining: <span id="voucherCount">{ShowCount(vouchRem)}</span></h4>
             <h5>Volunteers without Tickets: <span id="volunteerCount">{newVols}</span></h5>
             <button id="submitEmailsButton" className='submitBtn' onClick={handleEmailVouchers}>Email Vouchers</button>
+            <button id="updateCountsButton" className='updateBtn' onClick={updateCounts}>Update Counts</button>
         </div>
     );
 };
