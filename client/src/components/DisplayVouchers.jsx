@@ -89,7 +89,7 @@ const DisplayVouchers = () => {
       getNewVolunteerCount() 
       
       const updateBtn = document.getElementById('updateCountsButton')
-      updateBtn.display = 'block';
+      updateBtn.syle.display = 'block';
 
     }
   
