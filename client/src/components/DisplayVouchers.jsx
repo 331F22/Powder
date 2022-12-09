@@ -1,23 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios'
 
 const DisplayVouchers = () => {
 
     const [vouchRem, setVouchRem] = useState(-1);
     const [newVols, setNewVols] = useState(-1);
+    const [seconds, setSeconds] = useState(10);
 
-    const countLow = {
+    const lowAlert = {
         color: 'red',
     }
+    useEffect(() => {
+      const time = seconds > 0 && setInterval(() => setSeconds(seconds - 1), 1000);
+      return () => clearInterval(time);
+    }, [seconds]);
     const High = () => {
         return <b>{vouchRem}</b>;
     }
-    const Low = () => {
-        return <b style={countLow}>{vouchRem}</b>
+    const Low = (seconds) => {
+      if (seconds % 2 === 0) {
+        return <b style={lowAlert}>ONLY {vouchRem} REMAINING!!!</b>
+      }
+      else if (seconds % 2 ===0) {
+        return 'ONLY ' + vouchRem + ' REMAINING!!!';
+      }
+      // return <b style={lowAlert}>{vouchRem}</b>
     }
     function ShowCount(vouchRem) {
         if (vouchRem <= 10) {
-            return <Low/>;
+            return Low(seconds);
         }
         return <High/>;
     }
