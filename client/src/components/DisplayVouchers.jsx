@@ -56,11 +56,11 @@ const DisplayVouchers = () => {
     function handleEmailVouchers() {
       const button = document.getElementById('submitEmailsButton')
       if (button.innerHTML === 'Email Vouchers') {
+        alert('This button has limited use. It only assigns voucher codes to volunteers, does not yet send them out in emails.')
         button.innerHTML = 'Update Counts'
-      } else if (button.innerHTML === 'Update Counts') {
+    } else if (button.innerHTML === 'Update Counts') {
         button.innerHTML = 'Email Vouchers'
       }
-      alert('This button has limited use. It only assigns voucher codes to volunteers, does not yet send them out in emails.')
       
       let vouchers = []
       let people = []
