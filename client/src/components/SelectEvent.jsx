@@ -88,6 +88,16 @@ const SelectEvent = () => {
         axios.put(`${process.env.REACT_APP_HOST}/api/updateEvent`, { newName: updateName, newDate: updateDate, event_id: event_id }).then((response) => {})
     }
 
+    function switcheroo() {
+        const hide = document.getElementsByClassName('Hide');
+        for (let i = 0; i < hide.length; i++)
+            hide[i].style.display = 'inline';
+
+            const show = document.getElementsByClassName('Show');
+        for (let i = 0; i < show.length; i++)
+            show[i].style.display = 'none';
+    }
+
     return (
         <div>
             <div className="SelectEvent">
@@ -102,45 +112,50 @@ const SelectEvent = () => {
                     <table>
                         <thead>
                             <tr>
-                            <th>Event Name</th>
-                            <th>Date</th>
-                            <th></th>
+                                <th>Event Name</th>
+                                <th>Date</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                         {eventList.map((val, k) => {
                             return (<tr key={k}>
-                                <td>{val.event_name} </td>
-                                <td>{val.event_date} </td>
+                                <td className='Show'>{val.event_name} </td>
+                                <td className='Hide'>
+                                    <input type="text" placeholder={val.event_name} 
+                                    onChange={(e) => setUpdateName(e.target.value)} />
+                                </td>
+
+                                <td className='Show'>{val.event_date} </td>
+                                <td className='Hide'>
+                                    <input type="date" placeholder={val.event_date}
+                                    onChange={(e) => setUpdateDate(e.target.value)} />
+                                </td>
+
                                 <td>
                                     <button display="inline" onClick={() => {
                                         selectEvent(val.event_name, val.event_id);
                                     }}>
                                     Select</button>
                                 </td>
-
-                                <td>
+                                <td className='Hide'>
                                     <button display="inline" onClick={() => {
                                         DeleteEvent(val.event_id);
                                     }}>
                                     Delete</button>
                                 </td>
 
-                                <td>
+                                <td className='Show'>
+                                    <button onClick={() => {
+                                        switcheroo();
+                                    }}>
+                                    Update</button>
+                                </td>
+                                <td className='Hide'>
                                     <button onClick={() => {
                                         UpdateEvent(val.event_id)
                                     }}>
                                     Update</button>
-                                </td>
-
-                                <td>
-                                    <input type="text" placeholder={val.event_name} 
-                                    onChange={(e) => setUpdateName(e.target.value)} />
-                                </td>
-
-                                <td>
-                                    <input type="date" placeholder={val.event_date}
-                                    onChange={(e) => setUpdateDate(e.target.value)} />
                                 </td>
                                 
                             </tr>)
