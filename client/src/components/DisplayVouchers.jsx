@@ -20,7 +20,7 @@ const DisplayVouchers = () => {
       if (seconds % 2 === 0) {
         return <b style={lowAlert}>ONLY {vouchRem} REMAINING!!!</b>
       }
-      else if (seconds % 2 ===0) {
+      else if (seconds % 2 === 1) {
         return 'ONLY ' + vouchRem + ' REMAINING!!!';
       }
     }
