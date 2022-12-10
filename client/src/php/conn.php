@@ -1,8 +1,8 @@
 <?php
 $hostname = "localhost";
-$database = "trails";
-$username = "root";
-$password = "";
+$database = "db24";
+$username = "user24";
+$password = "24samp";
 #Connect to the database
 //connection String
 $connect = mysql_connect($hostname, $username, $password)
