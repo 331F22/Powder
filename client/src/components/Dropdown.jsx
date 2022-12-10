@@ -7,7 +7,7 @@ function Dropdown() {
 	//if this doesnt work use backup
 	//let trails = JSON.parse(phpTrails);
 	//backup
-	let trails = [{name: "cool", map:"ool"}]
+	let trails = [{key: 1, name: "cool", map:"death"}]
 	
 // Using state to keep track of selected trail
 let [trail, setTrail] = useState("Select a trail")
