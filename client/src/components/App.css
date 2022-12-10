@@ -19,16 +19,16 @@ body {
 }
 @keyframes animate {
   0%,100%{
-    background-image: url('../skiingimg6.jpeg');
+    background-image: url('../images/skiingimg6.jpeg');
   }
   25%{
-    background-image: url('../skiingimg7.jpeg');
+    background-image: url('../images/skiingimg7.jpeg');
   }
   50%{
-    background-image: url('../skiingimg8.jpeg');
+    background-image: url('../images/skiingimg8.jpeg');
   }
   75%{
-    background-image: url('../skiingimg5.webp');
+    background-image: url('../images/skiingimg5.webp');
   }
 
   

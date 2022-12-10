@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import axios from 'axios'
-import phpTrails from "../../php/conn.php"
+import phpTrails from "../php/conn.php"
 
 function Dropdown() {
   //get php data somehow
 	//if this doesnt work use backup
-	let trails = JSON.parse(phpTrails);
+	//let trails = JSON.parse(phpTrails);
 	//backup
-	//let trails = {"trail1": "cool", "trail2":"ool"}
+	let trails = [{name: "cool", map:"ool"}]
 	
 // Using state to keep track of selected trail
 let [trail, setTrail] = useState("Select a trail")
@@ -24,7 +24,7 @@ let handleTrailChange = (e) => {
     <br />
     <select onChange={handleTrailChange}> 
       <option value="Select a trail"> -- Select a trail -- </option>
-		{trails.map((trail) => <option value={trail.name}>{trail.name}</option>)}
+		{trails.map((trail) => <option value={trail.name}>{trail.map}</option>)}
     </select>
 	
 	
