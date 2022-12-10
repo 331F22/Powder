@@ -36,5 +36,6 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
  
 <script type="text/javascript">
     var phpTrails = <?php echo json_encode($trails) ?>;
+	export phpTrails;
 </script>
 ?>
