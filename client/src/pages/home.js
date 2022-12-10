@@ -14,7 +14,6 @@ const Home = () => {
             <CurrentEntries />
             <hr />
             <Footer />
-            <MyGitHub></MyGitHub>
         </div>
     );
 };
