@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios'
-
+import Table from 'react-bootstrap/Table';
 const CurrentEntries = () => {
 
   const SECRET = process.env.REACT_APP_PASSCODE
@@ -129,9 +129,61 @@ const CurrentEntries = () => {
   }
 
   return (
+    <div>
+      <Table striped id='curr_entries_table'>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          {entryList.map((val, k) => {
+            return (<tr key={k}>
+              <td>{k}</td>
+              <td>{val.last_name} </td>
+              <td>{val.first_name} </td>
+              <td> {val.email_address}</td>
+              {/* <span className="emailListed"></span> */}
+              <div className="editControls editGui">
+                <button className='delete' onClick={() => {
 
-    <div className="currentEntries posRel">
-      <h2>Current Entries</h2>
+                  deleteEntry(val.email_address)
+                }}>delete</button>
+                <button className='update' onClick={() => {
+                  if (newEmail.length > 0) {
+                    updateEmail(val.email_address);
+                  }
+                }}>update</button>
+                <input type="email" className="updateInput" placeholder={val.email_address}
+                  onChange={(e) => setNewEmail(e.target.value)} />
+              </div>
+            </tr>)
+
+          })}
+        </tbody>
+      </Table>
+
+
+      <div className="editField editGui" id='curr_entries_bttns'>
+        <button id="editButton" onClick={handleEditList}>Edit List</button>
+        <button id="doneButton" onClick={handleFinishedEditing}>Finished Editing</button>
+        <input id="editPasscodeInput" ref={refPass} type="password"
+          placeholder='Enter passcode' onChange={checkPasscode}
+          onBlur={(e) => abortPasscodeAttempt(e.target.value)} />
+      </div>
+      <button id="submitEmailsButton" className='submitBtn' onClick={() => alert('TODO: Send It!')}>Email Vouchers</button>
+
+    </div>
+  )
+}
+
+export default CurrentEntries;
+
+// <div className="currentEntries posRel">
+{/* <h2>Current Entries</h2>
 
       <div className='userData'>
         {entryList.map((val, k) => {
@@ -153,8 +205,8 @@ const CurrentEntries = () => {
             </div>
           </div>)
 
-        })}
-        <div className="editField editGui">
+        })} */}
+{/* <div className="editField editGui">
           <button id="editButton" onClick={handleEditList}>Edit List</button>
           <button id="doneButton" onClick={handleFinishedEditing}>Finished Editing</button>
           <input id="editPasscodeInput" ref={refPass} type="password"
@@ -164,8 +216,24 @@ const CurrentEntries = () => {
         <button id="submitEmailsButton" className='submitBtn' onClick={() => alert('TODO: Send It!')}>Email Vouchers</button>
 
       </div>
-    </div>
-  )
-}
+    </div> */}
 
-export default CurrentEntries;
+
+
+{/* <tr>
+        <td>1</td>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td colSpan={2}>Larry the Bird</td>
+        <td>@twitter</td>
+      </tr> */}

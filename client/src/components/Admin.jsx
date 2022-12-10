@@ -4,7 +4,7 @@ import CurrentEntries from './CurrentEntries';
 
 function Admin() {
     const top_container_style = {
-        'width': '40%',
+        'width': '100%',
         // 'border': '3px solid black',
         // 'text-align': 'center'
     };
