@@ -1,7 +1,7 @@
 import React from "react";
 import AddEntry from "../components/AddEntry";
 import CurrentEntries from "../components/CurrentEntries";
-import Footer from "../components/Footer-Broyles";
+import Footer from "../components/Footer";
 import MyGitHub from "../components/MyGitHub";
 import DisplayVouchers from "../components/DisplayVouchers";
 
