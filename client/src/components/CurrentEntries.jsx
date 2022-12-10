@@ -6,8 +6,7 @@ const CurrentEntries = () => {
 
   const SECRET = process.env.REACT_APP_PASSCODE
 
-  const [entryList, setEntryList] = useState([])
-
+  const [entryList, setEntryList] = useState([]);
 
   // READ (GET)
   useEffect(() => {
@@ -63,6 +62,7 @@ const CurrentEntries = () => {
     }
   }
 
+
   const refPass = useRef(null);
 
   function handleEditList(e) {
@@ -70,15 +70,29 @@ const CurrentEntries = () => {
     const editButton = document.getElementById('editButton')
     const doneButton = document.getElementById('doneButton')
     const editPasscodeInput = document.getElementById('editPasscodeInput')
-    const submitEmailsButton = document.getElementById('submitEmailsButton')
+    // const submitEmailsButton = document.getElementById('submitEmailsButton')
 
     if (passcode === SECRET) {
+
       for (let i = 0; i < collection.length; i++)
         collection[i].style.display = 'block'
       doneButton.style.display = 'inline'
       editButton.style.display = 'none'
       editPasscodeInput.style.visibility = 'hidden'
-      submitEmailsButton.style.display = 'block'
+      // submitEmailsButton.style.display = 'block'
+      
+      // // Just for new Group 20 work
+      // const voucherLabel = document.getElementById('vouchersLeft')
+      // const voucherCount = document.getElementById('voucherCount')
+      // const volunteerLabel = document.getElementById('newVolunteers')
+      // const volunteerCount = document.getElementById('volunteerCount')
+
+      // // Displaying the things
+      // voucherCount.innerHTML = vouchRem
+      // voucherLabel.style.display = 'inline'
+      // volunteerCount.innerHTML = newVols
+      // volunteerLabel.style.display = 'inline'
+
 
     } else {
       for (let i = 0; i < collection.length; i++)
@@ -92,12 +106,15 @@ const CurrentEntries = () => {
     refPass.current.value = ''
   }
 
+
   function handleFinishedEditing() {
     const editPasscodeInput = document.getElementById('editPasscodeInput')
     const editButton = document.getElementById('editButton')
     const doneButton = document.getElementById('doneButton')
     const collection = document.getElementsByClassName("editControls")
-    const submitEmailsButton = document.getElementById('submitEmailsButton')
+    // const submitEmailsButton = document.getElementById('submitEmailsButton')
+    // const voucherLabel = document.getElementById('vouchersLeft')
+    // const volunteerLabel = document.getElementById('newVolunteers')
 
     for (let i = 0; i < collection.length; i++)
       collection[i].style.display = 'none'
@@ -105,7 +122,9 @@ const CurrentEntries = () => {
     doneButton.style.display = 'none'
     editButton.style.display = 'inline'
     editButton.innerHTML = "Edit List"
-    submitEmailsButton.style.display = 'none'
+    // submitEmailsButton.style.display = 'none'
+    // voucherLabel.style.display = 'none'
+    // volunteerLabel.style.display = 'none'
   }
 
   function checkPasscode(e) {
@@ -163,8 +182,9 @@ const CurrentEntries = () => {
             placeholder='Enter passcode' onChange={checkPasscode}
             onBlur={(e) => abortPasscodeAttempt(e.target.value)} />
         </div>
-        <button id="submitEmailsButton" className='submitBtn' onClick={() => alert('TODO: Send It!')}>Email Vouchers</button>
-        <DisplayVouchers />
+
+        {/* <div id="vouchersLeft">Unused Vouchers: <span id="voucherCount"></span></div> */}
+        {/* <div id="newVolunteers">New Volunteers w/o vouchers: <span id="volunteerCount"></span></div> */}
 
       </div>
     </div>

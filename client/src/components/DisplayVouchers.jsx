@@ -1,43 +1,202 @@
-import React, { useState, useEffect } from 'react';
-
-const VoucherCount = 5;
-const countLow = {
-  color: 'red',
-};
+import { useState, useEffect } from 'react';
+import axios from 'axios'
 
 const DisplayVouchers = () => {
-  const [seconds, setSeconds] = useState(10);
+    const [vouchRem, setVouchRem] = useState(-1);
+    const [newVols, setNewVols] = useState(-1);
+    const [seconds, setSeconds] = useState(10);
 
-  useEffect(() => {
-    const time = seconds > 0 && setInterval(() => setSeconds(seconds - 1), 1000);
-    return () => clearInterval(time);
-  }, [seconds]);
+    const lowAlert = {
+        color: 'red',
+    }
+    useEffect(() => {
+      const time = seconds > 0 && setInterval(() => setSeconds(seconds - 1), 1000);
+      return () => clearInterval(time);
+    }, [seconds]);
+    const High = () => {
+        return <b>{vouchRem}</b>;
+    }
+    const Low = (seconds) => {
+      if (seconds % 2 === 0) {
+        return <b style={lowAlert}>ONLY {vouchRem} REMAINING!!!</b>
+      }
+      else if (seconds % 2 ===0) {
+        return 'ONLY ' + vouchRem + ' REMAINING!!!';
+      }
+    }
+    function ShowCount(vouchRem) {
+        if (vouchRem <= 10) {
+            return Low(seconds);
+        }
+        return <High/>;
+    }
+//    TODO: Connor - implement some function to display the volunteers without tickets
+//                  Same way you did the vouchers, but this time, if it's anything over 0, make it red
 
-  const High = () => {
-    return <b>{VoucherCount}</b>;
-  };
+//    TODO: Connor - add some other styling to the admin page so it's not just words
+//                  - and to the email vouchers button too
+
+      
+    // READ (Display Num Vouchers left)
+    const getVoucherCount = () => {
+      axios.get(`${process.env.REACT_APP_HOST}/api/vouchersremaining`).then((response) => {
+        let entryListCopy = response.data
+        console.log(entryListCopy)
+        console.log(entryListCopy[0])
+        console.log(entryListCopy[0].Count)
   
-  const Low = (seconds) => {
-    if (seconds % 2 === 0) {
-      return <b style={countLow}>{VoucherCount}</b>;
+        setVouchRem(parseInt(entryListCopy[0].Count))
+      })
     }
-    else if (seconds % 2 === 1) {
-      return <b>{VoucherCount}</b>;
-    }
-  };
   
-  function ShowCount(VoucherCount) {
-    if (VoucherCount <= 10) {
-      return Low(seconds);
+    // READ (Display number of volunteers without vouchers)
+    const getNewVolunteerCount = () => {
+      axios.get(`${process.env.REACT_APP_HOST}/api/unrewardedvolunteercount`).then((response) => {
+        let entryListCopy = response.data
+        console.log(entryListCopy)
+        console.log(entryListCopy[0])
+        console.log(entryListCopy[0].Count)
+  
+        setNewVols(parseInt(entryListCopy[0].Count))
+      })
     }
-    return <High/>;
-  };  
+  
+    // Called from button click, does some read/write
+    function handleEmailVouchers() {
+      // update label of Email Vouchers button to run again but just change the numbers
+      const button = document.getElementById('submitEmailsButton')
+      if (button.innerHTML === 'Email Vouchers') {
+        alert('This button has limited use. It only assigns voucher codes to volunteers, does not yet send them out in emails.')
+        button.innerHTML = 'Update Counts'
+      } else if (button.innerHTML === 'Update Counts') {
+        button.innerHTML = 'Email Vouchers'
+      }
+      
+      let vouchers = []
+      let people = []
+  
+      // first get available vouchers
+      axios.get(`${process.env.REACT_APP_HOST}/api/getvouchers`).then((response) => {
+        let voucherList = response.data
+        console.log(voucherList[0].ticketCode)
+  
+        for (let voucher of voucherList) {
+          vouchers.push(voucher.ticketCode)
+        }
+        console.log(vouchers)
+  
+        // then get people who need a voucher
+        axios.get(`${process.env.REACT_APP_HOST}/api/unrewardedvolunteers`).then((response) => {
+          let volunteerList = response.data
+          console.log(volunteerList[0].first_name)
+  
+          for (let person of volunteerList) {
+            people.push(person.id)
+          }
+          console.log(people)
+      
+          // then assign the vouchers to the people
+          assignVouchers(vouchers, people)
+        })  
+      })
 
-  return (
-    <div>
-      <h4>Available Vouchers: {ShowCount(VoucherCount)}</h4>
-    </div>
-  );
+      // get new values from queries
+      getVoucherCount()
+      getNewVolunteerCount() 
+
+    }
+  
+    function assignVouchers(vouchers, people) {
+      // loop through each person in need of a voucher
+      if (people.length === 0) {
+        alert("You don't need to send out any vouchers, all volunteers have been given tickets already.")
+      }
+      for (let i = 0; i < people.length; i++) {
+        // first check if we're out of vouchers
+        if (i >= vouchers.length) {
+          alert('*******!!! OUT OF VOUCHERS !!!*******\nNot all volunteers have been given a voucher for Bridger. Please request more immediately!\n(And keep a better eye on our fancy voucher count too)')
+        } else {
+          let id = people[i]
+          let voucher = vouchers[i]
+          // call the api to update the database with the voucher assignment
+          axios.put(`${process.env.REACT_APP_HOST}/api/assignvouchers`, { personId: id, ticket: voucher }).then((response) => {
+            console.log("Put them together")
+          })
+        }
+      } // end loop
+      getVoucherCount()
+      getNewVolunteerCount()
+    }   // end function assignVouchers
+  
+
+
+    // ============= IGNORE THIS FUNCTION BELOW =================== //
+
+    // function reset() {
+    //   // call the api to reset the databse to my set values
+    //   axios.get(`${process.env.REACT_APP_HOST}/api/resetdb`).then((response) => {
+    //       console.log("Reset back to preset default")
+    //     })
+    // } // end function undoAssignment
+
+
+    // function updateCounts() {
+    //   // get new values from queries
+    //   getVoucherCount()
+    //   getNewVolunteerCount() 
+
+    //   // assign new values to the html objects
+    //   const voucherCount = document.getElementById('voucherCount')
+    //   const volunteerCount = document.getElementById('volunteerCount')
+
+    //   let count = ShowCount(vouchRem)
+
+    //   voucherCount.innerHTML = {count}
+    //   volunteerCount.innerHTML = newVols
+
+    //   let vouchers = []
+    //   let people = []
+  
+    //   // first get available vouchers
+    //   axios.get(`${process.env.REACT_APP_HOST}/api/getvouchers`).then((response) => {
+    //     let voucherList = response.data
+    //     console.log(voucherList[0].ticketCode)
+  
+    //     for (let voucher of voucherList) {
+    //       vouchers.push(voucher.ticketCode)
+    //     }
+    //     console.log(vouchers)
+  
+    //     // then get people who need a voucher
+    //     axios.get(`${process.env.REACT_APP_HOST}/api/unrewardedvolunteers`).then((response) => {
+    //       let volunteerList = response.data
+    //       console.log(volunteerList[0].first_name)
+  
+    //       for (let person of volunteerList) {
+    //         people.push(person.id)
+    //       }
+    //       console.log(people)
+    //     })  
+    //   })
+     
+    
+
+
+
+    getVoucherCount()
+    getNewVolunteerCount()
+
+
+
+    return (
+        <div>
+            <h1>Display Vouchers</h1>
+            <h4>Vouchers Remaining: <span id="voucherCount">{ShowCount(vouchRem)}</span></h4>
+            <h5>Volunteers without Tickets: <span id="volunteerCount">{newVols}</span></h5>
+            <button id="submitEmailsButton" className='submitBtn' onClick={handleEmailVouchers}>Email Vouchers</button>
+            {/* <button id="resetButton" className='resetBtn' onClick={reset}>Reset DB</button> */}
+        </div>
+    );
 };
 
 export default DisplayVouchers;

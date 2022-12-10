@@ -17,11 +17,13 @@ body {
 #userInput input{
   width: 90%;
   margin: 10px;
-  padding: 10px;
+  padding: 5px;
   font-size: 2rem;
   border-radius: 5px;
   color: #333;
-  background-color:rgba(135, 206, 235, 0.3);
+  outline: none;
+  border-width: 0 0 2px;
+  border-style: solid;
 }
 #firstLastName {
   display: grid;
@@ -78,6 +80,13 @@ body {
 #editPasscodeInput{
   visibility: hidden;
 }
-#submitEmailsButton{
+#vouchersLeft{
   display: none;
 }
+#newVolunteers{
+  display: none;
+}
+a:hover{
+  color: #A22C28;
+}
+
