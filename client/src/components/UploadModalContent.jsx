@@ -11,9 +11,9 @@ const UploadContent = (prop) => {
   const [values, setValues] = useState([]);
 
   const changeHandler = (event) => {
-    // Passing file data (event.target.files[0]) to parse using Papa.parse
+    // Passing file data to parse using Papa.parse
     Papa.parse(event.target.files[0], {
-      header: true,
+      header: true, //set to flase if first row in CSV is a not a header
       skipEmptyLines: true,
       complete: function (results) {
         const rowsArray = [];
