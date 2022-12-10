@@ -2,8 +2,7 @@ import React from "react";
 import AddEntry from "../components/AddEntry";
 import CurrentEntries from "../components/CurrentEntries";
 import Footer from "../components/Footer";
-import MyGitHub from "../components/MyGitHub";
-import DisplayVouchers from "../components/DisplayVouchers";
+// import MyGitHub from "../components/MyGitHub";
 
 const Home = () => {
     return (
@@ -14,7 +13,7 @@ const Home = () => {
             <CurrentEntries />
             <hr />
             <Footer />
-            <MyGitHub></MyGitHub>
+            {/* <MyGitHub/> */}
         </div>
     );
 };
