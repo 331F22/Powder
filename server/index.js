@@ -6,7 +6,8 @@ const mysql = require('mysql')
 const dotenv = require('dotenv').config()
 
 const db = mysql.createPool({ // createConnection
-    host: 'localhost',
+    // host: 'localhost',  for server
+    host: 'csci331.cs.montana.edu',
     user: process.env.DBUSER,
     password: process.env.DBPASS,
     database: process.env.DATABASE,
@@ -22,8 +23,10 @@ app.get("/api/read", (req, res) => {
     const sqlSelect = "SELECT * FROM volunteers;"
     db.query(sqlSelect, (err, result) => {
         if(err){
+            console.log("error");
             throw err;
         }
+        console.log("error1");
         res.send(result);
     })
 })
@@ -33,8 +36,12 @@ app.post("/api/create", (req, res) => {
     const fn = req.body.first
     const ln = req.body.last
     const ea = req.body.email
-    const sqlInsert = "INSERT INTO volunteers (first_name, last_name, email_address) VALUES (?,?,?);"
-    db.query(sqlInsert, [fn, ln, ea], (err, result) => {
+    const dt = toString(new Date())
+    const sg = 'imported signiture'
+    const vr = 'imported voucher'
+    const vs = 'voucher status'
+    const sqlInsert = "INSERT INTO volunteers (first_name, last_name, email_address, date, signiture, voucher, voucher_status) VALUES (?,?,?,?,?,?,?);"
+    db.query(sqlInsert, [fn, ln, ea, dt, sg, vr, vs], (err, result) => {
         if(err) throw err
         console.log("Server posted: ", fn, ln)
         res.send(result)
