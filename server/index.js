@@ -23,10 +23,8 @@ app.get("/api/read", (req, res) => {
     const sqlSelect = "SELECT * FROM volunteers;"
     db.query(sqlSelect, (err, result) => {
         if(err){
-            console.log("error");
             throw err;
         }
-        console.log("error1");
         res.send(result);
     })
 })
