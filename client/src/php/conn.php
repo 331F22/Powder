@@ -25,12 +25,12 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     $trails[] = array(
 		'ID' => $row['ID'],
         'Name' => $row['Name'],
-        'TrailMapURL1' => $row['TrailMapURL1'],
-		'TrailMapURL2' => $row['TrailMapURL2'],
-		'GoogleMapsEmbed' => $row['GoogleMapsEmbed'],
-		'LiftOperationTimes' => $row['LiftOperationTimes'],
-		'OpenDate' => $row['CloseDate'],
-		'CloseDate' => $row['CloseDate']
+        'Trail_Map_URL_1' => $row['Trail_Map_URL_1'],
+		'Trail_Map_URL_2' => $row['Trail_Map_URL_2'],
+		'Google_Maps_Embed_code' => $row['Google_Maps_Embed_code'],
+		'Lift_Operation_Time' => $row['Lift_Operation_Time'],
+		'Open_Date' => $row['Open_Date'],
+		'Close_Date' => $row['Close_Date']
       );
 }
  
