@@ -6,8 +6,8 @@ const mysql = require('mysql')
 const dotenv = require('dotenv').config()
 
 const db = mysql.createPool({ // createConnection
-    // host: 'localhost',  for server
-    host: 'csci331.cs.montana.edu',
+    host: 'localhost',  //for server
+    //host: 'csci331.cs.montana.edu',
     user: process.env.DBUSER,
     password: process.env.DBPASS,
     database: process.env.DATABASE,
