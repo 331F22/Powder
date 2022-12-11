@@ -57,6 +57,10 @@
     justify-content: flex-end; 
 }
 
+.modal-Header-CloseBtn:hover{
+    opacity: 0.5;
+}
+
 .closeBtn{
     border-top-right-radius: 10px;
     cursor: pointer;
@@ -102,6 +106,10 @@
     .modal-Header-Logo{
         font-size: 20px;
     }
+}
+
+.btn-add-codes{
+    margin-left: 0;
 }
 
 
