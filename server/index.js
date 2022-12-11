@@ -45,6 +45,15 @@ app.get("/api/readVouchers", (req, res) => {
     })
 })
 
+// GET NUMBER OF REMAINING VOUCHERS
+app.get("/api/getRemainingVouchers", (req, res) => {
+    const sqlSelect = "SELECT COUNT(ticketCode) as numVouchersLeft FROM tickets WHERE is_issued=0;"
+    db.query(sqlSelect, (err, result) => {
+        if (err) throw err
+        res.send({numVouchersLeft: result[0].numVouchersLeft})
+    })
+})
+
 // CREATE
 app.post("/api/create", (req, res) => {
     const fn = req.body.first
