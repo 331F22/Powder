@@ -11,7 +11,10 @@ function Admin() {
 
     return (
         <div>
-            <h1 style={{'text-align': 'center'}}>Admin page</h1>
+            <div id='top_header'>
+                <img id='header_img' src='https://uploads-ssl.webflow.com/57b4d56c1f986d4879b0574d/581d0395c6f121fb068e4d22_BSFlogo-p-1080x664.jpeg' />
+                <h1>Admin page</h1>
+            </div>
             <hr />
             <div style={top_container_style}>
             <CurrentEntries />

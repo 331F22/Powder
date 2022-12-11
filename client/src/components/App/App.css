@@ -97,6 +97,36 @@ body {
 #editButton {
   /* border: 2px solid green; */
   margin-left: 25%;
-  
-
+}
+#top_header {
+    /* border: 2px solid green; */
+    position: relative;
+    bottom: 15px;
+    background-image: url("https://uploads-ssl.webflow.com/57b4d56c1f986d4879b0574d/589a1d631c4e926c434747a9_groomed%20snow.jpg");
+    background-color: #cccccc;
+    height: 280px;
+    background-position: 50% 50%, 0px 0px;
+    background-repeat: no-repeat, repeat;
+    background-size: cover, auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items:flex-end;
+}
+#top_header h1 {
+  font-family: 'Carrois Gothic', 'sans-serif';
+  font-size: 60px;
+  color: #fff;
+  font-weight: 100;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 3px #000;
+  margin-right: 20%;
+}
+#header_img {
+  width: auto;
+  height: 80%;
+  margin-left: 15%;
+  margin-bottom: 1%;
 }
