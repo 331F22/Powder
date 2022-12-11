@@ -1,0 +1,128 @@
+.navigation{
+    background-color: #B8BCBF;
+    border-bottom: 2px black;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+body{
+    background-color: #F0F1F3;
+}
+  
+.bsfsmall{
+    max-width: 12%;
+    height: auto;
+    width:auto/9;
+    padding:20px;
+  }
+  
+.wrapper{
+    width:100%;
+    justify-content: center;
+    border-bottom: 1px solid black;
+    overflow:hidden;
+    background-color: #F0F1F3;
+    margin:auto;
+    padding-bottom: 50px;
+}
+  
+#secondroot{
+    font-family: 'Oswald', sans-serif;
+    padding: 20px;
+    padding-left: 0px;
+    background-color: #F0F1F3;
+    overflow:hidden;
+    width: 50%;
+    border-left: 1px solid #B8BCBF;
+}
+  
+#bsflarge{
+    max-width:50%;
+    float:left;
+    margin: 7%;
+}
+  
+#bsftitle{
+    margin-top: 17%;
+    font-size: 24pt;
+    font-weight: lighter;
+    color: #000000;
+}
+  
+#bsftext{
+    margin-left: 7%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: large;
+    display: inline-block;
+    text-align: center;
+}
+  
+.admin{
+    font-family: 'Open Sans', sans-serif;
+    padding: 5px;
+}
+
+.info{
+    width: 100%;
+    background-color: #F0F1F3;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.links{
+    float: left;
+    margin:30px;
+    text-align: center;
+}
+
+.sociall{
+    margin: 30px;
+}
+
+.map{
+
+    margin: 20px;
+}
+
+.social{
+    width:50px;
+    margin:auto;
+}
+
+ul{
+    list-style: none;
+}
+
+h1{
+    font-family: 'Oswald', sans-serif;
+    padding: 20px;
+    text-align: center;
+}
+
+#wrap{
+    display: flex;
+    justify-content: center;
+    width:100%;
+    margin: auto;
+}
+
+#editButton{
+    font-family: 'Open Sans', sans-serif;
+    padding: 10px;
+}
+
+#assignVouchersButton{
+    font-family: 'Open Sans', sans-serif;
+    padding: 10px;
+}
+
+#currentEntries{
+    text-align: center;
+}
+
+#CETitle{
+    font-family: 'Oswald', sans-serif;
+    padding: 1%;
+    padding-right: 12%;
+}

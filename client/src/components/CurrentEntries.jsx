@@ -146,8 +146,9 @@ const CurrentEntries = () => {
   }
 
   return (
+    <div id='currentEntries'>
     <div className="currentEntries posRel">
-      <h2>Current Entries</h2>
+      <h2 id='CETitle'>Current Entries</h2>
       <table style={{tableLayout:"auto", width:"100%" }}>
         <tr>
           <th>Name</th>
@@ -191,6 +192,7 @@ const CurrentEntries = () => {
           placeholder='Enter passcode' onChange={checkPasscode}
           onBlur={(e) => abortPasscodeAttempt(e.target.value)} />
       </div>
+    </div>
     </div>
   )
 }
