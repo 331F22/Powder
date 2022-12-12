@@ -2,7 +2,7 @@
 
 ## Members
  - Michael Buffington (http://csci331.cs.montana.edu:5006/)
- - Matt Pritting ()
+ - Matt Pritting (Client - http://csci331.cs.montana.edu:3034)
  - Charlie Weitzenberg ()
  
 ## Features Implimented
@@ -18,6 +18,7 @@ All contributions by group members happened on <a href="https://github.com/331F2
 https://docs.google.com/presentation/d/1g-uX5tTwQDklAT1JTX-9XMHy9p1AfkMvkdfkoWoLAoY/edit?usp=sharing
 
 ## Creative Summary
+Our project had 2 main objectives that we wanted to solve. The first was to add email functionality so that Keri could automate the release of voucher codes to volunteers. The second goal that we wanted to accomplish was to segment lists of volunteers by which events they had volunteered at. 
 
 ## Tech  Summary
 Front end operations used React UI components & React-DOM-Router in order to show different pages. Backend opperations relied on an Express server and a MySQL database. Most database calls were relatively simple (CRUD Operations), but assigning vouchers required multiple reads and a write which required asyncronous functions in order to run. Emailing was handled via an SMPT server using a private API. 
