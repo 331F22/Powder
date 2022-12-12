@@ -16,6 +16,7 @@ const VoucherManagement = () => {
       const response = await axios.get(process.env.REACT_APP_HOST + '/api/uploadVouchers')
       console.log(response)
     }
+    loadNumOfCodesRemaining()
     // setNumCodes()
   }, [])
   
