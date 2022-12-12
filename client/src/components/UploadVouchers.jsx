@@ -21,8 +21,6 @@ const VoucherManagement = () => {
     loadNumOfCodesRemaining();
   }, []);
 
-  onC
-
   return (
     <div className="voucherManagement">
       <h2>Voucher Management</h2>
