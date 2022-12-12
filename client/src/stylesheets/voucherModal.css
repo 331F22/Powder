@@ -91,7 +91,7 @@
     padding: 10px;
     text-align: center;
     max-height: 75%;
-    overflow: scroll;
+    overflow-y: scroll;
     justify-content: center;
     align-content: center;
     
