@@ -3,7 +3,7 @@ import AddEntry from '../components/AddEntry';
 
 const Home = () => {
 return (
-	<div id='wrap'>
+	<div>
     <AddEntry />
 	</div>
 );

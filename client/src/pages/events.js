@@ -4,7 +4,9 @@ import SelectEvent from '../components/SelectEvent';
 const Events = () => {
 return (
 	<div>
-        <h1>Events</h1>
+        <div id='ETitle'>
+        <h2>Events</h2>
+        </div>
     <SelectEvent />
 	</div>
 );

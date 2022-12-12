@@ -4,13 +4,50 @@
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link href="/src/App.css" rel="stylesheet">
+    <link href="./css/index.css" rel="stylesheet">
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <title>React App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Oswald&display=swap" rel="stylesheet">
+    <title>Bridger Ski Foundation</title>
   </head>
+  
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div class="wrapper">
+      <div id="root"></div>
+
+    </div>      
+    <div class="info">
+        <div class="links">
+          <ul>
+            <li><p>Links</p></li>
+            <li><a href="https://www.bridgerskifoundation.org/">Our Website</a></li>
+            <li><a href="https://www.bridgerskifoundation.org/about/sponsors">Sponsors</a></li>
+            <li><a href="https://www.bridgerskifoundation.org/about/contact">Staff Directory</a></li>
+            <li><a href="https://www.bridgerskifoundation.org/about/volunteers">Voulenteering</a></li>
+            <li><a href="https://www.bridgerskifoundation.org/staff/employment">Employment</a></li>
+          </ul>
+        </div>
+        <div class="sociall">
+          <p>Follow us on Social Media</p>
+          <a href="https://www.facebook.com/bridgerskifoundation/"><img class="social" src="/photos/facebook.png" alt="facebook"></a>
+          <a href="https://twitter.com/bridgerski"><img class="social" src="/photos/twitter.png" alt="twitter"></a>
+          <a href="https://www.instagram.com/bridgerskifoundation/?hl=en"><img class="social" src="/photos/insta.png" alt="instagram"></a>
+        </div>
+        <div class="map">
+          <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2786.3690590796873!2d-111.0284321843444!3d45.70363252545569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x534544102958ecb5%3A0xcb217a68296dbe56!2sBridger%20Ski%20Foundation!5e0!3m2!1sen!2sus!4v1670546701884!5m2!1sen!2sus" 
+          width="300" 
+          height="250" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
   </body>
+
 </html>

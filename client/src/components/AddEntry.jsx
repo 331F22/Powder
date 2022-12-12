@@ -43,8 +43,11 @@ const AddEntry = () => {
   
   return (
     <div className="addEntry">
-      <h2>Add an Entry</h2>
+      <div id='wrap'>
       <div id='userInput'>
+      <div id='SUTitle'>
+      <h2>Sign Up</h2>
+      </div>
         <div>
           <label htmlFor="firstName">First Name</label>
           <input ref={ref1} id="firstName" type="text" name="firstName" onChange={(e) => setFirstName(e.target.value)} />
@@ -66,6 +69,19 @@ const AddEntry = () => {
           }}
         >Add Entry</button>
       </div>
+      <div id="secondroot">
+        <img id="bsflarge" src="/photos/BSFlarge.jpg" alt="BSFLogoLarge" />
+        <div id="bsftitle">
+          COME SKI WITH US
+        </div>
+        <div id="bsftext">
+          Here at the Bridger Ski Foundation, we know the importance of our mountain and the activities that it provides. 
+          However, these activities don't arrange themselves and we will need all the help we can get to make sure that our community can continue to be provided with such activites.
+          If you want to help your community and keep our mountain running smoothly then be sure to enter your name and email, as well as what jobs you think could suit you, and we get back to you as soon as possible!
+          We will even throw in a discount for day passes for all your hard work. Thank you, we can't wait to see you out on the mountain!
+        </div>
+      </div>
+    </div>
     </div>
   )
 }

@@ -148,7 +148,7 @@ const CurrentEntries = () => {
   return (
     <div id='currentEntries'>
     <div className="currentEntries posRel">
-      <h2 id='CETitle'>Current Entries</h2>
+      <h2 id='CETitle'>Volunteers</h2>
       <table style={{tableLayout:"auto", width:"100%" }}>
         <tr>
           <th>Name</th>
