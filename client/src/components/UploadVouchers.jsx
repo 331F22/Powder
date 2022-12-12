@@ -13,7 +13,7 @@ const VoucherManagement = () => {
 
   useEffect(()=>{
     const loadNumOfCodesRemaining = async () => {
-      const response = await axios.get(process.env.REACT_APP_HOST + '/api/uploadVouchers')
+      const response = await axios.get(process.env.REACT_APP_HOST + '/api/getRemainingVouchers')
       console.log(response)
     }
     loadNumOfCodesRemaining()
