@@ -58,10 +58,10 @@ let handleTrailChange = (e, link) => {
 	<p>Close Date: {cDate}</p>
 	<br />
 	{img1 !== "" ?
-	<img src={require(window.location.origin + img1)} /> : console.log('no image')}
+	<img src={img1} alt = "" style={{width:"100%",height:"100%"}}/> : console.log('no image')}
 	<br />
 	{img2 !== "" ?
-	<img src={require(window.location.origin + img2)} /> : console.log('no image')}
+	<img src={img2} alt = "" style={{width:"100%",height:"100%"}}/> : console.log('no image')}
 	<br />
 	<iframe src={gEmbed} style={{width:"100%",height:"600"}} allowFullScreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 	
