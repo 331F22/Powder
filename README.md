@@ -29,6 +29,9 @@ Front end operations used React UI components & React-DOM-Router in order to sho
 
 <b>Matt Pritting:</b> Before leaving for Thanksgiving break, I coordinated with another group in Powder to see if we needed to have similar DDL for our projects so they could sync easier but we decided that we would stay seperate for the time. Most of my work was done over thanksgiving break when I had free time. I took time to understand how react was connecting the front end to the back end and added the modifications to allow users to interact with the events table and limit which volunteers were displayed by the selected event. After break, I added the update and delete functionalities. 
 
+<b>Charlie Weitzenberg:</b> Before thanksgiving, I spent most of my time familiarizing myself with the way that react apps function, as I was very new to this style of programming. I also spent this time brainstorming possible contributions I could make to the project. After Thankgiving I began implementing the css stying to the site. I had to scrap a lot of my work because I spent it trying to load react components on different html pages, however, once I started using react DOM routing things were a lot easier. After I managed to get the navigation bar up and running, I implemented a footer with some links and a map, and then began working on implementing the components made by Matt to the new multi-page system. This seemed easy at first, however I had to rework the way that volunteers sign up for specific events as the multi page functionality interfered with the sign up for specific events.
+
+
 ## Conclusion
 
 
