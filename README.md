@@ -33,7 +33,7 @@ Front end operations used React UI components & React-DOM-Router in order to sho
 
 
 ## Conclusion
-
+This project, despite it's difficulty, was an excellent way to gain a good understanding of the way that React apps are structured and how they function. One thing that I feel we could have been done better was having a clearer idea on what our final goal of the site was before we began working. I also feel that due to how loose the guidelines to this project were, having a little more communication on what we were each doing would have been very helpful. Despite all this, having almost complete freedom on this project forced me to really understand how react works instead of only learning within the bounds of stricter project guidelines. Overall, I am happy with the work that me and my partners did and glad that it taught me as much as it did!
 
 
 ## References
