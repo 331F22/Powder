@@ -41,11 +41,6 @@ const UploadContent = (prop) => {
     setOpenModal(false);
     document.querySelector("body").classList.remove("modal-open");
   };
-
-  const loadNumOfCodesRemaining = async () => {
-    const response = await axios.get(process.env.REACT_APP_HOST + '/api/getRemainingVouchers')
-    setNumCodes(response.data.numVouchersLeft)
-  }
   
 
   const requestUpload = (values) => {
@@ -60,9 +55,7 @@ const UploadContent = (prop) => {
       .catch(err => {
         console.error(err)
       })
-    
     discard()
-    loadNumOfCodesRemaining()
     close()
   };
 
