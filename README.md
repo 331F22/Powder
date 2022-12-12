@@ -26,6 +26,8 @@ Front end operations used React UI components & React-DOM-Router in order to sho
 
 <b>Michael Buffington:</b> In mid November, I made the initial emailing functionality using Nodemailer and Sendgrid. By Thanksgiving I had everything working, minus sending a real voucher code as that was dependent on Matt's contributions to multi-event functionality. After thanksgiving, I added some new buttons to assign vouchers and send them based on Matt's work, as well as connecting all three database tables (volunteers, events, and vouchers) to get the backend functionality working.
 
+<b>Charlie Weitzenberg:</b> Before thanksgiving, I spent most of my time familiarizing myself with the way that react apps function, as I was very new to this style of programming. I also spent this time brainstorming possible contributions I could make to the project. After Thankgiving I began implementing the css stying to the site. I had to scrap a lot of my work because I spent it trying to load react components on different html pages, however, once I started using react DOM routing things were a lot easier. After I managed to get the navigation bar up and running, I implemented a footer with some links and a map, and then began working on implementing the components made by Matt to the new multi-page system. This seemed easy at first, however I had to rework the way that volunteers sign up for specific events as the multi page functionality interfered with the sign up for specific events.
+
 ## Conclusion
 
 
