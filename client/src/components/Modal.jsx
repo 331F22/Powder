@@ -2,7 +2,7 @@ import React from "react";
 import UploadContent from "./UploadModalContent";
 
 const Modal = (props) => {
-  const {openModal, setOpenModal} = props;
+  const {openModal, setOpenModal, setNumCodes } = props;
   const close = () => {
     setOpenModal(false);
     document.querySelector('body').classList.remove('modal-open')
@@ -15,7 +15,7 @@ const Modal = (props) => {
     <>
       <div onClick={() => close()} className="modal-Background"></div>
       <div className="modalContainer">
-        <UploadContent setOpenModal={setOpenModal}/>
+        <UploadContent setOpenModal={setOpenModal} setNumCodes={setNumCodes}/>
       </div>
     </>
   );

@@ -19,7 +19,9 @@ const VoucherManagement = () => {
 
   useEffect(() => {
     loadNumOfCodesRemaining();
-  }, openModal);
+  }, []);
+
+  onC
 
   return (
     <div className="voucherManagement">
@@ -33,7 +35,7 @@ const VoucherManagement = () => {
       )}
       <h4>Remaining Codes:</h4>
       <h5>{numCodes}</h5>
-      <Modal setOpenModal={setOpenModal} openModal={openModal} />
+      <Modal setOpenModal={setOpenModal} openModal={openModal} setNumCodes={setNumCodes} />
       <button className="btn btn-primary btn-add-codes" onClick={() => open()}>
         Add Codes
       </button>

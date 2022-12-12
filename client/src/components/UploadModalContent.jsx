@@ -6,7 +6,7 @@ import "../stylesheets/voucherModal.css";
 const axios = require('axios')
 
 const UploadContent = (prop) => {
-  const { setOpenModal } = prop;
+  const { setOpenModal, setNumCodes } = prop;
   const [tableRows, setTableRows] = useState([]);
 
   const [values, setValues] = useState([]);
@@ -14,7 +14,7 @@ const UploadContent = (prop) => {
   const changeHandler = (event) => {
     // Passing file data to parse using Papa.parse
     Papa.parse(event.target.files[0], {
-      header: true, //set to flase if first row in CSV is a not a header
+      header: true, //set to false if first row in CSV is a not a header
       skipEmptyLines: true,
       complete: function (results) {
         const rowsArray = [];
@@ -41,7 +41,13 @@ const UploadContent = (prop) => {
     setOpenModal(false);
     document.querySelector("body").classList.remove("modal-open");
   };
-  
+
+  const loadNumOfCodesRemaining = async () => {
+    const response = await axios.get(
+      process.env.REACT_APP_HOST + "/api/getRemainingVouchers"
+    );
+    setNumCodes(response.data.numVouchersLeft);
+  };
 
   const requestUpload = (values) => {
     const data = {
@@ -56,6 +62,7 @@ const UploadContent = (prop) => {
         console.error(err)
       })
     discard()
+    loadNumOfCodesRemaining()
     close()
   };
 
