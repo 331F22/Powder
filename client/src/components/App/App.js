@@ -9,7 +9,7 @@ function App() {
 
   return (
   <>
-    <h1 class='header'>BSF Volunteer Sign-up</h1>
+    <h1 className='header'>BSF Volunteer Sign-up</h1>
     <div className="App">    
       <AddEntry />
       <hr />
