@@ -10,7 +10,7 @@ const PageNavbar = () => {
 
   function promptMe() {
     var curr_href = window.location.href;
-    if (!(curr_href === 'http://localhost:5068/Admin')) {
+    if (!(curr_href === 'http://localhost:5068/Admin' || curr_href === 'http://csci331.cs.montana.edu:5068/Admin')) {
       var userAdjective = prompt("Enter the passcode.");
       if (!(userAdjective == "777")) {
         window.location.reload();

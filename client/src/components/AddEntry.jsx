@@ -50,7 +50,7 @@ const AddEntry = () => {
         <button className="submitBtn"
           onClick={() => {
             if (firstName.length > 0 && lastName.length > 0 && emailAddress.length > 0) {
-              submitEntry(); refreshPage();
+              submitEntry();
             }
           }}
         >Add Entry</button>
