@@ -6,6 +6,9 @@ body {
   max-width:600px;
   margin: auto;
 }
+#main_container {
+  max-width: 600px;
+}
 #userInput {
   display: flex;
   flex-direction: column;
@@ -122,11 +125,37 @@ body {
   letter-spacing: 1px;
   text-transform: uppercase;
   text-shadow: 2px 2px 3px #000;
-  margin-right: 20%;
+  margin-right: 10%;
+  /* border: 3px solid yellow; */
 }
 #header_img {
   width: auto;
   height: 80%;
   margin-left: 15%;
   margin-bottom: 1%;
+  /* border: 3px solid green; */
+}
+
+
+@media only screen and (max-width: 1225px) {
+  #top_header h1  {
+      font-size: 50px;
+      margin-right: 5%;
+  }
+  #header_img {
+    height: 70%;
+  }
+}
+
+@media only screen and (max-width: 980px) {
+  #top_header h1  {
+      font-size: 40px;
+      margin-right: 3%;
+  }
+  #header_img {
+    height: 60%;
+  }
+  #top_header {
+    height: 200px;;
+  }
 }
