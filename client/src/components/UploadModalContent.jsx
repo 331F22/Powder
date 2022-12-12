@@ -69,7 +69,7 @@ const UploadContent = (prop) => {
       </div>
       {values[0] ? <h3 className="headerText">Preview Codes</h3> : ''}
       {!values[0] ? 
-      <div className="modal-Content">
+      <div className="modal-Content-Before-Upload">
         <img 
           className="logo"
           src="http://skitrax.com/wp-content/uploads/2019/06/Bridger-Ski-Foundation-logo.jpeg"
