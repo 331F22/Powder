@@ -68,8 +68,8 @@ const UploadContent = (prop) => {
         </div>
       </div>
       {values[0] ? <h3 className="headerText">Preview Codes</h3> : ''}
-      {!values[0] ? 
-      <div className="modal-Content-Before-Upload">
+      <div className="modal-Content">
+        {!values[0] ? <>
         <img 
           className="logo"
           src="http://skitrax.com/wp-content/uploads/2019/06/Bridger-Ski-Foundation-logo.jpeg"
@@ -80,7 +80,7 @@ const UploadContent = (prop) => {
           onChange={changeHandler}
           accept=".csv"
           style={{ display: "block", margin: "10px auto" }}
-        />
+        /></> : ''}
         
         <table>
           <thead>
@@ -105,7 +105,7 @@ const UploadContent = (prop) => {
         <div className="footer">
           {values[0] ? <><button className="btn btn-danger" onClick={() => discard()}>Discard</button><button className="btn btn-primary" onClick={() => requestUpload(values)}>Upload {values.length} Codes to Database</button></> : ''}
         </div>
-      </div> : ''}
+      </div>
     </div>
   );
 };
