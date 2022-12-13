@@ -89,7 +89,7 @@ const CurrentEntries = () => {
     const editPasscodeInput = document.getElementById('editPasscodeInput')
     const submitEmailsButton = document.getElementById('submitEmailsButton')
 
-    if (passcode === SECRET) {
+    //if (passcode === SECRET) {
       for (let i = 0; i < collection.length; i++)
         collection[i].style.display = 'block'
       doneButton.style.display = 'inline'
@@ -97,14 +97,14 @@ const CurrentEntries = () => {
       editPasscodeInput.style.visibility = 'hidden'
       submitEmailsButton.style.display = 'block'
 
-    } else {
+    /*} else {
       for (let i = 0; i < collection.length; i++)
         collection[i].style.display = 'none'
       doneButton.style.display = 'none'
       editButton.style.display = 'inline'
       editPasscodeInput.style.visibility = 'visible'
       editPasscodeInput.focus()
-    }
+    }*/
     setPasscode('')
     refPass.current.value = ''
   }
