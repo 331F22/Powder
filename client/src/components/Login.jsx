@@ -67,6 +67,10 @@ const Login = () => {
 						<input type="Email" name="Email" value={Email} onChange={(e) => setEmail(e.target.value)} /><br />
 					</div>
 					
+					<div id="Pword">
+						<h3>Password</h3>
+						<input type="password" name="Password" value={PassWord} onChange={(e) => setPassWord(e.target.value)} /><br />
+					</div>
 					<br />
 					<button id="Submit" onClick={OnSubmit} >Submit</button>
 					
