@@ -2,7 +2,7 @@
 import './App.css';
 import AddEntry from '../AddEntry.jsx';
 import CurrentEntries from '../CurrentEntries.jsx';
-import Signiture from '../Signiture.jsx';
+//import Signiture from '../Signiture.jsx';
 import Footer from '../Footer.jsx'
 
 import React, { useState, useRef } from "react";

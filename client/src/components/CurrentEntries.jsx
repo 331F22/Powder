@@ -13,6 +13,7 @@ const CurrentEntries = () => {
     axios.get(`${process.env.REACT_APP_HOST}/api/read`).then((response) => {
       setEntryList(response.data)
     })
+	console.log("test");
   }, [])
 
   const [newEmail, setNewEmail] = useState('')

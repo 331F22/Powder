@@ -35,11 +35,12 @@ app.post("/api/create", (req, res) => {
     const ln = req.body.last
     const ea = req.body.email
     const dt = toString(new Date())
+    const tm = '1000-01-01 00:00:00'
     const sg = 'imported signiture'
     const vr = 'imported voucher'
     const vs = 'voucher status'
-    const sqlInsert = "INSERT INTO volunteers (first_name, last_name, email_address, date, signiture, voucher, voucher_status) VALUES (?,?,?,?,?,?,?);"
-    db.query(sqlInsert, [fn, ln, ea, dt, sg, vr, vs], (err, result) => {
+    const sqlInsert = "INSERT INTO volunteers (first_name, last_name, email_address, time_in) VALUES (?,?,?,?);"
+    db.query(sqlInsert, [fn, ln, ea, tm], (err, result) => {
         if(err) throw err
         console.log("Server posted: ", fn, ln)
         res.send(result)
