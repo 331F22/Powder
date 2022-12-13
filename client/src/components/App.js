@@ -3,7 +3,7 @@ import './App.css';
 //import Footer from '../Footer.jsx'
 import Dropdown from './Dropdown';
 import Header from './Header.js';
-
+import Footer from './Footer.jsx';
 
 
 function App() {
@@ -19,6 +19,7 @@ function App() {
 	    <Dropdown />
       </div>
        <hr />
+	<Footer />
     </div>
   )
 }
