@@ -3,7 +3,7 @@
 ## Members
  - Michael Buffington (http://csci331.cs.montana.edu:5006/)
  - Matt Pritting (Client - http://csci331.cs.montana.edu:3034)
- - Charlie Weitzenberg ()
+ - Charlie Weitzenberg (http://csci331.cs.montana.edu:5052)
  
 ## Features Implimented
  - Emailing functionality via Sendgrid and Nodemailer
