@@ -16,7 +16,7 @@ const AddEntry = () => {
 
   // CREATE (POST)
   function submitEntry() {
-    axios.post(`${process.env.REACT_APP_HOST}/api/create`, { first: firstName, last: lastName, email: emailAddress, phone_Number : phoneNumber }).then((response) => {
+    axios.post(`${process.env.REACT_APP_HOST}/api/create`, { first: firstName, last: lastName, email: emailAddress, phone_number: phoneNumber }).then((response) => {
       setEntryList([...entryList, { first_name: firstName, last_name: lastName, email_address: emailAddress,  phone_number: phoneNumber}]
       )
     })
