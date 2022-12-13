@@ -69,6 +69,7 @@ const UploadContent = (prop) => {
       <div className="modal-Content">
         {!values[0] ? <>
         <img 
+          alt=""
           className="logo"
           src="http://skitrax.com/wp-content/uploads/2019/06/Bridger-Ski-Foundation-logo.jpeg"
         ></img>
