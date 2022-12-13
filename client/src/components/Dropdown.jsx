@@ -1,12 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios'
-<<<<<<< Updated upstream
 import trailsJson from "../php/trails.json"
-
-=======
-import phpTrails from "../php/conn.php"
 import './Dropdown.css'
->>>>>>> Stashed changes
 
 let img1 = "";
 let img2 = "";
