@@ -35,19 +35,19 @@ const AddEntry = () => {
     <div className="addEntry">
       <h2>Add an Entry</h2>
       <div id='userInput'>
-        <div>
+        <div className='form-group'>
           <label htmlFor="firstName">First Name</label>
-          <input ref={ref1} id="firstName" type="text" name="firstName" onChange={(e) => setFirstName(e.target.value)} />
+          <input ref={ref1} id="firstName" type="text" name="firstName" onChange={(e) => setFirstName(e.target.value)} placeholder='Enter First Name' className='form-control'/>
         </div>
-        <div>
+        <div className='form-group'>
           <label htmlFor="lastName">Last Name</label>
-          <input ref={ref2} id="lastName" type="text" name="lastName" onChange={(e) => setLastName(e.target.value)} />
+          <input ref={ref2} id="lastName" type="text" name="lastName" onChange={(e) => setLastName(e.target.value)}  placeholder='Enter Last Name' className='form-control'/>
         </div><br />
-        <div className="emailField" >
+        <div className="emailField form-group" >
           <label htmlFor="email">Email Address</label>
-          <input ref={ref3} id="email" type="email" name="email" onChange={(e) => setEmailAddress(e.target.value)} />
+          <input ref={ref3} id="email" type="email" name="email" onChange={(e) => setEmailAddress(e.target.value)}  placeholder='Enter Email' className='form-control'/>
         </div>
-        <button className="submitBtn"
+        <button className="submitBtn btn btn-primary m-auto"
           onClick={() => {
             if (firstName.length > 0 && lastName.length > 0 && emailAddress.length > 0) {
               submitEntry(); refreshPage();

@@ -8,9 +8,9 @@ import Footer from '../Footer.jsx'
 function App() {
 
   return (
+  <>
+    <h1 className='header'>BSF Volunteer Sign-up</h1>
     <div className="App">    
-
-      <h1>Entries</h1>
       <AddEntry />
       <hr />
       <CurrentEntries />
@@ -19,6 +19,7 @@ function App() {
       <hr />
       <Footer />
     </div>
+  </> 
   )
 }
 

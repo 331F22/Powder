@@ -14,7 +14,7 @@ const UploadContent = (prop) => {
   const changeHandler = (event) => {
     // Passing file data to parse using Papa.parse
     Papa.parse(event.target.files[0], {
-      header: true, //set to flase if first row in CSV is a not a header
+      header: true, //set to false if first row in CSV is a not a header
       skipEmptyLines: true,
       complete: function (results) {
         const rowsArray = [];
@@ -54,6 +54,9 @@ const UploadContent = (prop) => {
       .catch(err => {
         console.error(err)
       })
+    discard()
+    close()
+    window.location.reload(false)
   };
 
   return (
@@ -65,7 +68,7 @@ const UploadContent = (prop) => {
           <IconMenuClose />
         </div>
       </div>
-
+      {values[0] ? <h3 className="headerText">Preview Codes</h3> : ''}
       <div className="modal-Content">
         {!values[0] ? <>
         <img 
@@ -80,7 +83,7 @@ const UploadContent = (prop) => {
           accept=".csv"
           style={{ display: "block", margin: "10px auto" }}
         /></> : ''}
-        {values[0] ? <h3>PREVIEW CODES BEFORE UPLOAD</h3> : ''}
+        
         <table>
           <thead>
             <tr>
@@ -101,7 +104,9 @@ const UploadContent = (prop) => {
             })}
           </tbody>
         </table>
-        {values[0] ? <><button className="btn btn-danger" onClick={() => discard()}>Discard</button><button className="btn btn-primary" onClick={() => requestUpload(values)}>Upload {values.length} Codes to Database</button></> : ''}
+        <div className="footer">
+          {values[0] ? <><button className="btn btn-danger" onClick={() => discard()}>Discard</button><button className="btn btn-primary" onClick={() => requestUpload(values)}>Upload {values.length} Codes to Database</button></> : ''}
+        </div>
       </div>
     </div>
   );
