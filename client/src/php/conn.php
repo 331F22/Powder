@@ -1,27 +1,22 @@
 <?php
-$hostname = "localhost";
-$database = "db24";
+$servername = "localhost";
 $username = "user24";
 $password = "24samp";
-#Connect to the database
-//connection String
-$connect = mysql_connect($hostname, $username, $password)
-or die('Could not connect: ' . mysql_error());
-//select database
-mysql_select_db($database, $connect);
-//Select The database
-$bool = mysql_select_db($database, $connect);
-if ($bool === False){
-   print "can't find $database";
+$db = "db24";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $db);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
 }
+echo "Connected successfully";
 // get data and store in a json array
-$query = "SELECT * FROM trails";
-$from = 0;
-$to = 30;
-$query .= " LIMIT ".$from.",".$to;
- 
-$result = mysql_query($query) or die("SQL Error 1: " . mysql_error());
-while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+$query = "SELECT * FROM BSF_Ski_Resort_Info";
+
+$result = $conn->query($query);
+while ($row = $result->fetch_assoc()) {
     $trails[] = array(
 		'ID' => $row['ID'],
         'Name' => $row['Name'],
@@ -33,9 +28,9 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 		'Close_Date' => $row['Close_Date']
       );
 }
- 
-<script type="text/javascript">
-    var phpTrails = <?php echo json_encode($trails) ?>;
-	export phpTrails;
-</script>
+$fp = fopen('trails.json', 'w');
+
+fwrite($fp, json_encode($trails));
+
+fclose($fp);
 ?>
