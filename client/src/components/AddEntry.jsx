@@ -6,7 +6,7 @@ const AddEntry = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
-  const [ phoneNumber, setPhoneNumber ] = useState(""); //added in phone number slot -Willow
+  const [phoneNumber, setPhoneNumber] = useState(''); //added in phone number slot -Willow
   const [entryList, setEntryList] = useState([])
 
   const ref1 = useRef(null);
