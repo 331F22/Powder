@@ -33,8 +33,9 @@ app.post("/api/create", (req, res) => {
     const fn = req.body.first
     const ln = req.body.last
     const ea = req.body.email
-    const sqlInsert = "INSERT INTO volunteers (first_name, last_name, email_address) VALUES (?,?,?);"
-    db.query(sqlInsert, [fn, ln, ea], (err, result) => {
+    const pn = req.body.phone_number
+    const sqlInsert = "INSERT INTO volunteers (first_name, last_name, email_address, phone_number) VALUES (?,?,?,?);"
+    db.query(sqlInsert, [fn, ln, ea, pn], (err, result) => {
         if(err) throw err
         console.log("Server posted: ", fn, ln)
         res.send(result)
