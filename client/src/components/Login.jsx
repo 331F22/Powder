@@ -8,6 +8,7 @@ import CurrentEntries from './CurrentEntries.jsx';
 const Login = () => {
 
     const [ Email, setEmail ] = useState("");
+	const [ UserName, setUserName ] = useState("");
 	const [ PassWord, setPassWord ] = useState("");
 
 	const [ Check2FA, setCheck2FA ] = useState(false);
@@ -35,12 +36,20 @@ const Login = () => {
   }
 
   const OnSubmit = () => {
-    if (PassWord == "Password"){
+	console.log("Submit...");
+	
+	
+	//	setAemail(response.data.email);
+	//	setAphone(response.data.phone);
+   if (PassWord == "Password"){
         console.log("login succesful")
         setCheck2FA(true)
         setneedsLogin(false)
     }
-  }
+  		}
+  
+ 
+	
     
 	return (
 		<div>
@@ -57,10 +66,7 @@ const Login = () => {
 						<h3>Email</h3><br />
 						<input type="Email" name="Email" value={Email} onChange={(e) => setEmail(e.target.value)} /><br />
 					</div>
-					<div id="Pword">
-						<h3>Password</h3>
-						<input type="password" name="Password" value={PassWord} onChange={(e) => setPassWord(e.target.value)} /><br />
-					</div>
+					
 					<br />
 					<button id="Submit" onClick={OnSubmit} >Submit</button>
 					
@@ -71,4 +77,5 @@ const Login = () => {
 		</div>
         
 	);
-}; export default Login;
+}; 
+export default Login;

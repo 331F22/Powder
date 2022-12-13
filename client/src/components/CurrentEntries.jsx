@@ -16,6 +16,7 @@ const CurrentEntries = () => {
   }, [])
 
   const [newEmail, setNewEmail] = useState('')
+  const [ newPhone, setNewPhone ] = useState("")
   const [passcode, setPasscode] = useState('')
 
   function getObjectByValue(objVal) {
@@ -62,6 +63,23 @@ const CurrentEntries = () => {
     }
   }
 
+  const updatePhone = (phone) => {
+    axios.put(`${process.env.REACT_APP_HOST}/api/update/phone`, { old: phone, new: newPhone}).then((response) => {
+      let objToChange = getObjectByValue(phone)
+      const index = entryList.indexOf(objToChange)  // deletes ONE instance in the state var
+      objToChange.phone_number = newPhone
+      if (index > -1) {
+        let entryListCopy = [...entryList]
+        entryListCopy[index] = objToChange
+        setEntryList(entryListCopy)
+      }
+    }) //close .then()
+    setNewPhone('') // clear all update email input fields
+    let updateInputs = document.getElementsByClassName('updateInput');
+    for (let i = 0; i < updateInputs.length; i++) {
+      updateInputs[i].value = ''
+    }
+  }
   const refPass = useRef(null);
 
   function handleEditList(e) {
@@ -136,8 +154,9 @@ const CurrentEntries = () => {
       <div className='userData'>
         {entryList.map((val, k) => {
           return (<div key={k}>
+            <div className="unit"> 
             <div>{val.last_name}, {val.first_name} <span className="emailListed">{val.email_address}</span> </div>
-
+            </div>
             <div className="editControls editGui">
               <button className='delete' onClick={() => {
 
@@ -146,6 +165,9 @@ const CurrentEntries = () => {
               <button className='update' onClick={() => {
                 if (newEmail.length > 0) {
                   updateEmail(val.email_address);
+                }
+                if (newPhone.length > 0) {
+                  updatePhone(val.phone_number);
                 }
               }}>update</button>
               <input type="email" className="updateInput" placeholder={val.email_address}

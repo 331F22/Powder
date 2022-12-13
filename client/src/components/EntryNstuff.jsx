@@ -21,4 +21,5 @@ const EntryNstuff = () => {
 	      <Footer />
 		</div>
 	);
-}; export default EntryNstuff;
+}; 
+export default EntryNstuff;
